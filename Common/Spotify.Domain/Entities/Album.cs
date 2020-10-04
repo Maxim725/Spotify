@@ -10,6 +10,7 @@ namespace Spotify.Domain.Entities
     public class Album : NamedEntity
     {
         public string Description { get; set; }
+        public int? ImageId { get; set; }
         public IEnumerable<int> AuthorIds { get; set; }
         public IEnumerable<int> TrackIds { get; set; }
         public DateTime PublicationDate { get; set; }
@@ -18,7 +19,11 @@ namespace Spotify.Domain.Entities
 
         [ForeignKey(nameof(AuthorIds))]
         public virtual IEnumerable<Author> Authors { get; set; }
+
         [ForeignKey(nameof(TrackIds))]
         public virtual IEnumerable<Track> Tracks { get; set; }
+
+        [ForeignKey(nameof(ImageId))]
+        public virtual Image Image { get; set; }
     }
 }

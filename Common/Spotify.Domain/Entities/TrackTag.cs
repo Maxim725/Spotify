@@ -6,11 +6,11 @@ using System.Text;
 
 namespace Spotify.Domain.Entities
 {
-    public class Tag : NamedEntity
+    public class TrackTag : NamedEntity
     {
-        public IEnumerable<int> TagIds { get; set; }
+        public IEnumerable<int> GroupTagIds { get; set; }
         
-        [ForeignKey(nameof(TagIds))]
-        public virtual IEnumerable<Tag> Tags { get; set; }
+        [ForeignKey(nameof(GroupTagIds))]
+        public virtual IEnumerable<TrackTag> Tags { get; set; }
     }
 }

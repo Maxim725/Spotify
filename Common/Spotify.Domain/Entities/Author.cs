@@ -10,15 +10,17 @@ namespace Spotify.Domain.Entities
     public class Author : IdentityUser
     {
         public string Biography { get; set; }
-        public string PathImage { get; set; }
-        public IEnumerable<int> TrackIds { get; set; }
+        public int? ImageId { get; set; }
         public IEnumerable<int> AlbumIds { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime UpdateDate { get; set; }
 
         //TODO: Виртуальные методы Треков и Альбомов
+
         [ForeignKey(nameof(AlbumIds))]
         public virtual IEnumerable<Album> Albums { get; set; }
-        [ForeignKey(nameof(TrackIds))]
-        public virtual IEnumerable<Track> Tracks { get; set; }
+
+        [ForeignKey(nameof(ImageId))]
+        public virtual Image Image { get; set; }
     }
 }

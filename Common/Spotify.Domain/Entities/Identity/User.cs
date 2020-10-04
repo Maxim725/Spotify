@@ -8,18 +8,18 @@ namespace Spotify.Domain.Entities.Identity
 {
     public class User : IdentityUser
     {
-        public IEnumerable<int> PlaylistIds { get; set; }
-        public IEnumerable<int> AuthorIds { get; set; }
-        public IEnumerable<int> TrackIds { get; set; }
+        public IEnumerable<int> FollowPlaylistIds { get; set; }
+        public IEnumerable<int> FollowAuthorIds { get; set; }
+        public IEnumerable<int> FollowTrackIds { get; set; }
         public DateTime CreationDate { get; set; }
 
-        [ForeignKey(nameof(PlaylistIds))]
+        [ForeignKey(nameof(FollowPlaylistIds))]
         public virtual IEnumerable<Playlist> Playlists { get; set; }
 
-        [ForeignKey(nameof(AuthorIds))]
+        [ForeignKey(nameof(FollowAuthorIds))]
         public virtual IEnumerable<Author> Authors { get; set; }
 
-        [ForeignKey(nameof(TrackIds))]
+        [ForeignKey(nameof(FollowTrackIds))]
         public virtual IEnumerable<Track> Tracks { get; set; }
     }
 }

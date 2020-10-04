@@ -8,18 +8,23 @@ namespace Spotify.Domain.Entities
 {
     public class Track : NamedEntity
     {
-        public string PathMp3 { get; set; }
-        public string PathImage { get; set; }
-        public TimeSpan PlayingTime { get; set; }
+        public string SoundPath { get; set; }
+        public int? ImageId { get; set; }
+        public TimeSpan Duration { get; set; }
         public int? AlbumId { get; set; }
         public IEnumerable<int> AuthorIds { get; set; }
         public uint Auditions { get; set; }
         public DateTime UploadDate { get; set; }
 
         //TODO: Виртуальные методы для авторов и альбома
+
         [ForeignKey(nameof(AlbumId))]
         public virtual Album Album { get; set; }
+
         [ForeignKey(nameof(AuthorIds))]
         public virtual IEnumerable<Author> Authors { get; set; }
+
+        [ForeignKey(nameof(ImageId))]
+        public virtual Image Image { get; set; }
     }
 }

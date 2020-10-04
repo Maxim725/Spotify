@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Spotify.Domain.Entities.Base
 {
-    public class NamedEntity : IdEntity
+    public class IdEntity
     {
-        [Required]
-        public string Name {get; set;}
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
     }
 }
