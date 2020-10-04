@@ -14,6 +14,8 @@ namespace Spotify.Domain.Entities
         public IEnumerable<int> TrackIds { get; set; }
         public int CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime UpdateDate { get; set; }
+
         //TODO: Виртуальный метод для треков
 
         [ForeignKey(nameof(TrackIds))]

@@ -13,7 +13,6 @@ namespace Spotify.Domain.Entities
         public int? ImageId { get; set; }
         public IEnumerable<int> AlbumIds { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime UpdateDate { get; set; }
 
         //TODO: Виртуальные методы Треков и Альбомов
 

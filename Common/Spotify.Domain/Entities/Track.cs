@@ -13,6 +13,8 @@ namespace Spotify.Domain.Entities
         public TimeSpan Duration { get; set; }
         public int? AlbumId { get; set; }
         public IEnumerable<int> AuthorIds { get; set; }
+        public IEnumerable<int> TagIds { get; set; }
+        public IEnumerable<int> GenreIds { get; set; }
         public uint Auditions { get; set; }
         public DateTime UploadDate { get; set; }
 
@@ -21,10 +23,17 @@ namespace Spotify.Domain.Entities
         [ForeignKey(nameof(AlbumId))]
         public virtual Album Album { get; set; }
 
+        [ForeignKey(nameof(ImageId))]
+        public virtual Image Image { get; set; }
+        
         [ForeignKey(nameof(AuthorIds))]
         public virtual IEnumerable<Author> Authors { get; set; }
 
-        [ForeignKey(nameof(ImageId))]
-        public virtual Image Image { get; set; }
+        [ForeignKey(nameof(TagIds))]
+        public virtual IEnumerable<TrackTag> Tags { get; set; }
+        
+        [ForeignKey(nameof(GenreIds))]
+        public virtual IEnumerable<Genre> Genres { get; set; }
+
     }
 }
