@@ -7,8 +7,13 @@ using System.Text;
 
 namespace Spotify.Domain.Entities
 {
-    public class Author : IdentityUser
+    public class Author
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Token { get; set; }
         public string Biography { get; set; }
         public int? ImageId { get; set; }
         public IEnumerable<int> AlbumIds { get; set; }
