@@ -13,16 +13,10 @@ namespace Spotify.Domain.Entities
         public string Name { get; set; }
         public bool Confirmed { get; set; }
         public string Biography { get; set; }
-        public int? ImageId { get; set; }
-        public IEnumerable<int> AlbumIds { get; set; }
         public DateTime CreationDate { get; set; }
 
-        //TODO: Виртуальные методы Треков и Альбомов
+        public IEnumerable<AuthorAlbum> Albums { get; set; }
 
-        [ForeignKey(nameof(AlbumIds))]
-        public virtual IEnumerable<Album> Albums { get; set; }
-
-        [ForeignKey(nameof(ImageId))]
-        public virtual Image Image { get; set; }
+        public Image Image { get; set; }
     }
 }

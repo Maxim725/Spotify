@@ -8,9 +8,8 @@ namespace Spotify.Domain.Entities
 {
     public class TrackTag : NamedEntity
     {
-        public IEnumerable<int> GroupTagIds { get; set; }
+        public int Id { get; set; }
         
-        [ForeignKey(nameof(GroupTagIds))]
-        public virtual IEnumerable<TrackTag> Tags { get; set; }
+        public IEnumerable<TagFamily> TagFamily { get; set; }
     }
 }

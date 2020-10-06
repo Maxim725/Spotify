@@ -9,19 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{E7209CF0-7A29-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D4E1C169-EA78-488E-816F-B235BB49275D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.ServiceHosting", "Services\Spotify.ServiceHosting\Spotify.ServiceHosting.csproj", "{82AA20A7-C730-49CB-83B0-B1815FCB1897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.DAL", "Services\Spotify.DAL\Spotify.DAL.csproj", "{6CE5FF47-D865-445E-9D11-CB85A55C7A7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify", "UI\Spotify\Spotify.csproj", "{E4C70472-7D36-471A-A42E-74CFA2F34695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Clients", "Services\Spotify.Clients\Spotify.Clients.csproj", "{571370DC-9CD2-4BB6-B45E-D05BBAD23543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.DAL", "Services\Spotify.DAL\Spotify.DAL.csproj", "{6CE5FF47-D865-445E-9D11-CB85A55C7A7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Domain", "Common\Spotify.Domain\Spotify.Domain.csproj", "{21099DB0-6D8E-444E-818D-B71E57C48F49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Clients", "Services\Spotify.Clients\Spotify.Clients.csproj", "{571370DC-9CD2-4BB6-B45E-D05BBAD23543}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Services", "Services\Spotify.Services\Spotify.Services.csproj", "{CEF41704-6F87-48DA-993F-352F89C4D0F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Domain", "Common\Spotify.Domain\Spotify.Domain.csproj", "{21099DB0-6D8E-444E-818D-B71E57C48F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Interfaces", "Services\Spotify.Interfaces\Spotify.Interfaces.csproj", "{AC4A588A-8822-4D4D-B044-E9AFCE3DF294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Services", "Services\Spotify.Services\Spotify.Services.csproj", "{CEF41704-6F87-48DA-993F-352F89C4D0F6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Interfaces", "Services\Spotify.Interfaces\Spotify.Interfaces.csproj", "{AC4A588A-8822-4D4D-B044-E9AFCE3DF294}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify", "UI\Spotify\Spotify.csproj", "{054AF4CD-BCD0-4685-BF58-25FB182B3EDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{82AA20A7-C730-49CB-83B0-B1815FCB1897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82AA20A7-C730-49CB-83B0-B1815FCB1897}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82AA20A7-C730-49CB-83B0-B1815FCB1897}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82AA20A7-C730-49CB-83B0-B1815FCB1897}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4C70472-7D36-471A-A42E-74CFA2F34695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4C70472-7D36-471A-A42E-74CFA2F34695}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4C70472-7D36-471A-A42E-74CFA2F34695}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4C70472-7D36-471A-A42E-74CFA2F34695}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CE5FF47-D865-445E-9D11-CB85A55C7A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CE5FF47-D865-445E-9D11-CB85A55C7A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE5FF47-D865-445E-9D11-CB85A55C7A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,18 +47,21 @@ Global
 		{AC4A588A-8822-4D4D-B044-E9AFCE3DF294}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC4A588A-8822-4D4D-B044-E9AFCE3DF294}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC4A588A-8822-4D4D-B044-E9AFCE3DF294}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054AF4CD-BCD0-4685-BF58-25FB182B3EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054AF4CD-BCD0-4685-BF58-25FB182B3EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054AF4CD-BCD0-4685-BF58-25FB182B3EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054AF4CD-BCD0-4685-BF58-25FB182B3EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{82AA20A7-C730-49CB-83B0-B1815FCB1897} = {D4E1C169-EA78-488E-816F-B235BB49275D}
-		{E4C70472-7D36-471A-A42E-74CFA2F34695} = {E7209CF0-7A29-4DFC-9341-8BC962DE0BB9}
 		{6CE5FF47-D865-445E-9D11-CB85A55C7A7B} = {D4E1C169-EA78-488E-816F-B235BB49275D}
 		{571370DC-9CD2-4BB6-B45E-D05BBAD23543} = {D4E1C169-EA78-488E-816F-B235BB49275D}
 		{21099DB0-6D8E-444E-818D-B71E57C48F49} = {221E9E0C-2017-4A5C-9A39-611C7E399B45}
 		{CEF41704-6F87-48DA-993F-352F89C4D0F6} = {D4E1C169-EA78-488E-816F-B235BB49275D}
 		{AC4A588A-8822-4D4D-B044-E9AFCE3DF294} = {D4E1C169-EA78-488E-816F-B235BB49275D}
+		{054AF4CD-BCD0-4685-BF58-25FB182B3EDD} = {E7209CF0-7A29-4DFC-9341-8BC962DE0BB9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {802158BB-DFDF-416A-83C2-599C6689C8D3}
