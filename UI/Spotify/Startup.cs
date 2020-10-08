@@ -35,6 +35,11 @@ namespace Spotify
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SpotifyDbContext>();
 
+            services.AddWebOptimizer(pipeline =>
+            {
+                pipeline.AddScssBundle("/css/site.css", "/Components/main.scss").UseContentRoot();
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -54,6 +59,7 @@ namespace Spotify
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseWebOptimizer();
             app.UseStaticFiles();
 
             app.UseRouting();
