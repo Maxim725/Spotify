@@ -6,8 +6,10 @@ using System.Text;
 
 namespace Spotify.Domain.Entities.Base
 {
-    public class NamedEntity : IdEntity
+    /// <summary> Абстрактный класс, который добавляет потомку Имя и Идентификатор </summary>
+    public abstract class NamedEntity : IdEntity
     {
+        /// <summary> Название экземпляра класса </summary>
         [Required]
         public string Name {get; set;}
     }

@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Spotify.Domain.Entities
 {
+    /// <summary> Тэг для трека </summary>
     public class TrackTag : NamedEntity
     {
-        public int Id { get; set; }
-        
+        /// <summary> Список классификаций тегов </summary>
         public IEnumerable<TagFamily> TagFamily { get; set; }
     }
 }
