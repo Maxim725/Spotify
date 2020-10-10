@@ -1,39 +1,69 @@
 ﻿using Spotify.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Spotify.Domain.Entities
 {
-    /// <summary> Модель трека </summary>
+    /// <summary>
+    /// Класс трека.
+    /// Трек один из основных типов данных для создания подборок.
+    /// </summary>
     public class Track : NamedEntity
     {
-        /// <summary> Путь до файла на сервере </summary>
+        /// <value>
+        /// Путь до файла.
+        /// </value>
+        [Required(ErrorMessage = "Путь до музыкального файла не указан.")]
         public string SoundPath { get; set; }
 
-        /// <summary> Продолжительность трека </summary>
-        public TimeSpan Duration { get; set; }
+        /// <value>
+        /// Продолжительность трека в секундах.
+        /// </value>
+        [Required(ErrorMessage = "Продолжительность трека не указана.")]
+        public uint Duration { get; set; }
 
-        /// <summary> Прослушиваний </summary>
-        public uint Auditions { get; set; }
+        /// <value>
+        /// Количество прослушиваний трека.
+        /// По умолчанию 0.
+        /// </value>
+        [Required(ErrorMessage = "Количество прослушиваний трека не указано.")]
+        public ulong Plays { get; set; }
 
-        /// <summary> Дата загрузки трека </summary>
+        /// <value>
+        /// Дата загрузки трека.
+        /// </value>
+        [Required(ErrorMessage = "Дата загрузки трека не указана.")]
         public DateTime UploadDate { get; set; }
 
-        /// <summary> Альбом, в котором находится трек (может быть null) </summary>
+        /// <value>
+        /// Альбом, в котором находится трек.
+        /// Может быть <c>null</c>.
+        /// </value>
         public Album Album { get; set; }
 
-        /// <summary> Аватарка для трека (может быть null) </summary>
-        public Image Image { get; set; }
+        /// <value>
+        /// Аватарка для трека.
+        /// Может быть <c>null</c>.
+        /// </value>
+        public string Image { get; set; }
 
-        /// <summary> Список авторов трека </summary>
+        /// <value>
+        /// Список авторов трека.
+        /// </value>
+        [Required(ErrorMessage = "Авторы трека не указаны.")]
         public IEnumerable<Author> Authors { get; set; }
 
-        /// <summary> Список тегов для трека</summary>
+        /// <value>
+        /// Теги трека.
+        /// Может быть пустым.
+        /// </value>
         public IEnumerable<TrackTag> Tags { get; set; }
 
-        /// <summary> Жанры, в которых написан трек </summary>
+        /// <value>
+        /// Жанры трека.
+        /// </value>
         public IEnumerable<Genre> Genres { get; set; }
 
     }

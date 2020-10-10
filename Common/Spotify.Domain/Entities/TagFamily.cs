@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Spotify.Domain.Entities
 {
-    /// <summary> Классификатор тегов </summary>
+    /// <value>
+    /// Класс семейтсва тегов.
+    /// Используется для улчушения подборок треков.
+    /// </value>
     public class TagFamily : NamedEntity
     {
     }
