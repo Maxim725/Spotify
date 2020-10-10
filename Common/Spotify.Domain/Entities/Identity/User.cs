@@ -26,6 +26,7 @@ namespace Spotify.Domain.Entities.Identity
         /// Список понравившихся авторов пользователя.
         /// </summary>
         public IEnumerable<LikedAuthorUser> LikedAuthors { get; set; }
+        //public IEnumerable<Author> LikedAuthors { get; set; }
 
         /// <summary>
         /// Список понравившихся треков пользователя.

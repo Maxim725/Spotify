@@ -14,13 +14,13 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Пользователь.
         /// </value>
-        [Key, Required(ErrorMessage = "Не указан пользователь для связи пользователь - плэйлист.")]
+        //[Key, Required(ErrorMessage = "Не указан пользователь для связи пользователь - плэйлист.")]
         public Identity.User User { get; set; }
 
         /// <value>
         /// Плейлист.
         /// </value>
-        [Key, Required(ErrorMessage = "Не указан плэйлист для связи пользователь - плэйлист.")]
+        //[Key, Required(ErrorMessage = "Не указан плэйлист для связи пользователь - плэйлист.")]
         public Playlist Playlist { get; set; }
     }
 }

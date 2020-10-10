@@ -186,22 +186,22 @@ namespace Spotify.DAL.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("Authros");
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Spotify.Domain.Entities.AuthorAlbum", b =>
                 {
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
                     b.Property<int>("AlbumId")
                         .HasColumnType("int");
 
-                    b.HasKey("AuthorId", "AlbumId");
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AlbumId");
+                    b.HasKey("AlbumId", "AuthorId");
 
-                    b.ToTable("AuthorAlbum");
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("AuthorAlbums");
                 });
 
             modelBuilder.Entity("Spotify.Domain.Entities.Genre", b =>
@@ -313,16 +313,11 @@ namespace Spotify.DAL.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("AuthorId1")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId", "AuthorId");
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("AuthorId1");
-
-                    b.ToTable("LikedAuthorUser");
+                    b.ToTable("LikedAuthorUsers");
                 });
 
             modelBuilder.Entity("Spotify.Domain.Entities.LikedTrackUser", b =>
@@ -337,7 +332,7 @@ namespace Spotify.DAL.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("LikedTrackUser");
+                    b.ToTable("LikedTrackUsers");
                 });
 
             modelBuilder.Entity("Spotify.Domain.Entities.Playlist", b =>
@@ -394,7 +389,7 @@ namespace Spotify.DAL.Migrations
 
                     b.HasIndex("PlaylistId");
 
-                    b.ToTable("PlaylistUser");
+                    b.ToTable("PlaylistUsers");
                 });
 
             modelBuilder.Entity("Spotify.Domain.Entities.TagFamily", b =>
@@ -572,15 +567,15 @@ namespace Spotify.DAL.Migrations
 
             modelBuilder.Entity("Spotify.Domain.Entities.LikedAuthorUser", b =>
                 {
-                    b.HasOne("Spotify.Domain.Entities.Identity.User", "User")
-                        .WithMany("LikedAuthors")
+                    b.HasOne("Spotify.Domain.Entities.Author", "Author")
+                        .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Spotify.Domain.Entities.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId1")
+                    b.HasOne("Spotify.Domain.Entities.Identity.User", "User")
+                        .WithMany("LikedAuthors")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
