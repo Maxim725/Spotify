@@ -23,8 +23,6 @@ namespace Spotify.DAL
 
         public DbSet<Genre> Genres { get; set; }
 
-        public DbSet<Image> Images { get; set; }
-
         public DbSet<TagFamily> TagFamilies { get; set; }
 
         public SpotifyDbContext(DbContextOptions<SpotifyDbContext> options) 
