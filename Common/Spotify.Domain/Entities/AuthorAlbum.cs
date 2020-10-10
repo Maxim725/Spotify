@@ -16,6 +16,5 @@ namespace Spotify.Domain.Entities
         /// Автор альбома.
         /// </value>
         public Author Author { get; set; }
-
     }
 }

@@ -30,14 +30,14 @@ namespace Spotify.Domain.Entities
         /// Количество прослушиваний трека.
         /// По умолчанию 0.
         /// </value>
-        [Required(ErrorMessage = "Количество прослушиываний трека не указано.")]
-        public uint Plays { get; set; }
+        [Required(ErrorMessage = "Количество прослушиваний трека не указано.")]
+        public ulong Plays { get; set; }
 
         /// <value>
         /// Дата загрузки трека.
         /// </value>
         [DataType(DataType.DateTime)]
-        [Required(ErrorMessage = "Количество прослушиываний трека не указано.")]
+        [Required(ErrorMessage = "Количество прослушиваний трека не указано.")]
         public DateTime UploadDate { get; set; }
 
         /// <value>
