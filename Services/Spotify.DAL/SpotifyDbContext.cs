@@ -41,20 +41,6 @@ namespace Spotify.DAL
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
-            // Автор <--> Альбом
-            //builder.Entity<AuthorAlbum>()
-            //    .HasKey(t => new { t.AuthorId, t.AlbumId });
-
-            //builder.Entity<AuthorAlbum>()
-            //    .HasOne(sc => sc.Author)
-            //    .WithMany(s => s.Albums)
-            //    .HasForeignKey(sc => sc.AuthorId);
-
-            //builder.Entity<AuthorAlbum>()
-            //    .HasOne(sc => sc.Album)
-            //    .WithMany(s => s.Authors)
-            //    .HasForeignKey(sc => sc.AlbumId);
-
 
             // Автор <--> Пользователь
             builder.Entity<LikedAuthorUser>()
@@ -65,11 +51,6 @@ namespace Spotify.DAL
                 .HasOne(sc => sc.User)
                 .WithMany(s => s.LikedAuthors)
                 .HasForeignKey(sc => sc.UserId);
-            //.HasForeignKey(sc => sc.AuthorId);
-            //builder.Entity<LikedAuthorUser>()
-            //    .HasOne(sc => sc.Author)
-            //    .WithMany(sc => sc.)
-            //    .HasForeignKey();
 
 
             // Трек <--> Пользователь
@@ -97,7 +78,6 @@ namespace Spotify.DAL
 
             builder.Entity<AuthorAlbum>()
                 .HasKey(k => new { k.AlbumId, k.AuthorId });
-            //.HasNoKey();
             builder.Entity<AuthorAlbum>()
                 .HasOne(a => a.Album).WithMany(a => a.Authors).HasForeignKey(a => a.AlbumId);
             builder.Entity<AuthorAlbum>()
