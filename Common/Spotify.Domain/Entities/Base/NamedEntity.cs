@@ -14,8 +14,6 @@ namespace Spotify.Domain.Entities.Base
         /// <value>
         /// Имя сущности.
         /// </value>
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Имя сущности не установлено.")]
         public string Name {get; set;}
     }
 }

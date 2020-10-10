@@ -11,7 +11,6 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Описание жанра.
         /// </value>
-        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         /// <value>
@@ -19,7 +18,6 @@ namespace Spotify.Domain.Entities
         /// Прослушивания обновляются один раз в рассчетный период, к примеру, раз в сутки.
         /// По умолчанию 0.
         /// </value>
-        [Required(ErrorMessage = "Количество прослушиваний жанра не указано.")]
         public ulong Plays { get; set; }
     }
 }

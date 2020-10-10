@@ -16,21 +16,16 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Описание плейлиста.
         /// </value>
-        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         /// <value>
         /// Дата создания.
         /// </value>
-        [DataType(DataType.DateTime)]
-        [Required(ErrorMessage = "Дата создания плейлиста не указана.")]
         public DateTime CreationDate { get; set; }
 
         /// <value>
         /// Дата последнего изменения плейлиста.
         /// </value>
-        [DataType(DataType.DateTime)]
-        [Required(ErrorMessage = "Дата обновления плейлиста не указана.")]
         public DateTime UpdateDate { get; set; }
 
         /// <value>
@@ -48,15 +43,12 @@ namespace Spotify.Domain.Entities
         /// Прослушивания обновляются один раз в рассчетный период, к примеру, раз в сутки.
         /// По умолчанию 0.
         /// </value>
-        [Required(ErrorMessage = "Количество прослушиваний плейлиста не указано.")]
         public ulong Plays { get; set; }
 
         /// <value>
         /// Продолжительность плейлиста в секундах.
         /// По умолчанию 0.
         /// </value>
-        [DataType(DataType.Url)]
-        [Required(ErrorMessage = "Продолжительность альбома не указана.")]
         public uint Duration { get; set; }
     }
 }

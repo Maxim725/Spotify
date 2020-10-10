@@ -18,7 +18,6 @@ namespace Spotify.Domain.Entities
         /// Теги формируют семейства. Это помогает улучшить подборки треков.
         /// Например, "грустный" и "веселый" принадлежат к семейству "настроение".
         /// </value>
-        [Required(ErrorMessage = "Семейство тегов не указано.")]
         public IEnumerable<TagFamily> TagFamily { get; set; }
     }
 }

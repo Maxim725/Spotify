@@ -15,29 +15,22 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Путь до файла.
         /// </value>
-        [DataType(DataType.Url)]
-        [Required(ErrorMessage = "Путь до музыкального файла не указан.")]
         public string SoundPath { get; set; }
 
         /// <value>
         /// Продолжительность трека в секундах.
         /// </value>
-        [DataType(DataType.Url)]
-        [Required(ErrorMessage = "Продолжительность трека не указана.")]
         public uint Duration { get; set; }
 
         /// <value>
         /// Количество прослушиваний трека.
         /// По умолчанию 0.
         /// </value>
-        [Required(ErrorMessage = "Количество прослушиваний трека не указано.")]
         public ulong Plays { get; set; }
 
         /// <value>
         /// Дата загрузки трека.
         /// </value>
-        [DataType(DataType.DateTime)]
-        [Required(ErrorMessage = "Дата загрузки трека не указана.")]
         public DateTime UploadDate { get; set; }
 
         /// <value>
@@ -55,7 +48,6 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Список авторов трека.
         /// </value>
-        [Required(ErrorMessage = "Авторы трека не указаны.")]
         public IEnumerable<Author> Authors { get; set; }
 
         /// <value>
