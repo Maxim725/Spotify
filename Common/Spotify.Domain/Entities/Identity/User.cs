@@ -14,6 +14,7 @@ namespace Spotify.Domain.Entities.Identity
         /// <summary>
         /// Дата создания аккаунта.
         /// </summary>
+        [Required(ErrorMessage = "Дата создания пользователя не указана.")]
         public DateTime CreationDate { get; set; }
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace Spotify.Domain.Entities.Identity
         /// <value>
         /// Аватар пользователя.
         /// </value>
+        [Required(ErrorMessage = "Аватар пользователя не указан.")]
         public string Avatar { get; set; }
     }
 }

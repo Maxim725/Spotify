@@ -18,6 +18,7 @@ namespace Spotify.Domain.Entities
         /// По умолчанию <c>false</c>.
         /// Может быть изменен на <c>true</c> после модерации.
         /// </value>
+        [Required(ErrorMessage = "Статус автора не указан.")]
         public bool Confirmed { get; set; }
 
         /// <value>
@@ -29,6 +30,7 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Дата создания странички автора.
         /// </value>
+        [Required(ErrorMessage = "Дата создания страницы автора не указана.")]
         public DateTime CreationDate { get; set; }
 
         /// <value>
@@ -47,6 +49,7 @@ namespace Spotify.Domain.Entities
         /// Прослушивания обновляются один раз в рассчетный период, к примеру, раз в сутки.
         /// По умолчанию 0.
         /// </value>
+        [Required(ErrorMessage = "Количество прослушиваний автора не указано.")]
         public ulong Plays { get; set; }
     }
 }

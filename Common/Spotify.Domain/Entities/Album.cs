@@ -25,11 +25,13 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Авторы альбома.
         /// </value>
+        [Required(ErrorMessage = "Авторы альбома не указаны.")]
         public IEnumerable<AuthorAlbum> Authors { get; set; }
 
         /// <value>
         /// Обложка альбома.
         /// </value>
+        [Required(ErrorMessage = "Обложка альбома не указана.")]
         public string Cover { get; set; }
     }
 }
