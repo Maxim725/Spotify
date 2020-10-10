@@ -1,14 +1,25 @@
 ﻿using Spotify.Domain.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace Spotify.Domain.Entities
 {
-    /// <summary> Класс, описывающий жанр </summary>
+    /// <summary>
+    /// Класс жанра музыки.
+    /// </summary>
     public class Genre : NamedEntity
     {
-        /// <summary> Описание жанра </summary>
+        /// <value>
+        /// Описание жанра.
+        /// </value>
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        /// <summary> Прослушиваний у жанра (должна обновляться раз в месяц) </summary>
-        public long Auditions { get; set; }
+        /// <value>
+        /// Количесво прослушиваний треков в данном жанре.
+        /// Прослушивания обновляются один раз в рассчетный период, к примеру, раз в сутки.
+        /// По умолчанию 0.
+        /// </value>
+        [Required(ErrorMessage = "Количество прослушиваний жанра не указано.")]
+        public ulong Plays { get; set; }
     }
 }

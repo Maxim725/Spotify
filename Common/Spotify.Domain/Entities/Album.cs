@@ -2,27 +2,39 @@
 using Spotify.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Spotify.Domain.Entities
 {
-    /// <summary> Альбом с песнями </summary>
-    public class Album : NamedEntity
+    /// <summary>
+    /// Класс музыкального альбома.
+    /// Альбом служит контейнером треков.
+    /// Создается пользователем "Система".
+    /// </summary>
+    public class Album : Playlist
     {
-        /// <summary> Описание альбома </summary>
-        public string Description { get; set; }
-
-        /// <summary> Дата публикации </summary>
+        /// <value>
+        /// Дата публикации.
+        /// Часто является примерной датой.
+        /// Например, январь 2020.
+        /// Может быть <c>null</c>.
+        /// </value>
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime PublicationDate { get; set; }
 
-        /// <summary> Авторы альбома </summary>
+        /// <value>
+        /// Авторы альбома.
+        /// </value>
+        [Required(ErrorMessage = "Авторы альбома не указаны.")]
         public IEnumerable<AuthorAlbum> Authors { get; set; }
 
-        /// <summary> Список треков альбома </summary>
-        public IEnumerable<Track> Tracks { get; set; }
-
-        /// <summary> Картинка альбома </summary>
-        public Image Image { get; set; }
+        /// <value>
+        /// Обложка альбома.
+        /// </value>
+        [DataType(DataType.ImageUrl)]
+        [Required(ErrorMessage = "Обложка альбома не указана.")]
+        public string Cover { get; set; }
     }
 }

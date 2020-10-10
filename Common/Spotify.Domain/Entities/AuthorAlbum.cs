@@ -2,13 +2,19 @@
 
 namespace Spotify.Domain.Entities
 {
-    /// <summary> Промежуточная модель данных </summary>
+    /// <summary>
+    /// Ассоциативная сущность для <see cref="Spotify.Domain.Entities.Author"/> и <see cref="Spotify.Domain.Entities.Album"/>
+    /// </summary>
     public class AuthorAlbum : IdEntity
     {
-        /// <summary> Альбом </summary>
+        /// <value>
+        /// Альбом.
+        /// </value>
         public Album Album { get; set; }
 
-        /// <summary> Автор альбома </summary>
+        /// <value>
+        /// Автор альбома.
+        /// </value>
         public Author Author { get; set; }
 
     }

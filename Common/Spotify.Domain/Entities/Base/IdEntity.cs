@@ -6,10 +6,14 @@ using System.Text;
 
 namespace Spotify.Domain.Entities.Base
 {
-    /// <summary> Абстрактный класс, который добавляет потомку Идентификатор </summary>
+    /// <summary>
+    /// Абстрактный класс для сущностей, которые имеют уникальный идентификатор.
+    /// </summary>
     public abstract class IdEntity
     {
-        /// <summary> Идентификатор экземпляра класса </summary>
+        /// <value>
+        /// Идентификатор экземпляра класса.
+        /// </value>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
     }

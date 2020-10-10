@@ -6,11 +6,16 @@ using System.Text;
 
 namespace Spotify.Domain.Entities.Base
 {
-    /// <summary> Абстрактный класс, который добавляет потомку Имя и Идентификатор </summary>
+    /// <summary>
+    /// Абстрактный класс для сущностей у котопых есть имя.
+    /// </summary>
     public abstract class NamedEntity : IdEntity
     {
-        /// <summary> Название экземпляра класса </summary>
-        [Required]
+        /// <value>
+        /// Имя сущности.
+        /// </value>
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Имя сущности не установлено.")]
         public string Name {get; set;}
     }
 }
