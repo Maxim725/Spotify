@@ -37,7 +37,7 @@ namespace Spotify.Domain.Entities
         /// Дата загрузки трека.
         /// </value>
         [DataType(DataType.DateTime)]
-        [Required(ErrorMessage = "Количество прослушиваний трека не указано.")]
+        [Required(ErrorMessage = "Дата загрузки трека не указана.")]
         public DateTime UploadDate { get; set; }
 
         /// <value>
