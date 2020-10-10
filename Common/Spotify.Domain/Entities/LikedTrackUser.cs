@@ -6,8 +6,11 @@ namespace Spotify.Domain.Entities
     /// <summary>
     /// Ассоциативная сущность для <see cref="Spotify.Domain.Entities.Track"/> и <see cref="Spotify.Domain.Entities.Identity.User"/>
     /// </summary>
-    public class LikedTracksUser
+    public class LikedTrackUser
     {
+        public int UserId { get; set; }
+        public int TrackId { get; set; }
+
         /// <value>
         /// Пользователь.
         /// </value>

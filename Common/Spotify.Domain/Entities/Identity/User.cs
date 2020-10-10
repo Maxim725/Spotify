@@ -9,7 +9,7 @@ namespace Spotify.Domain.Entities.Identity
     /// <summary>
     /// Пользователь системы.
     /// </summary>
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
         /// <summary>
         /// Дата создания аккаунта.
@@ -20,17 +20,17 @@ namespace Spotify.Domain.Entities.Identity
         /// <summary>
         /// Список плейлистов пользователя.
         /// </summary>
-        public IEnumerable<Playlist> Playlists { get; set; }
+        public IEnumerable<PlaylistUser> Playlists { get; set; }
 
         /// <summary>
         /// Список понравившихся авторов пользователя.
         /// </summary>
-        public IEnumerable<Author> LikedAuthors { get; set; }
+        public IEnumerable<LikedAuthorUser> LikedAuthors { get; set; }
 
         /// <summary>
         /// Список понравившихся треков пользователя.
         /// </summary>
-        public IEnumerable<Track> LikedTracks { get; set; }
+        public IEnumerable<LikedTrackUser> LikedTracks { get; set; }
 
         /// <value>
         /// Аватар пользователя.

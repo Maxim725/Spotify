@@ -8,6 +8,9 @@ namespace Spotify.Domain.Entities
     /// </summary>
     public class AuthorAlbum
     {
+        public int AlbumId { get; set; }
+        public int AuthorId { get; set; }
+
         /// <value>
         /// Альбом.
         /// </value>

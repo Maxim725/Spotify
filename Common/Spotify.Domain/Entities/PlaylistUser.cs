@@ -8,6 +8,9 @@ namespace Spotify.Domain.Entities
     /// </summary>
     public class PlaylistUser
     {
+        public int UserId { get; set; }
+        public int PlaylistId { get; set; }
+
         /// <value>
         /// Пользователь.
         /// </value>
