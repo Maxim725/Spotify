@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
+using Spotify.DAL.Init;
+using Microsoft.Extensions.Logging;
 
 namespace Spotify
 {
@@ -32,8 +34,10 @@ namespace Spotify
             services.AddDbContext<SpotifyDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<SpotifyDbContext>();
+            services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<SpotifyDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddTransient<DbInitializer>();
 
             services.AddWebOptimizer(pipeline =>
             {
@@ -45,8 +49,10 @@ namespace Spotify
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DbInitializer init, ILoggerFactory loggerFactory)
         {
+            init.Init();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
