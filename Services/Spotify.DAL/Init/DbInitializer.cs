@@ -38,10 +38,6 @@ namespace Spotify.DAL.Init
             {
                 using (db.BeginTransaction())
                 {
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Authors ON");
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Albums ON");
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Playlists ON");
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Tracks ON");
 
                     _logger.LogInformation("Проведение миграций БД");
                     db.Migrate();
@@ -54,33 +50,36 @@ namespace Spotify.DAL.Init
 
                     _logger.LogInformation("Добавление жанров");
                     InitializeGenre();
+                    _db.SaveChanges();
 
 
-                    InitializeIntermediateTables();
-
-                    _logger.LogInformation("Добавление авторов");
-                    InitializeAuthors();
-                    //_db.SaveChanges();
-
-                    _logger.LogInformation("Заполнение БД треками");
-                    InitializeTracks();
-                    //_db.SaveChanges();
-
-                    _logger.LogInformation("Добавление плейлистов");
-                    InitializePlaylists();
-                    //_db.SaveChanges();
-
-                    _logger.LogInformation("Добавление пользователей");
-                    InitializeUsers();
-
+                    
                     _logger.LogInformation("Добавление альбомов");
                     InitializeAlbums();
 
+                    _logger.LogInformation("Добавление авторов");
+                    InitializeAuthors();
                     _db.SaveChanges();
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Tracks OFF");
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Authors OFF");
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Playlists OFF");
-                    //db.ExecuteSqlRaw("SET IDENTITY_INSERT Albums OFF");
+
+                    _logger.LogInformation("Заполнение БД треками");
+                    InitializeTracks();
+                    _db.SaveChanges();
+
+
+                    _logger.LogInformation("Добавление пользователей");
+                    InitializeUsers();
+                    _db.SaveChanges();
+
+                    _logger.LogInformation("Добавление плейлистов");
+                    InitializePlaylists();
+
+                    InitializeIntermediateTables();
+                    _db.SaveChanges();
+                    //_db.SaveChanges();
+
+
+
+                    _db.SaveChanges();
 
                     db.CommitTransaction();
                 }
@@ -102,25 +101,8 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            var db = _db.Database;
-            using (db.BeginTransaction())
-            {
-
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.TagFamilies.AddRange(TestData.TagFamilies);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы TagFamilies");
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT TagFamilies ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы TagFamilies");
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT TagFamilies OFF");
-
-                db.CommitTransaction();
-            }
-
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.TagFamilies.AddRange(TestData.TagFamilies);
         }
         private void InitializeTags()
         {
@@ -131,23 +113,8 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            var db = _db.Database;
-            using (db.BeginTransaction())
-            {
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.TrackTags.AddRange(TestData.Tags);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы TrackTags");
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT TrackTags ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы TrackTags");
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT TrackTags OFF");
-
-                db.CommitTransaction();
-            }
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.TrackTags.AddRange(TestData.Tags);
         }
         private void InitializeGenre()
         {
@@ -158,23 +125,8 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            var db = _db.Database;
-            using (db.BeginTransaction())
-            {
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.Genres.AddRange(TestData.Genres);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы Genres");
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT Genres ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы Genres");
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT Genres OFF");
-
-                db.CommitTransaction();
-            }
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.Genres.AddRange(TestData.Genres);
         }
         private void InitializeTracks()
         {
@@ -185,23 +137,8 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            var db = _db.Database;
-            //using (db.BeginTransaction())
-            //{
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.Tracks.AddRange(TestData.Tracks);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы Tracks");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Tracks ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы Tracks");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Tracks OFF");
-
-                //db.CommitTransaction();
-            //}
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.Tracks.AddRange(TestData.Tracks);
         }
         private void InitializeAuthors()
         {
@@ -212,23 +149,8 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            var db = _db.Database;
-            //using (db.BeginTransaction())
-            //{
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.Authors.AddRange(TestData.Authors);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы Authors");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Authors ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы Authors");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Authors OFF");
-
-                //db.CommitTransaction();
-            //}
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.Authors.AddRange(TestData.Authors);
         }
         private void InitializePlaylists()
         {
@@ -239,23 +161,8 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            //var db = _db.Database;
-            //using (db.BeginTransaction())
-            //{
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.Playlists.AddRange(TestData.Playlists);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы Playlists");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Playlists ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы Playlists");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Playlists OFF");
-
-                //db.CommitTransaction();
-            //}
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.Playlists.AddRange(TestData.Playlists);
         }
         private void InitializeAlbums()
         {
@@ -266,65 +173,10 @@ namespace Spotify.DAL.Init
                 return;
             }
 
-            var db = _db.Database;
-            //using (db.BeginTransaction())
-            //{
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.Albums.AddRange(TestData.Albums);
-
-                _logger.LogInformation("Отключение автоинкрементирования id у таблицы Albums");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Albums ON");
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-                _logger.LogInformation("Включение автоинкрементирования id у таблицы Albums");
-                //db.ExecuteSqlRaw("SET IDENTITY_INSERT Albums OFF");
-
-                //db.CommitTransaction();
-            //}
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.Albums.AddRange(TestData.Albums);
         }
         private void InitializeIntermediateTables()
-        {
-            _logger.LogInformation("Проверка на пустоту таблицы AuthorAlbums");
-            if (_db.Users.Any())
-            {
-                _logger.LogInformation("Таблица AuthorAlbums инициализирована");
-                return;
-            }
-
-            var db = _db.Database;
-            //using (db.BeginTransaction())
-            //{
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.AuthorAlbums.AddRange(TestData.AuthorAlbums);
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-            //    db.CommitTransaction();
-            //}
-
-            _logger.LogInformation("Проверка на пустоту таблицы PlaylistUser");
-            if (_db.PlaylistUsers.Any())
-            {
-                _logger.LogInformation("Таблица PlaylistUser инициализирована");
-                return;
-            }
-
-            //using (db.BeginTransaction())
-            //{
-                _logger.LogInformation("Добавление данных в Кеш");
-                _db.PlaylistUsers.AddRange(TestData.PlaylistUsers);
-
-                _logger.LogInformation("Сохранение кеша в БД");
-                 //_db.SaveChanges();
-
-            //    db.CommitTransaction();
-            //}
-        }
-
-        private void InitializeUsers()
         {
             _logger.LogInformation("Проверка на пустоту таблицы AuthorAlbums");
             if (_db.AuthorAlbums.Any())
@@ -333,15 +185,53 @@ namespace Spotify.DAL.Init
                 return;
             }
 
+
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.AuthorAlbums.AddRange(TestData.AuthorAlbums);
+
+
+            _logger.LogInformation("Проверка на пустоту таблицы PlaylistUser");
+            if (_db.PlaylistUsers.Any())
+            {
+                _logger.LogInformation("Таблица PlaylistUser инициализирована");
+                return;
+            }
+
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.PlaylistUsers.AddRange(TestData.PlaylistUsers);
+
+            if (_db.PlaylistTrack.Any())
+            {
+                _logger.LogInformation("Таблица PlaylistTracks инициализирована");
+                return;
+            }
+
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.PlaylistTrack.AddRange(TestData.PlaylistTracks);
+
+
+            if (_db.TagTrackTag.Any())
+            {
+                _logger.LogInformation("Таблица PlaylisTagTrackstTracks инициализирована");
+                return;
+            }
+
+            _logger.LogInformation("Добавление данных в Кеш");
+            _db.TagTrackTag.AddRange(TestData.TagTracks);
+        }
+        private void InitializeUsers()
+        {
+            _logger.LogInformation("Проверка на пустоту таблицы Users");
+            if (_db.Users.Any())
+            {
+                _logger.LogInformation("Таблица Users инициализирована");
+                return;
+            }
+
             _logger.LogInformation("Добавление данных в Кеш");
             _db.Users.AddRange(TestData.Users);
 
             _logger.LogInformation("Сохранение кеша в БД");
-        }
-
-        private void Save()
-        {
-
         }
 
 

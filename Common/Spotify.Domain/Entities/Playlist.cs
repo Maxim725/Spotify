@@ -33,7 +33,7 @@ namespace Spotify.Domain.Entities
         /// <value>
         /// Список песен.
         /// </value>
-        public IEnumerable<Track> Tracks { get; set; }
+        public IEnumerable<PlaylistTrack> Tracks { get; set; }
 
         /// <value>
         /// Создатель плейлиста.

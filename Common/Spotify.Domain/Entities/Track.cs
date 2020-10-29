@@ -59,12 +59,14 @@ namespace Spotify.Domain.Entities
         /// Теги трека.
         /// Может быть пустым.
         /// </value>
-        public IEnumerable<TrackTag> Tags { get; set; }
+        public IEnumerable<TagTrackTag> Tags { get; set; }
 
         /// <value>
         /// Жанры трека.
         /// </value>
         public IEnumerable<Genre> Genres { get; set; }
+
+        public IEnumerable<PlaylistTrack> Playlists { get; set; }
 
     }
 }

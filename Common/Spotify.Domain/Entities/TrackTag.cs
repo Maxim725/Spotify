@@ -19,5 +19,7 @@ namespace Spotify.Domain.Entities
         /// Например, "грустный" и "веселый" принадлежат к семейству "настроение".
         /// </value>
         public IEnumerable<TagFamily> TagFamily { get; set; }
+
+        public IEnumerable<TagTrackTag> Tracks { get; set; }
     }
 }

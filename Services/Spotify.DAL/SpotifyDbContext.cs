@@ -33,6 +33,10 @@ namespace Spotify.DAL
 
         public DbSet<AuthorAlbum> AuthorAlbums { get; set; }
 
+        public DbSet<TagTrackTag> TagTrackTag { get; set; }
+
+        public DbSet<PlaylistTrack> PlaylistTrack { get; set; }
+
         public SpotifyDbContext(DbContextOptions<SpotifyDbContext> options) 
             : base(options)
         {
@@ -82,6 +86,20 @@ namespace Spotify.DAL
                 .HasOne(a => a.Album).WithMany(a => a.Authors).HasForeignKey(a => a.AlbumId);
             builder.Entity<AuthorAlbum>()
                 .HasOne(a => a.Author).WithMany(a => a.Albums).HasForeignKey(a => a.AuthorId);
+
+            builder.Entity<PlaylistTrack>()
+                .HasKey(k => new { k.PlaylistId, k.TrackId });
+            builder.Entity<PlaylistTrack>()
+                .HasOne(p => p.Playlist).WithMany(t => t.Tracks).HasForeignKey(t => t.TrackId);
+            builder.Entity<PlaylistTrack>()
+                .HasOne(p => p.Track).WithMany(t => t.Playlists).HasForeignKey(t => t.PlaylistId);
+
+            builder.Entity<TagTrackTag>()
+                .HasKey(k => new { k.TrackId, k.TagId });
+            builder.Entity<TagTrackTag>()
+                .HasOne(t => t.Track).WithMany(t => t.Tags).HasForeignKey(k => k.TagId);
+            builder.Entity<TagTrackTag>()
+                .HasOne(t => t.Tag).WithMany(t => t.Tracks).HasForeignKey(k => k.TrackId);
 
             base.OnModelCreating(builder);
         }

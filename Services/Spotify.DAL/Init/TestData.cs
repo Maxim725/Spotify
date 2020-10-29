@@ -11,26 +11,26 @@ namespace Spotify.DAL.Init
     {
         public static TagFamily[] TagFamilies { get; } = new[]
         {
-            new TagFamily { Id = 1, Name = "Жизнерадостная музыка"},
-            new TagFamily { Id = 2, Name = "Быстрая музыка"},
-            new TagFamily { Id = 3, Name = "Медленная музыка"},
-            new TagFamily { Id = 4, Name = "Смешанная музыка"},
+            new TagFamily { Name = "Жизнерадостная музыка"},
+            new TagFamily { Name = "Быстрая музыка"},
+            new TagFamily { Name = "Медленная музыка"},
+            new TagFamily { Name = "Смешанная музыка"},
         };
 
         public static TrackTag[] Tags { get; } = new[]
         {
-            new TrackTag { Id = 1, Name = "Весёлая", TagFamily = new[] { TagFamilies[0], TagFamilies[1] } },
-            new TrackTag { Id = 2, Name = "Грустная", TagFamily = new[] { TagFamilies[2] } },
-            new TrackTag { Id = 3, Name = "Рок", TagFamily = new[] { TagFamilies[3] } }
+            new TrackTag { Name = "Весёлая", TagFamily = new[] { TagFamilies[0], TagFamilies[1] } },
+            new TrackTag { Name = "Грустная", TagFamily = new[] { TagFamilies[2] } },
+            new TrackTag { Name = "Рок", TagFamily = new[] { TagFamilies[3] } }
         };
 
         public static Genre[] Genres { get; } = new[]
         {
-            new Genre { Id = 1, Name = "Рок", Description = "Рок музыка (англ. Rock music)", Plays = 0 },
-            new Genre { Id = 2, Name = "Рэп", Description = "Рэп (англ. rap, rapping)", Plays = 0 },
-            new Genre { Id = 3, Name = "Альтернативная музыка", Description = "Жанр рок-музыки, сформировавшийся из музыкального андеграунда)", Plays = 0 },
-            new Genre { Id = 4, Name = "Фонк", Description = "Поджанр хип-хопа и трэпа, вдохновлённый Мемфис-рэпом 1990-х годов.", Plays = 0 },
-            new Genre { Id = 5, Name = "Хип-хоп", Description = "Музыкальный жанр, сочетающий рэп с электронным битом, сэмплами и прочим музыкальным сопровождением в исполнении ди-джея.", Plays = 0 }
+            new Genre { Name = "Рок", Description = "Рок музыка (англ. Rock music)", Plays = 0 },
+            new Genre { Name = "Рэп", Description = "Рэп (англ. rap, rapping)", Plays = 0 },
+            new Genre { Name = "Альтернативная музыка", Description = "Жанр рок-музыки, сформировавшийся из музыкального андеграунда)", Plays = 0 },
+            new Genre { Name = "Фонк", Description = "Поджанр хип-хопа и трэпа, вдохновлённый Мемфис-рэпом 1990-х годов.", Plays = 0 },
+            new Genre { Name = "Хип-хоп", Description = "Музыкальный жанр, сочетающий рэп с электронным битом, сэмплами и прочим музыкальным сопровождением в исполнении ди-джея.", Plays = 0 }
         };
         public static AuthorAlbum[] AuthorAlbums { get; } = new[]
         {
@@ -62,6 +62,20 @@ namespace Spotify.DAL.Init
             new PlaylistUser { PlaylistId = 9, UserId = 5 },
             new PlaylistUser { PlaylistId = 10, UserId = 5 },
             new PlaylistUser { PlaylistId = 11, UserId = 5 },
+        };
+
+        public static PlaylistTrack[] PlaylistTracks = new[]
+        {
+            new PlaylistTrack { PlaylistId = 1, TrackId = 1 },
+            new PlaylistTrack { PlaylistId = 2, TrackId = 1 },
+            new PlaylistTrack { PlaylistId = 3, TrackId = 1 },
+            new PlaylistTrack { PlaylistId = 4, TrackId = 1 },
+            new PlaylistTrack { PlaylistId = 5, TrackId = 1 },
+        };
+
+        public static TagTrackTag[] TagTracks = new[]
+        {
+            new TagTrackTag { TagId = 1, TrackId = 2}
         };
 
         public static Author[] Authors { get; } = new[]
@@ -101,44 +115,46 @@ namespace Spotify.DAL.Init
         };
         public static Track[] Tracks { get; } = new[]
         {
-            new Track { Name = "Cadillac", SoundPath = "Spotify/tracks/Cadillac1.mp3", Duration = 183, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[5], Image = "Spotify/albumsImgs/asd.jpg", Authors = new List<Author> {Authors[10]} , Tags = new List<TrackTag> { Tags[0] }, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Nonstop", SoundPath = "Spotify/tracks/Nonstop2.mp3", Duration = 182, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[0], Image = "Spotify/albumsImgs/Album..jpg", Authors = new List<Author> {Authors[4]} , Tags = new List<TrackTag> { Tags[1] }, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Around the world", SoundPath = "Spotify/tracks/Aroundtheworld3.mp3", Duration = 162, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[10], Image = "Spotify/albumsImgs/Album.jpg", Authors = new List<Author> {Authors[6]} , Tags = new List<TrackTag> {Tags[1]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Goosebumps", SoundPath = "Spotify/tracks/Goosebumps4.mp3", Duration = 199, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[11], Image = "Spotify/albumsImgs/Album.jpg", Authors = new List<Author> {Authors[2]} , Tags = new List<TrackTag> {Tags[1],Tags[2]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Fell Good Inc.", SoundPath = "Spotify/tracks/FellGoodInc.5.mp3", Duration = 155, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[8], Image = "Spotify/albumsImgs/Album.jpg", Authors = new List<Author> {Authors[3]} , Tags = new List<TrackTag> {Tags[2]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Hold My Liqour", SoundPath = "Spotify/tracks/HoldMyLiqour6.mp3", Duration = 144, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[7], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[5]} , Tags = new List<TrackTag> {Tags[0]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Оу щит", SoundPath = "Spotify/tracks/Оущит7.mp3", Duration = 142, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[3], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[7]} , Tags = new List<TrackTag> {Tags[1]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Double Tap", SoundPath = "Spotify/tracks/DoubleTap8.mp3", Duration = 140, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[2], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[1]} , Tags = new List<TrackTag> {Tags[2]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "Baby", SoundPath = "Spotify/tracks/Baby9.mp3", Duration = 221, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[14]} , Tags = new List<TrackTag> {Tags[0]}, Genres = new List<Genre> { Genres[4]} },
-            new Track { Name = "Панелька", SoundPath = "Spotify/tracks/Панелька10.mp3", Duration = 130, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[4], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[1]} , Tags = new List<TrackTag> {Tags[1]}, Genres = new List<Genre> {Genres[4]} },
-            new Track { Name = "NITROUS", SoundPath = "Spotify/tracks/NITROUS11.mp3", Duration = 194, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[9], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[8]} , Tags = new List<TrackTag> {Tags[2]}, Genres = new List<Genre> {Genres[4]} },
-            new Track {  Name = "sdp", SoundPath = "Spotify/tracks/sdp12.mp3", Duration = 191, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[11], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[2]} , Tags = new List<TrackTag> {Tags[1]}, Genres = new List<Genre> {Genres[4]} }
+            new Track { Name = "Cadillac", SoundPath = "Spotify/tracks/Cadillac1.mp3", Duration = 183, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[5], Image = "Spotify/albumsImgs/asd.jpg", Authors = new List<Author> {Authors[10]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Nonstop", SoundPath = "Spotify/tracks/Nonstop2.mp3", Duration = 182, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[0], Image = "Spotify/albumsImgs/Album..jpg", Authors = new List<Author> {Authors[4]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Around the world", SoundPath = "Spotify/tracks/Aroundtheworld3.mp3", Duration = 162, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[10], Image = "Spotify/albumsImgs/Album.jpg", Authors = new List<Author> {Authors[6]} , Tags = new List<TagTrackTag>{ new TagTrackTag { Tag = Tags[1] } }, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Goosebumps", SoundPath = "Spotify/tracks/Goosebumps4.mp3", Duration = 199, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[11], Image = "Spotify/albumsImgs/Album.jpg", Authors = new List<Author> {Authors[2]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Fell Good Inc.", SoundPath = "Spotify/tracks/FellGoodInc.5.mp3", Duration = 155, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[8], Image = "Spotify/albumsImgs/Album.jpg", Authors = new List<Author> {Authors[3]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Hold My Liqour", SoundPath = "Spotify/tracks/HoldMyLiqour6.mp3", Duration = 144, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[7], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[5]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Оу щит", SoundPath = "Spotify/tracks/Оущит7.mp3", Duration = 142, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[3], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[7]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Double Tap", SoundPath = "Spotify/tracks/DoubleTap8.mp3", Duration = 140, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[2], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[1]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "Baby", SoundPath = "Spotify/tracks/Baby9.mp3", Duration = 221, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[14]}, Genres = new List<Genre> { Genres[4]} },
+            new Track { Name = "Панелька", SoundPath = "Spotify/tracks/Панелька10.mp3", Duration = 130, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[4], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[1] }, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "NITROUS", SoundPath = "Spotify/tracks/NITROUS11.mp3", Duration = 194, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[9], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[8]}, Genres = new List<Genre> {Genres[4]} },
+            new Track { Name = "sdp", SoundPath = "Spotify/tracks/sdp12.mp3", Duration = 191, Plays = 0, UploadDate = new DateTime(2013, 02, 01), Album = Albums[11], Image = "Spotify/albumsImgs/ Album.jpg", Authors = new List<Author> {Authors[2]}, Genres = new List<Genre> {Genres[4]} }
         };
 
 
         public static User[] Users { get; } = new[]
         {
-            new User { UserName = "12dot", CreationDate = new DateTime(2020,05,04), Playlists = new List<PlaylistUser> { PlaylistUsers[0], PlaylistUsers[1] }, Avatar = "Spotify/User/Name.jpg"},
-            new User { UserName = "David", CreationDate = new DateTime(2020,05,04), Playlists = new List<PlaylistUser> { PlaylistUsers[2], PlaylistUsers[3] }, Avatar = "Spotify/User/Name.jpg"},//
-            new User { UserName = "Nekit", CreationDate = new DateTime(2020,05,04), Playlists = new List<PlaylistUser> { PlaylistUsers[4], PlaylistUsers[5] }, Avatar = "Spotify/User/Name.jpg"},//
-            new User { UserName = "Ilya", CreationDate = new DateTime(2020,05,04), Playlists = new List<PlaylistUser> { PlaylistUsers[6], PlaylistUsers[7] }, Avatar = "Spotify/User/Name.jpg"}, //
-            new User { UserName = "Masha", CreationDate = new DateTime(2020,05,04), Playlists = new List<PlaylistUser> { PlaylistUsers[8], PlaylistUsers[9], PlaylistUsers[10] }, Avatar = "Spotify/User/Name.jpg"},
+            new User { UserName = "12dot", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},
+            new User { UserName = "David", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},//
+            new User { UserName = "Nekit", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},//
+            new User { UserName = "Ilya", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"}, //
+            new User { UserName = "Masha", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},
             new User { UserName = "Katya", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"} //
         };
 
         public static Playlist[] Playlists { get; } = new[] {
-            new Playlist { Name = "qwert", Description = "LolCheckKek", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[2], Plays = 0, Duration = 601 },
-            new Playlist { Name = "fdsdslkfdsmm", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[5], Plays = 0, Duration = 573 },
-            new Playlist { Name = "qdjisofjsd", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[3], Plays = 0, Duration = 248 },
-            new Playlist { Name = "qfkgfhmlgf", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[5], Plays = 0, Duration = 474 },
-            new Playlist { Name = "qfdsfdsfds", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[1], Plays = 0, Duration = 739 },
-            new Playlist { Name = "zxcxzvxvxc", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[4], Plays = 0, Duration = 644 },
-            new Playlist { Name = "Game", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[2], Plays = 0, Duration = 560 },
-            new Playlist { Name = "PaylisterAh", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[4], Plays = 0, Duration = 594 },
-            new Playlist { Name = "kssdsdsa", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[3], Plays = 0, Duration = 742 },
-            new Playlist { Name = "mnnbjnjk", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[5], Plays = 0, Duration = 627 },
-            new Playlist { Name = "dsadsadasqqqwqew", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), Tracks = new List<Track>(Tracks), CreatedBy = Users[4], Plays = 0, Duration = 293 },
+            new Playlist { Name = "qwert", Description = "LolCheckKek", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[2], Plays = 0, Duration = 601 },
+            new Playlist { Name = "fdsdslkfdsmm", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 573 },
+            new Playlist { Name = "qdjisofjsd", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[3], Plays = 0, Duration = 248 },
+            new Playlist { Name = "qfkgfhmlgf", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 474 },
+            new Playlist { Name = "qfdsfdsfds", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[1], Plays = 0, Duration = 739 },
+            new Playlist { Name = "zxcxzvxvxc", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[4], Plays = 0, Duration = 644 },
+            new Playlist { Name = "Game", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[2], Plays = 0, Duration = 560 },
+            new Playlist { Name = "PaylisterAh", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[4], Plays = 0, Duration = 594 },
+            new Playlist { Name = "kssdsdsa", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[3], Plays = 0, Duration = 742 },
+            new Playlist { Name = "mnnbjnjk", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 627 },
+            new Playlist { Name = "dsadsadasqqqwqew", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[4], Plays = 0, Duration = 293 },
         };
+
+
 
         public static string[] Roles = new[]
         {
