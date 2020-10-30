@@ -1,7 +1,4 @@
-﻿using Spotify.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Spotify.Domain.Entities
 {
@@ -9,7 +6,12 @@ namespace Spotify.Domain.Entities
     /// Класс семейтсва тегов.
     /// Используется для улчушения подборок треков.
     /// </value>
-    public class TagFamily : NamedEntity
+    public class TagFamily
     {
+        public int TagFamilyId { get; set; }
+
+        public string Name { get; set; }
+
+        public List<Tag> Tags { get; }
     }
 }

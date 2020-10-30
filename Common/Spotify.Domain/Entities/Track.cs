@@ -1,72 +1,38 @@
-﻿using Spotify.Domain.Entities.Base;
+﻿using Spotify.Domain.Entities.Identity;
+using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Spotify.Domain.Entities
 {
-    /// <summary>
-    /// Класс трека.
-    /// Трек один из основных типов данных для создания подборок.
-    /// </summary>
-    public class Track : NamedEntity
-    {
-        /// <value>
-        /// Путь до файла.
-        /// </value>
-        [Required(ErrorMessage = "Путь до музыкального файла не указан.")]
-        public string SoundPath { get; set; }
+	/// <summary>
+	/// Класс трека.
+	/// Трек один из основных типов данных для создания подборок.
+	/// </summary>
+	public class Track
+	{
+		public int TrackId { get; set; }
 
-        /// <value>
-        /// Продолжительность трека в секундах.
-        /// </value>
-        [Required(ErrorMessage = "Продолжительность трека не указана.")]
-        public uint Duration { get; set; }
+		public DateTime CreatedOn { get; set; }
 
-        /// <value>
-        /// Количество прослушиваний трека.
-        /// По умолчанию 0.
-        /// </value>
-        [Required(ErrorMessage = "Количество прослушиваний трека не указано.")]
-        public ulong Plays { get; set; }
+		public int CreatedById { get; set; }
 
-        /// <value>
-        /// Дата загрузки трека.
-        /// </value>
-        [Required(ErrorMessage = "Дата загрузки трека не указана.")]
-        public DateTime UploadDate { get; set; }
+		public User CreatedBy { get; set; }
 
-        /// <value>
-        /// Альбом, в котором находится трек.
-        /// Может быть <c>null</c>.
-        /// </value>
-        public Album Album { get; set; }
+		public String Title { get; set; }
 
-        /// <value>
-        /// Аватарка для трека.
-        /// Может быть <c>null</c>.
-        /// </value>
-        public string Image { get; set; }
+		public IEnumerable<TrackAuthor> Authors { get; set; }
 
-        /// <value>
-        /// Список авторов трека.
-        /// </value>
-        [Required(ErrorMessage = "Авторы трека не указаны.")]
-        public IEnumerable<Author> Authors { get; set; }
+		public int AlbumId { get; set; }
 
-        /// <value>
-        /// Теги трека.
-        /// Может быть пустым.
-        /// </value>
-        public IEnumerable<TagTrackTag> Tags { get; set; }
+		public Album Album { get; set; }
 
-        /// <value>
-        /// Жанры трека.
-        /// </value>
-        public IEnumerable<Genre> Genres { get; set; }
+		public uint Duration { get; set; }
 
-        public IEnumerable<PlaylistTrack> Playlists { get; set; }
+		public ulong Plays { get; set; }
 
-    }
+		public IEnumerable<TrackGenre> Genres { get; set; }
+
+		public IEnumerable<TrackTag> Tags { get; set; }
+	}
 }
