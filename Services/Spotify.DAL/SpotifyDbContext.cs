@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Spotify.Domain.Entities;
 using Spotify.Domain.Entities.Identity;
+using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Spotify.DAL
 {
-	public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext
 	{
 		public DbSet<User> Users { get; set; }
 		public DbSet<Author> Authors { get; set; }
@@ -154,4 +155,4 @@ namespace Spotify.DAL
 		}
 	}
 }
-}
+
