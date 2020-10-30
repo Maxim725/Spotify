@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Spotify.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class SpotifyDbContext : IdentityDbContext
 	{
 		public DbSet<User> Users { get; set; }
 		public DbSet<Author> Authors { get; set; }
@@ -45,7 +45,7 @@ namespace Spotify.DAL
 		public DbSet<UserPlaylist> UserPlaylist { get; set; }
 
 
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+		public SpotifyDbContext(DbContextOptions<SpotifyDbContext> options)
 			: base(options)
 		{
 			Database.EnsureCreated();

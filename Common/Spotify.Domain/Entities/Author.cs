@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Spotify.Domain.Entities
 {
-	/// <summary>
-	/// Класс автора музыки.
-	/// </summary>
-	public class Author
+    /// <summary>
+    /// Класс автора музыки.
+    /// </summary>
+    public class Author
 	{
 		public int AuthorId { get; set; }
 

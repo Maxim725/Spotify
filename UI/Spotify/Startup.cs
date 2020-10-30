@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Spotify.Areas.Identity;
 using Spotify.Data;
+using Spotify.DAL;
 
 namespace Spotify
 {
@@ -31,11 +32,11 @@ namespace Spotify
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+            services.AddDbContext<SpotifyDbContext>(options =>
+                options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<SpotifyDbContext>();
             services.AddWebOptimizer(pipeline =>
             {
                 pipeline.AddScssBundle("/css/site.css", "/Components/main.scss").UseContentRoot();

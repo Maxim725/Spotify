@@ -1,5 +1,4 @@
-﻿
-namespace Spotify.Domain.Entities
+﻿namespace Spotify.Domain.Entities
 {
 	/// <summary>
 	/// Класс жанра музыки.

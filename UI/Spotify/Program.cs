@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Spotify.Data;
+using Spotify.DAL;
+using Spotify.DAL.Init;
 
 namespace Spotify
 {
@@ -30,7 +25,7 @@ namespace Spotify
 
 				try
 				{
-					var context = services.GetRequiredService<ApplicationDbContext>();
+					var context = services.GetRequiredService<SpotifyDbContext>();
 					context.Database.EnsureCreated();
 					DbInitializer.Initialize(context);
 				}

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace Spotify.Domain.Entities
 {
-	/// <summary>
-	/// Класс музыкального альбома.
-	/// Альбом служит контейнером треков.
-	/// Создается пользователем "Система".
-	/// </summary>
-	public class Album
+    /// <summary>
+    /// Класс музыкального альбома.
+    /// Альбом служит контейнером треков.
+    /// Создается пользователем "Система".
+    /// </summary>
+    public class Album
 	{
 		public int AlbumId { get; set; }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Spotify.Domain.Entities.Intermediate
+﻿namespace Spotify.Domain.Entities.Intermediate
 {
 	public class AlbumTrack
 	{

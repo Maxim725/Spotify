@@ -20,4 +20,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\Spotify.DAL\Spotify.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

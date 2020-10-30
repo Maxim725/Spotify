@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,10 +7,10 @@ using System.Text;
 
 namespace Spotify.Domain.Entities.Identity
 {
-	/// <summary>
-	/// Пользователь системы.
-	/// </summary>
-	public class User : IdentityUser<int>
+    /// <summary>
+    /// Пользователь системы.
+    /// </summary>
+    public class User : IdentityUser<int>
 	{
 		public int UserId { get; set; }
 
