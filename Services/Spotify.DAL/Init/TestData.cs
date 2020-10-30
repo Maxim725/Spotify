@@ -1,6 +1,5 @@
 ﻿using Spotify.Domain.Entities;
 using Spotify.Domain.Entities.Identity;
-using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
