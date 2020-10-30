@@ -54,14 +54,9 @@ namespace Spotify.DAL.Init
             new PlaylistUser { PlaylistId = 1, UserId = 1 },
             new PlaylistUser { PlaylistId = 2, UserId = 1 },
             new PlaylistUser { PlaylistId = 3, UserId = 2 },
-            new PlaylistUser { PlaylistId = 4, UserId = 2 },
-            new PlaylistUser { PlaylistId = 5, UserId = 3 },
+            new PlaylistUser { PlaylistId = 4, UserId = 5 },
+            new PlaylistUser { PlaylistId = 5, UserId = 4 },
             new PlaylistUser { PlaylistId = 6, UserId = 3 },
-            new PlaylistUser { PlaylistId = 7, UserId = 4 },
-            new PlaylistUser { PlaylistId = 8, UserId = 4 },
-            new PlaylistUser { PlaylistId = 9, UserId = 5 },
-            new PlaylistUser { PlaylistId = 10, UserId = 5 },
-            new PlaylistUser { PlaylistId = 11, UserId = 5 },
         };
 
         public static PlaylistTrack[] PlaylistTracks = new[]
@@ -132,20 +127,20 @@ namespace Spotify.DAL.Init
 
         public static User[] Users { get; } = new[]
         {
-            new User { UserName = "12dot", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},
-            new User { UserName = "David", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},//
-            new User { UserName = "Nekit", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},//
-            new User { UserName = "Ilya", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"}, //
-            new User { UserName = "Masha", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"},
-            new User { UserName = "Katya", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg"} //
+            new User { UserName = "12dot", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg", /*Playlists = new List<PlaylistUser>{ PlaylistUsers[0] }*/},
+            new User { UserName = "David", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg", /*Playlists = new List<PlaylistUser>{ PlaylistUsers[1] }*/},//
+            new User { UserName = "Nekit", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg", /*Playlists = new List<PlaylistUser>{ PlaylistUsers[2] }*/},//
+            new User { UserName = "Ilya2", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg", /*Playlists = new List<PlaylistUser>{ PlaylistUsers[3] }*/}, //
+            new User { UserName = "Masha", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg", /*Playlists = new List<PlaylistUser>{ PlaylistUsers[4] }*/},
+            new User { UserName = "Katya", CreationDate = new DateTime(2020,05,04), Avatar = "Spotify/User/Name.jpg", /*Playlists = new List<PlaylistUser>{ PlaylistUsers[5] }*/} //
         };
 
         public static Playlist[] Playlists { get; } = new[] {
-            new Playlist { Name = "qwert", Description = "LolCheckKek", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[2], Plays = 0, Duration = 601 },
-            new Playlist { Name = "fdsdslkfdsmm", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 573 },
-            new Playlist { Name = "qdjisofjsd", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[3], Plays = 0, Duration = 248 },
-            new Playlist { Name = "qfkgfhmlgf", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 474 },
-            new Playlist { Name = "qfdsfdsfds", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[1], Plays = 0, Duration = 739 },
+            new Playlist { Name = "qwert", Description = "LolCheckKek", CreationDate = new DateTime(2020, 04, 04), Tracks = new List<PlaylistTrack>() { PlaylistTracks[0] },  UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[2], Plays = 0, Duration = 601 },
+            new Playlist { Name = "fdsdslkfdsmm", CreationDate = new DateTime(2020, 04, 04), Tracks = new List<PlaylistTrack>() { PlaylistTracks[1] }, UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 573 },
+            new Playlist { Name = "qdjisofjsd", CreationDate = new DateTime(2020, 04, 04), Tracks = new List<PlaylistTrack>() { PlaylistTracks[2] }, UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[3], Plays = 0, Duration = 248 },
+            new Playlist { Name = "qfkgfhmlgf", CreationDate = new DateTime(2020, 04, 04), Tracks = new List<PlaylistTrack>() { PlaylistTracks[3] }, UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[5], Plays = 0, Duration = 474 },
+            new Playlist { Name = "qfdsfdsfds", CreationDate = new DateTime(2020, 04, 04), Tracks = new List<PlaylistTrack>() { PlaylistTracks[4] }, UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[1], Plays = 0, Duration = 739 },
             new Playlist { Name = "zxcxzvxvxc", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[4], Plays = 0, Duration = 644 },
             new Playlist { Name = "Game", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[2], Plays = 0, Duration = 560 },
             new Playlist { Name = "PaylisterAh", CreationDate = new DateTime(2020, 04, 04), UpdateDate = new DateTime(2020, 04, 04), CreatedBy = Users[4], Plays = 0, Duration = 594 },

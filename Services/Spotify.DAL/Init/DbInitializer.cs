@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 
 namespace Spotify.DAL.Init
 {
+    /*
+     * Сделать осмысленными тестовые данные или закомментировать их
+     * Также переработать добавление пользователей (сейчас они без пароля)
+     */
     public class DbInitializer
     {
         private readonly SpotifyDbContext _db;
@@ -32,15 +36,14 @@ namespace Spotify.DAL.Init
         {
             var db = _db.Database;
 
-            TestData.BindData();
+            _logger.LogInformation("Проведение миграций БД");
+            db.Migrate();
 
             try
             {
                 using (db.BeginTransaction())
                 {
 
-                    _logger.LogInformation("Проведение миграций БД");
-                    db.Migrate();
 
                     _logger.LogInformation("Добавление обощённых тегов");
                     InitializeTagFamilies();
@@ -53,7 +56,7 @@ namespace Spotify.DAL.Init
                     _db.SaveChanges();
 
 
-                    
+
                     _logger.LogInformation("Добавление альбомов");
                     InitializeAlbums();
 
@@ -66,12 +69,13 @@ namespace Spotify.DAL.Init
                     _db.SaveChanges();
 
 
+                    _logger.LogInformation("Добавление плейлистов");
+                    InitializePlaylists();
+                    _db.SaveChanges();
+
                     _logger.LogInformation("Добавление пользователей");
                     InitializeUsers();
                     _db.SaveChanges();
-
-                    _logger.LogInformation("Добавление плейлистов");
-                    InitializePlaylists();
 
                     InitializeIntermediateTables();
                     _db.SaveChanges();
@@ -83,12 +87,19 @@ namespace Spotify.DAL.Init
 
                     db.CommitTransaction();
                 }
+
+                using (db.BeginTransaction())
+                {
+                    _db.PlaylistUsers.AddRange(TestData.PlaylistUsers);
+                    _db.SaveChanges();
+                    db.CommitTransaction();
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogCritical(new EventId(-1), ex, "Ошибка инициализации БД");
-                
-                 throw;
+
+                throw;
             }
         }
         // Можно сделать рефракторинг кода (создав универсальный обощённый метод, принимающий данные, и стору названия таблицы)!
@@ -230,7 +241,7 @@ namespace Spotify.DAL.Init
 
             _logger.LogInformation("Добавление данных в Кеш");
             _db.Users.AddRange(TestData.Users);
-
+            
             _logger.LogInformation("Сохранение кеша в БД");
         }
 
