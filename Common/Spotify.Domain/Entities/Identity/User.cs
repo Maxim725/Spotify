@@ -12,7 +12,9 @@ namespace Spotify.Domain.Entities.Identity
     /// </summary>
     public class User : IdentityUser<int>
 	{
-		public int UserId { get; set; }
+		public User() : base() { }
+
+        public int UserId { get; set; }
 
 		public DateTime CreatedOn { get; set; }
 
