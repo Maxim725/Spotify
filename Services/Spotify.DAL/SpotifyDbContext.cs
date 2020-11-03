@@ -3,87 +3,156 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Spotify.Domain.Entities;
 using Spotify.Domain.Entities.Identity;
+using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Spotify.DAL
 {
-    public class SpotifyDbContext : IdentityDbContext<User, IdentityRole<int>, int>
-    {
-        public DbSet<Author> Authors { get; set; } // +
-
-        public DbSet<Album> Albums { get; set; } // +
-
-        public DbSet<Playlist> Playlists { get; set; } // +
-
-        public DbSet<Track> Tracks { get; set; }
-
-        public DbSet<TrackTag> TrackTags { get; set; }
-
-        public DbSet<Genre> Genres { get; set; }
-
-        public DbSet<TagFamily> TagFamilies { get; set; }
-
-        public DbSet<LikedAuthorUser> LikedAuthorUsers { get; set; }
-        
-        public DbSet<LikedTrackUser> LikedTrackUsers { get; set; }
-
-        public DbSet<PlaylistUser> PlaylistUsers { get; set; }
-
-        public DbSet<AuthorAlbum> AuthorAlbums { get; set; }
-
-        public SpotifyDbContext(DbContextOptions<SpotifyDbContext> options) 
-            : base(options)
-        {
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
+    public class SpotifyDbContext : IdentityDbContext
+	{
+		public DbSet<User> Users { get; set; }
+		public DbSet<Author> Authors { get; set; }
+		public DbSet<Playlist> Playlists { get; set; }
+		public DbSet<Album> Albums { get; set; }
+		public DbSet<Track> Tracks { get; set; }
+		public DbSet<Genre> Genres { get; set; }
+		public DbSet<Tag> Tags { get; set; }
+		public DbSet<TagFamily> TagFamilies { get; set; }
 
 
-            // Автор <--> Пользователь
-            builder.Entity<LikedAuthorUser>()
-                .HasKey(t => new { t.UserId, t.AuthorId });
-            //.HasNoKey();
+		public DbSet<AlbumAuthor> AlbumAuthor { get; set; }
 
-            builder.Entity<LikedAuthorUser>()
-                .HasOne(sc => sc.User)
-                .WithMany(s => s.LikedAuthors)
-                .HasForeignKey(sc => sc.UserId);
+		public DbSet<AlbumTrack> AlbumTrack { get; set; }
+
+		public DbSet<PlaylistTrack> PlaylistTrack { get; set; }
+
+		public DbSet<UserLikedAlbum> UserLikedAlbum { get; set; }
+
+		public DbSet<UserLikedTrack> UserLikedTrack { get; set; }
+
+		public DbSet<UserLikedAuthor> UserLikedAuthor { get; set; }
+
+		public DbSet<TrackAuthor> TrackAuthor { get; set; }
+
+		public DbSet<TrackGenre> TrackGenre { get; set; }
+
+		public DbSet<TrackTag> TrackTag { get; set; }
+
+		public DbSet<UserSubscription> UserSubscription { get; set; }
+
+		public DbSet<UserPlaylist> UserPlaylist { get; set; }
 
 
-            // Трек <--> Пользователь
-            builder.Entity<LikedTrackUser>()
-                .HasKey(t => new { t.UserId, t.TrackId });
+		public SpotifyDbContext(DbContextOptions<SpotifyDbContext> options)
+			: base(options)
+		{
+			Database.EnsureCreated();
+		}
 
-            builder.Entity<LikedTrackUser>()
-                .HasOne(sc => sc.User)
-                .WithMany(s => s.LikedTracks)
-                .HasForeignKey(sc => sc.UserId);
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
 
+			modelBuilder.Entity<UserLikedAuthor>()
+				.HasKey(t => new { t.UserId, t.AuthorId });
 
-            // Плэйлист <--> Пользователь
-            builder.Entity<PlaylistUser>()
-                .HasKey(t => new { t.UserId, t.PlaylistId });
+			modelBuilder.Entity<UserLikedAuthor>()
+				.HasOne(t => t.User)
+				.WithMany(t => t.LikedAuthors)
+				.HasForeignKey(t => t.UserId);
 
-            builder.Entity<PlaylistUser>()
-                .HasOne(sc => sc.User)
-                .WithMany(s => s.Playlists)
-                .HasForeignKey(sc => sc.UserId);
+			modelBuilder.Entity<UserLikedTrack>()
+				.HasKey(t => new { t.UserId, t.TrackId });
 
-            builder.Entity<User>()
-                .HasMany(u => u.LikedAuthors)
-                .WithOne(u => u.User);
+			modelBuilder.Entity<UserLikedTrack>()
+				.HasOne(t => t.User)
+				.WithMany(t => t.LikedTracks)
+				.HasForeignKey(t => t.UserId);
 
-            builder.Entity<AuthorAlbum>()
-                .HasKey(k => new { k.AlbumId, k.AuthorId });
-            builder.Entity<AuthorAlbum>()
-                .HasOne(a => a.Album).WithMany(a => a.Authors).HasForeignKey(a => a.AlbumId);
-            builder.Entity<AuthorAlbum>()
-                .HasOne(a => a.Author).WithMany(a => a.Albums).HasForeignKey(a => a.AuthorId);
+			modelBuilder.Entity<UserSubscription>()
+				.HasKey(t => new { t.UserId, t.SubscriptionId });
 
-            base.OnModelCreating(builder);
-        }
-    }
+			modelBuilder.Entity<UserSubscription>()
+				.HasOne(t => t.User)
+				.WithMany(t => t.Subscriptions)
+				.HasForeignKey(t => t.UserId);
+
+			modelBuilder.Entity<UserPlaylist>()
+				.HasKey(t => new { t.UserId, t.PlaylistId });
+
+			modelBuilder.Entity<UserPlaylist>()
+				.HasOne(t => t.User)
+				.WithMany(t => t.Playlists)
+				.HasForeignKey(t => t.UserId);
+
+			modelBuilder.Entity<PlaylistTrack>()
+				.HasKey(t => new { t.PlaylistId, t.TrackId });
+
+			modelBuilder.Entity<PlaylistTrack>()
+				.HasOne(t => t.Playlist)
+				.WithMany(t => t.Tracks)
+				.HasForeignKey(t => t.PlaylistId);
+
+			modelBuilder.Entity<AlbumTrack>()
+				.HasKey(t => new { t.AlbumId, t.TrackId });
+
+			modelBuilder.Entity<AlbumTrack>()
+				.HasOne(t => t.Album)
+				.WithMany(t => t.Tracks)
+				.HasForeignKey(t => t.AlbumId);
+
+			modelBuilder.Entity<AlbumAuthor>()
+				.HasKey(t => new { t.AlbumId, t.AuthorId });
+
+			modelBuilder.Entity<AlbumAuthor>()
+				.HasOne(t => t.Author)
+				.WithMany(t => t.Albums)
+				.HasForeignKey(t => t.AuthorId);
+
+			modelBuilder.Entity<AlbumAuthor>()
+				.HasOne(t => t.Album)
+				.WithMany(t => t.Authors)
+				.HasForeignKey(t => t.AlbumId);
+
+			modelBuilder.Entity<TrackAuthor>()
+				.HasKey(t => new { t.TrackId, t.AuthorId });
+
+			modelBuilder.Entity<TrackAuthor>()
+				.HasOne(t => t.Track)
+				.WithMany(t => t.Authors)
+				.HasForeignKey(t => t.TrackId);
+
+			modelBuilder.Entity<TrackAuthor>()
+				.HasOne(t => t.Author)
+				.WithMany(t => t.Tracks)
+				.HasForeignKey(t => t.AuthorId);
+
+			modelBuilder.Entity<TrackTag>()
+				.HasKey(t => new { t.TrackId, t.TagId });
+
+			modelBuilder.Entity<TrackTag>()
+				.HasOne(t => t.Track)
+				.WithMany(t => t.Tags)
+				.HasForeignKey(t => t.TrackId);
+
+			modelBuilder.Entity<TrackGenre>()
+				.HasKey(t => new { t.TrackId, t.GenreId });
+
+			modelBuilder.Entity<TrackGenre>()
+				.HasOne(t => t.Track)
+				.WithMany(t => t.Genres)
+				.HasForeignKey(t => t.TrackId);
+
+			modelBuilder.Entity<UserLikedAlbum>()
+				.HasKey(t => new { t.UserId, t.AlbumId });
+
+			modelBuilder.Entity<UserLikedAlbum>()
+				.HasOne(t => t.User)
+				.WithMany(t => t.LikedAlbums)
+				.HasForeignKey(t => t.UserId);
+		}
+	}
 }
+

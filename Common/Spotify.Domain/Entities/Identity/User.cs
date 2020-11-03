@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,33 +11,23 @@ namespace Spotify.Domain.Entities.Identity
     /// Пользователь системы.
     /// </summary>
     public class User : IdentityUser<int>
-    {
-        /// <summary>
-        /// Дата создания аккаунта.
-        /// </summary>
-        [Required(ErrorMessage = "Дата создания пользователя не указана.")]
-        public DateTime CreationDate { get; set; }
+	{
+		public int UserId { get; set; }
 
-        /// <summary>
-        /// Список плейлистов пользователя.
-        /// </summary>
-        public IEnumerable<PlaylistUser> Playlists { get; set; }
+		public DateTime CreatedOn { get; set; }
 
-        /// <summary>
-        /// Список понравившихся авторов пользователя.
-        /// </summary>
-        public IEnumerable<LikedAuthorUser> LikedAuthors { get; set; }
-        //public IEnumerable<Author> LikedAuthors { get; set; }
+		public DateTime UpdatedOn { get; set; }
 
-        /// <summary>
-        /// Список понравившихся треков пользователя.
-        /// </summary>
-        public IEnumerable<LikedTrackUser> LikedTracks { get; set; }
+		public String Avatar { get; set; }
 
-        /// <value>
-        /// Аватар пользователя.
-        /// </value>
-        [Required(ErrorMessage = "Аватар пользователя не указан.")]
-        public string Avatar { get; set; }
-    }
+		public List<UserLikedAuthor> LikedAuthors { get; set; }
+
+		public List<UserLikedTrack> LikedTracks { get; set; }
+
+		public List<UserSubscription> Subscriptions { get; set; }
+
+		public List<UserLikedAlbum> LikedAlbums { get; set; }
+
+		public List<UserPlaylist> Playlists { get; set; }
+	}
 }

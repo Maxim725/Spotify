@@ -1,55 +1,30 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Spotify.Domain.Entities.Base;
+﻿using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 
 namespace Spotify.Domain.Entities
 {
     /// <summary>
     /// Класс автора музыки.
     /// </summary>
-    public class Author : NamedEntity
-    {
-        /// <value>
-        /// Статус подтверждения.
-        /// По умолчанию <c>false</c>.
-        /// Может быть изменен на <c>true</c> после модерации.
-        /// </value>
-        [Required(ErrorMessage = "Статус автора не указан.")]
-        public bool Confirmed { get; set; }
+    public class Author
+	{
+		public int AuthorId { get; set; }
 
-        /// <value>
-        /// Биография.
-        /// Может быть пустой.
-        /// </value>
-        public string Biography { get; set; }
+		public DateTime CreatedOn { get; set; }
 
-        /// <value>
-        /// Дата создания странички автора.
-        /// </value>
-        [Required(ErrorMessage = "Дата создания страницы автора не указана.")]
-        public DateTime CreationDate { get; set; }
+		public DateTime UpdatedOn { get; set; }
 
-        /// <value>
-        /// Список выпущенных альбомов.
-        /// </value>
-        public IEnumerable<AuthorAlbum> Albums { get; set; }
+		public string Name { get; set; }
 
-        /// <value>
-        /// Фото (аватарка).
-        /// Фото может и не быть.
-        /// </value>
-        public string Image { get; set; }
+		public string Description { get; set; }
 
-        /// <value>
-        /// Количесво прослушиваний треков данного автора.
-        /// Прослушивания обновляются один раз в рассчетный период, к примеру, раз в сутки.
-        /// По умолчанию 0.
-        /// </value>
-        [Required(ErrorMessage = "Количество прослушиваний автора не указано.")]
-        public ulong Plays { get; set; }
-    }
+		public ulong Plays { get; set; }
+
+		public string Avatar { get; set; }
+
+		public List<AlbumAuthor> Albums { get; }
+
+		public List<TrackAuthor> Tracks { get; }
+	}
 }
