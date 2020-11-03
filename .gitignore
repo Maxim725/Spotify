@@ -338,4 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/UI/Spotify/polymusic.db
+/UI/Spotify/polymusic.db*
