@@ -10,9 +10,10 @@ using System.Text;
 
 namespace Spotify.DAL
 {
-    public class SpotifyDbContext : IdentityDbContext
+    public class SpotifyDbContext : IdentityDbContext<User, Role, int>
 	{
 		public DbSet<User> Users { get; set; }
+		public DbSet<Role> Roles { get; set; }
 		public DbSet<Author> Authors { get; set; }
 		public DbSet<Playlist> Playlists { get; set; }
 		public DbSet<Album> Albums { get; set; }

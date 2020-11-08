@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Spotify.Areas.Identity;
 using Spotify.Data;
 using Spotify.DAL;
+using Spotify.Domain.Entities.Identity;
 
 namespace Spotify
 {
@@ -35,15 +36,17 @@ namespace Spotify
             services.AddDbContext<SpotifyDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<SpotifyDbContext>();
+            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<SpotifyDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
             services.AddWebOptimizer(pipeline =>
             {
                 pipeline.AddScssBundle("/css/site.css", "/Components/main.scss").UseContentRoot();
             });
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+            services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<User>>();
             services.AddSingleton<WeatherForecastService>();
         }
 
