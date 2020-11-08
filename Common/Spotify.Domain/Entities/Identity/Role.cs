@@ -8,7 +8,7 @@ namespace Spotify.Domain.Entities.Identity
 {
     public class Role : IdentityRole<int>
     {
-        Role() : base() { }
-        Role(string roleName) : base(roleName) { }
+        public Role() : base() { }
+        public Role(string roleName) : base(roleName) { }
     }
 }
