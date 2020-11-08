@@ -9,7 +9,7 @@ using Spotify.DAL;
 namespace Spotify.DAL.Migrations
 {
     [DbContext(typeof(SpotifyDbContext))]
-    [Migration("20201103133836_InitialCreate")]
+    [Migration("20201108100226_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -284,9 +284,6 @@ namespace Spotify.DAL.Migrations
 
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT")

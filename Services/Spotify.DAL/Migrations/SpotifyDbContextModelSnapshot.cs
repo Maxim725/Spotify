@@ -283,9 +283,6 @@ namespace Spotify.DAL.Migrations
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
