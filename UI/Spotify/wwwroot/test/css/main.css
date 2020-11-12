@@ -43,6 +43,7 @@ body {
 
 .container {
   margin-left: 390px;
+  margin-bottom: 90px;
   padding-top: 50px;
   padding-left: 80px;
   max-width: 1440px; }
@@ -58,13 +59,14 @@ body {
   bottom: 0;
   width: 100%;
   height: 90px;
-  background-color: #3A3A3C; }
+  background-color: #3A3A3C;
+  z-index: 2; }
 
 .sidenav {
   height: 100%;
   width: 390px;
   position: fixed;
-  z-index: .9;
+  z-index: 1;
   top: 0;
   left: 0;
   background-color: #1C1C1E;
@@ -304,7 +306,9 @@ body {
     font-weight: thin;
     font-size: 36px;
     color: #EFEFF4;
-    transform: rotate(-180deg); }
+    transform: rotate(-180deg);
+    padding: 0;
+    margin-left: 5px; }
 
 .album {
   position: relative;
@@ -325,7 +329,7 @@ body {
     .album:hover .album__play-button {
       transition: .8s;
       box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.45); }
-  .album:last-child {
+  .album:last-of-type {
     margin: 0; }
   .album__text {
     display: flex;

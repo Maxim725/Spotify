@@ -8,8 +8,9 @@
 		font-weight: thin;
 		font-size: 36px;
 		color: $color--light;
-	
 		transform: rotate(-180deg);
+		padding: 0;
+		margin-left: 5px;
 	}
 }
 
@@ -41,7 +42,7 @@
 		}
 	}
 
-	&:last-child {
+	&:last-of-type {
 		margin: 0;
 	}
 
