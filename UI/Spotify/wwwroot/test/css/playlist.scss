@@ -1,0 +1,32 @@
+.playlist {
+	padding-left: 18px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	width: 342px;
+	height: auto;
+	padding: 5px;
+	margin-bottom: 7px;
+}
+
+.playlist:hover {
+	background: $color--jumbo-light;
+	border-radius: 10px;
+}
+
+.playlist__img {
+	vertical-align: middle;
+	width: 50px;
+	height: auto;
+	border-radius: 5px;
+}
+
+.playlist__text {
+	padding-left: 16px;
+	font-family: 'SF Pro Rounded';
+	font-weight: bold;
+	color: $color--light;
+	font-size: 25px;
+	line-height: 30px;
+	vertical-align: middle;
+}
