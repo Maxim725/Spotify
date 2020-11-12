@@ -2,21 +2,19 @@ $color--white: #FFFFFF;
 $color--light: #EFEFF4;
 $color--light-gray: #D6D6D6;
 $color--spun-rearl: #B1AEB4;
-$color--spun-rearl-2: #A9A7AC;
 $color--tuna: #3A3A3C;
-$color--dark-gray: #1C1C1E;
-$color--darker-gray: #2C2C2E;
+$color--shark: #1C1C1E;
 $color-mountain-meadow: #13BBA4;
 
 $nav--color-hover: rgba(118, 118, 128, 0.1);
 $nav--color-active: rgba(118, 118, 128, 0.24);
-$nav--hr-color: #373739;
+$nav--hr-color: $color--tuna;
 
 $menu--user-item-bg: #3E3E42;
 
 
 body {
-	background-color: $color--darker-gray;
+	background-color: $color--shark;
 }
 
 @font-face {
@@ -64,7 +62,7 @@ a {
 	z-index: .9;
 	top: 0;
 	left: 0;
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 	overflow-x: hidden;
 	padding: 0;
 }
@@ -229,7 +227,7 @@ a {
 
 .user-menu__img > .user-menu__list > .user-menu__item:first-child {
 	border-radius: 20px 20px 0px 0px;
-	border-bottom: 1px solid $color--darker-gray;
+	border-bottom: 1px solid $color--shark;
 }
 
 .user-menu__img > .user-menu__list > .user-menu__item:last-child {
@@ -444,13 +442,13 @@ a {
 	height: 4px;
 	border-radius: 10px;
 	-webkit-appearance: none;
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 }
 
 .track-input[type='range']::-webkit-slider-runnable-track {
 	height: 10px;
 	-webkit-appearance: none;
-	color: $color--spun-rearl-2;
+	color: $color--spun-rearl;
 	margin-top: -1px;
 }
 
@@ -459,25 +457,25 @@ a {
 	-webkit-appearance: none;
 	height: 10px;
 	cursor: pointer;
-	background: $color--spun-rearl-2;
-	box-shadow: -80px 0 0 80px $color--spun-rearl-2;
+	background: $color--spun-rearl;
+	box-shadow: -80px 0 0 80px $color--spun-rearl;
 	border-radius: 10px;
 }
 
 .track-input[type="range"]::-moz-range-progress {
-	background-color: $color--spun-rearl-2;
+	background-color: $color--spun-rearl;
 }
 
 .track-input[type="range"]::-moz-range-track {
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 }
 
 .track-input[type="range"]::-ms-fill-lower {
-	background-color: $color--spun-rearl-2;
+	background-color: $color--spun-rearl;
 }
 
 .track-input[type="range"]::-ms-fill-upper {
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 }
 
 .heared-time {
@@ -491,7 +489,7 @@ a {
 .track-duration, .heared-time {
 	font-family: SF Pro Text;
 	font-size: 12px;
-	color: $color--spun-rearl-2;
+	color: $color--spun-rearl;
 }
 
 .footer-button {
@@ -522,7 +520,7 @@ a {
 	height: 4px;
 	border-radius: 10px;
 	-webkit-appearance: none;
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 }
 
 .volume-input[type='range']::-webkit-slider-runnable-track {
@@ -537,23 +535,23 @@ a {
 	-webkit-appearance: none;
 	height: 10px;
 	cursor: pointer;
-	background: $color--spun-rearl-2;
-	box-shadow: -80px 0 0 80px $color--spun-rearl-2;
+	background: $color--spun-rearl;
+	box-shadow: -80px 0 0 80px $color--spun-rearl;
 	border-radius: 10px;
 }
 
 .volume-input[type="range"]::-moz-range-progress {
-	background-color: $color--spun-rearl-2;
+	background-color: $color--spun-rearl;
 }
 
 .volume-input[type="range"]::-moz-range-track {
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 }
 
 .volume-input[type="range"]::-ms-fill-lower {
-	background-color: $color--spun-rearl-2;
+	background-color: $color--spun-rearl;
 }
 
 .volume-input[type="range"]::-ms-fill-upper {
-	background-color: $color--dark-gray;
+	background-color: $color--shark;
 }
