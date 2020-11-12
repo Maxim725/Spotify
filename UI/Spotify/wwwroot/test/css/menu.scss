@@ -2,71 +2,73 @@
 	margin-right: 90px;
 	display: flex;
 	align-items: center;
-}
 
-.user-menu__img {
-	width: 66px;
-	height: 66px;
-	border-radius: 50%;
-	background-image: url('../example/1.jpg');
-	background-size: cover;
-	border: 0;
-	position: relative;
-}
+	&__img {
+		width: 66px;
+		height: 66px;
+		border-radius: 50%;
+		background-image: url('../example/1.jpg');
+		background-size: cover;
+		border: 0;
+		position: relative;
 
-.user-menu__img:hover {
-	box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
-	transition: .6s;
-}
+		&:hover {
+			box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
+			transition: .6s;
+		}
 
-.user-menu__list {
-	position: absolute;
-	left: -110px;
-	top: 60px;
-	display: none;
-}
+		&:focus {
+			.user-menu__list {
+				display: block;
+			}
+		}
+	}
 
-.user-menu__img:focus > .user-menu__list {
-	display: block;
-}
+	&__list {
+		position: absolute;
+		left: -110px;
+		top: 60px;
+		display: none;
+	}
 
-.user-menu__img > .user-menu__list > .user-menu__item:first-child {
-	border-radius: 20px 20px 0px 0px;
-	border-bottom: 1px solid $color--shark;
-}
+	&__item {
+		width: 132px;
+		height: 29px;
+		background: $color--ship-gray;
+		font-family: SF Pro Rounded;
+		font-weight: bold;
+		font-size: 18px;
+		list-style-type: none;
+		text-align: center;
 
-.user-menu__img > .user-menu__list > .user-menu__item:last-child {
-	border-radius: 0px 0px 20px 20px;
-}
+		&:hover {
+			background: rgba(62, 62, 66, 0.65);
+		}
 
-.user-menu__item {
-	width: 132px;
-	height: 29px;
-	background: $color--ship-gray;
-	font-family: SF Pro Rounded;
-	font-weight: bold;
-	font-size: 18px;
-	list-style-type: none;
-	text-align: center;
-}
+		&:active {
+			background: rgba(0, 0, 0, 0.15);
+		}
 
-.user-menu__item:hover {
-	background: rgba(62, 62, 66, 0.65);
-}
+		&:first-child {
+			border-radius: 20px 20px 0px 0px;
+			border-bottom: 1px solid $color--shark;
+		}
 
-.user-menu__item:active {
-	background: rgba(0, 0, 0, 0.15);
-}
+		&:last-child {
+			border-radius: 0px 0px 20px 20px;
+		}
 
-.user-menu__item > a {
-	vertical-align: middle;
-	color: $color--white;
-}
+		a {
+			vertical-align: middle;
+			color: $color--white;
+		}
+	}
 
-.user-menu__text {
-	margin-right: 30px;
-	font-family: 'SF Pro Rounded';
-	font-weight: bold;
-	font-size: 24px;
-	color: $color--light-gray;
+	&__text {
+		margin-right: 30px;
+		font-family: 'SF Pro Rounded';
+		font-weight: bold;
+		font-size: 24px;
+		color: $color--light-gray;
+	}
 }

@@ -28,22 +28,18 @@
 
 .title {
   font-family: SF Pro Rounded;
+  font-weight: bold;
   margin-bottom: 0; }
-
-.title--main {
-  font-weight: bold;
-  font-size: 40px;
-  color: #FFFFFF; }
-
-.title--second {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  color: #B1AEB4;
-  margin-top: 3px; }
+  .title--main {
+    font-size: 40px;
+    color: #FFFFFF; }
+  .title--second {
+    font-size: 15px;
+    color: #B1AEB4;
+    margin-top: 3px; }
 
 body {
-  background-color: #1C1C1E; }
+  background-color: #2C2C2E; }
 
 .container {
   margin-left: 390px;
@@ -74,9 +70,10 @@ body {
   background-color: #1C1C1E;
   overflow-x: hidden;
   padding: 0; }
-
-.nav-item--selected {
-  background: rgba(118, 118, 128, 0.24); }
+  .sidenav__hr {
+    width: 341.7px;
+    border: 1px solid #3A3A3C;
+    margin-bottom: 10px; }
 
 .nav-item {
   padding-left: 18px;
@@ -87,96 +84,77 @@ body {
   height: 53px;
   margin-bottom: 10px;
   border-radius: 10px; }
-
-.nav-item:hover {
-  background: rgba(118, 118, 128, 0.1);
-  border-radius: 10px; }
-
-.nav-item--selected:hover {
-  background: rgba(118, 118, 128, 0.24); }
-
-.nav-item:hover > .nav-a > .nav-a__text {
-  color: #FFFFFF; }
-
-.nav-item > .nav-a > .nav-a__text {
-  padding-left: 19px;
-  font-family: 'SF Pro Rounded';
-  font-weight: bold;
-  color: #EFEFF4;
-  font-size: 25px;
-  line-height: 30px;
-  vertical-align: middle; }
-
-.nav-item > .nav-a > .nav-a__img {
-  vertical-align: middle;
-  width: 30px;
-  height: auto; }
-
-.nav__hr {
-  width: 341.7px;
-  border: 1px solid #3A3A3C;
-  margin-bottom: 10px; }
+  .nav-item:hover {
+    background: rgba(118, 118, 128, 0.1);
+    border-radius: 10px; }
+    .nav-item:hover .nav-a__text {
+      color: #FFFFFF; }
+  .nav-item--selected {
+    background: rgba(118, 118, 128, 0.24); }
+    .nav-item--selected:hover {
+      background: rgba(118, 118, 128, 0.24); }
+  .nav-item .nav-a__text {
+    padding-left: 19px;
+    font-family: 'SF Pro Rounded';
+    font-weight: bold;
+    color: #EFEFF4;
+    font-size: 25px;
+    line-height: 30px;
+    vertical-align: middle; }
+  .nav-item .nav-a__img {
+    vertical-align: middle;
+    width: 30px;
+    height: auto; }
 
 .user-menu {
   margin-right: 90px;
   display: flex;
   align-items: center; }
-
-.user-menu__img {
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background-image: url("../example/1.jpg");
-  background-size: cover;
-  border: 0;
-  position: relative; }
-
-.user-menu__img:hover {
-  box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
-  transition: .6s; }
-
-.user-menu__list {
-  position: absolute;
-  left: -110px;
-  top: 60px;
-  display: none; }
-
-.user-menu__img:focus > .user-menu__list {
-  display: block; }
-
-.user-menu__img > .user-menu__list > .user-menu__item:first-child {
-  border-radius: 20px 20px 0px 0px;
-  border-bottom: 1px solid #1C1C1E; }
-
-.user-menu__img > .user-menu__list > .user-menu__item:last-child {
-  border-radius: 0px 0px 20px 20px; }
-
-.user-menu__item {
-  width: 132px;
-  height: 29px;
-  background: #3E3E42;
-  font-family: SF Pro Rounded;
-  font-weight: bold;
-  font-size: 18px;
-  list-style-type: none;
-  text-align: center; }
-
-.user-menu__item:hover {
-  background: rgba(62, 62, 66, 0.65); }
-
-.user-menu__item:active {
-  background: rgba(0, 0, 0, 0.15); }
-
-.user-menu__item > a {
-  vertical-align: middle;
-  color: #FFFFFF; }
-
-.user-menu__text {
-  margin-right: 30px;
-  font-family: 'SF Pro Rounded';
-  font-weight: bold;
-  font-size: 24px;
-  color: #D6D6D6; }
+  .user-menu__img {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background-image: url("../example/1.jpg");
+    background-size: cover;
+    border: 0;
+    position: relative; }
+    .user-menu__img:hover {
+      box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
+      transition: .6s; }
+    .user-menu__img:focus .user-menu__list {
+      display: block; }
+  .user-menu__list {
+    position: absolute;
+    left: -110px;
+    top: 60px;
+    display: none; }
+  .user-menu__item {
+    width: 132px;
+    height: 29px;
+    background: #3E3E42;
+    font-family: SF Pro Rounded;
+    font-weight: bold;
+    font-size: 18px;
+    list-style-type: none;
+    text-align: center; }
+    .user-menu__item:hover {
+      background: rgba(62, 62, 66, 0.65); }
+    .user-menu__item:active {
+      background: rgba(0, 0, 0, 0.15); }
+    .user-menu__item:first-child {
+      border-radius: 20px 20px 0px 0px;
+      border-bottom: 1px solid #1C1C1E; }
+    .user-menu__item:last-child {
+      border-radius: 0px 0px 20px 20px; }
+    .user-menu__item a {
+      vertical-align: middle;
+      color: #FFFFFF; }
+  .user-menu__text {
+    margin-right: 30px;
+    font-family: 'SF Pro Rounded';
+    font-weight: bold;
+    font-size: 24px;
+    color: #D6D6D6; }
 
 .search {
   width: 940px;
@@ -321,6 +299,12 @@ body {
   margin-top: 20px;
   display: flex;
   align-items: center; }
+  .album-list__next-button {
+    font-family: 'SF Pro Text';
+    font-weight: thin;
+    font-size: 36px;
+    color: #EFEFF4;
+    transform: rotate(-180deg); }
 
 .album {
   position: relative;
@@ -329,72 +313,54 @@ body {
   background: rgba(28, 28, 30, 0.8);
   border-radius: 20px;
   margin-right: 18px; }
-
-.album:hover {
-  background: #3A3A3C;
-  transition: .6s; }
-
-.album:hover > .album__img {
-  box-shadow: 1px 0px 12px 6px rgba(0, 0, 0, 0.35);
-  transition: .9s; }
-
-.album:last-child {
-  margin: 0; }
-
-.album__text {
-  display: flex;
-  flex-direction: column; }
-
-.album__img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin: 20px;
-  margin-bottom: 10px; }
-
-.album__name, .album__artist {
-  padding: 0 20px;
-  font-family: SF Pro Rounded;
-  font-weight: bold;
-  font-size: 24px;
-  color: #D6D6D6; }
-
-.album__info {
-  padding: 0 20px;
-  font-family: SF Pro Rounded;
-  font-size: 14px;
-  color: #D6D6D6; }
-
-.album:hover > .album__play-button {
-  opacity: 100%;
-  transition: .4s; }
-
-.album:hover > .album__play-button {
-  transition: .8s;
-  box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.45); }
-
-.album__play-button {
-  position: absolute;
-  left: 67.27%;
-  right: 14.55%;
-  top: 47.19%;
-  bottom: 39.6%;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  opacity: 0%;
-  background-image: url("../svg/play_button.svg"); }
-
-.album__play-button:focus {
-  background-image: url("../svg/stop_button.svg"); }
-
-.album-list__next-button {
-  font-family: 'SF Pro Text';
-  font-weight: thin;
-  font-size: 36px;
-  color: #EFEFF4;
-  transform: rotate(-180deg); }
+  .album:hover {
+    background: #3A3A3C;
+    transition: .6s; }
+    .album:hover .album__img {
+      box-shadow: 1px 0px 12px 6px rgba(0, 0, 0, 0.35);
+      transition: .9s; }
+    .album:hover .album__play-button {
+      opacity: 100%;
+      transition: .4s; }
+    .album:hover .album__play-button {
+      transition: .8s;
+      box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.45); }
+  .album:last-child {
+    margin: 0; }
+  .album__text {
+    display: flex;
+    flex-direction: column; }
+  .album__img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 20px;
+    margin-bottom: 10px; }
+  .album__name, .album__artist {
+    padding: 0 20px;
+    font-family: SF Pro Rounded;
+    font-weight: bold;
+    font-size: 24px;
+    color: #D6D6D6; }
+  .album__info {
+    padding: 0 20px;
+    font-family: SF Pro Rounded;
+    font-size: 14px;
+    color: #D6D6D6; }
+  .album__play-button {
+    position: absolute;
+    left: 67.27%;
+    right: 14.55%;
+    top: 47.19%;
+    bottom: 39.6%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0%;
+    background-image: url("../svg/play_button.svg"); }
+    .album__play-button:focus {
+      background-image: url("../svg/stop_button.svg"); }
 
 .playlist {
   padding-left: 18px;

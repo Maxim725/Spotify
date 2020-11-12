@@ -8,10 +8,12 @@
 	background-color: $color--shark;
 	overflow-x: hidden;
 	padding: 0;
-}
 
-.nav-item--selected {
-	background: $color--jumbo-dark;
+	&__hr {
+		width: 341.7px;
+		border: 1px solid $color--tuna;
+		margin-bottom: 10px;
+	}
 }
 
 .nav-item {
@@ -23,40 +25,41 @@
 	height: 53px;
 	margin-bottom: 10px;
 	border-radius: 10px;
-}
 
-.nav-item:hover {
-	background: $color--jumbo-light;
-	border-radius: 10px;
-}
+	&:hover {
+		background: $color--jumbo-light;
+		border-radius: 10px;
 
-.nav-item--selected:hover {
-	background: $color--jumbo-dark;
-}
+		.nav-a {
+			&__text {
+				color: $color--white;
+			}
+		}
+	}
 
-.nav-item:hover > .nav-a > .nav-a__text {
-	color: $color--white;
-}
+	&--selected {
+		background: $color--jumbo-dark;
 
-.nav-item > .nav-a > .nav-a__text {
-	padding-left: 19px;
-	font-family: 'SF Pro Rounded';
-	font-weight: bold;
-	color: $color--light;
-	font-size: 25px;
-	line-height: 30px;
-	vertical-align: middle;
-}
+		&:hover {
+			background: $color--jumbo-dark;
+		}
+	}
 
-// Изменить цвет svg на #EFEFF4 ($color--light)
-.nav-item > .nav-a > .nav-a__img {
-	vertical-align: middle;
-	width: 30px;
-	height: auto;
-}
+	.nav-a {
+		&__text {
+			padding-left: 19px;
+			font-family: 'SF Pro Rounded';
+			font-weight: bold;
+			color: $color--light;
+			font-size: 25px;
+			line-height: 30px;
+			vertical-align: middle;
+		}
 
-.nav__hr {
-	width: 341.7px;
-	border: 1px solid $color--tuna;
-	margin-bottom: 10px;
+		&__img {
+			vertical-align: middle;
+			width: 30px;
+			height: auto;
+		}
+	}
 }
