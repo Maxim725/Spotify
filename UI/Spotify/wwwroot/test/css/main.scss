@@ -6,13 +6,10 @@
 @import 'menu.scss';
 @import 'search.scss';
 @import 'logo.scss';
+@import 'player.scss';
 @import 'album.scss';
 @import 'playlist.scss';
 
-
-body {
-	background-color: $color--shark;
-}
 
 button {
 	border: none;

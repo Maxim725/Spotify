@@ -1,4 +1,4 @@
-.albums-list {
+.album-list {
 	margin-top: 20px;
 	display: flex;
 	align-items: center;
@@ -23,7 +23,7 @@
 	transition: .9s;
 }
 
-.album-last {
+.album:last-child {
 	margin: 0;
 }
 
@@ -41,7 +41,7 @@
 	margin-bottom: 10px;
 }
 
-.album-name, .album-artist {
+.album__name, .album__artist {
 	padding: 0 20px;
 	font-family: SF Pro Rounded;
 	font-weight: bold;
@@ -49,24 +49,24 @@
 	color: $color--light-gray;
 }
 
-.album-info {
+.album__info {
 	padding: 0 20px;
 	font-family: SF Pro Rounded;
 	font-size: 14px;
 	color: $color--light-gray;
 }
 
-.album:hover > .play-button {
+.album:hover > .album__play-button {
 	opacity: 100%;
 	transition: .4s;
 }
 
-.album:hover > .play-button {
+.album:hover > .album__play-button {
 	transition: .8s;
 	box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.45);
 }
 
-.play-button {
+.album__play-button {
 	position: absolute;
 	left: 67.27%;
 	right: 14.55%;
@@ -79,11 +79,11 @@
 	background-image: url('../svg/play_button.svg');
 }
 
-.play-button:focus {
+.album__play-button:focus {
 	background-image: url('../svg/stop_button.svg');
 }
 
-.next-button {
+.album-list__next-button {
 	font-family: 'SF Pro Text';
 	font-weight: thin;
 	font-size: 36px;

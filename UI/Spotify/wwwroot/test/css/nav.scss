@@ -10,7 +10,7 @@
 	padding: 0;
 }
 
-.nav-item-selected {
+.nav-item--selected {
 	background: $color--jumbo-dark;
 }
 
@@ -30,7 +30,7 @@
 	border-radius: 10px;
 }
 
-.nav-item-selected:hover {
+.nav-item--selected:hover {
 	background: $color--jumbo-dark;
 }
 
@@ -55,7 +55,7 @@
 	height: auto;
 }
 
-.nav-hr {
+.nav__hr {
 	width: 341.7px;
 	border: 1px solid $color--tuna;
 	margin-bottom: 10px;

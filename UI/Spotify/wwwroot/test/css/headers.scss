@@ -1,18 +1,19 @@
-.main-title {
+.title {
 	font-family: SF Pro Rounded;
-	font-weight: bold;
-	font-size: 40px;
-	color: $color--white;
 	margin-bottom: 0;
 }
 
-.second-title {
-	font-family: SF Pro Rounded;
+.title--main {
+	font-weight: bold;
+	font-size: 40px;
+	color: $color--white;
+}
+
+.title--second {
 	font-style: normal;
 	font-weight: bold;
 	font-size: 15px;
 
 	color: $color--spun-rearl;
 	margin-top: 3px;
-	margin-bottom: 0;
 }
