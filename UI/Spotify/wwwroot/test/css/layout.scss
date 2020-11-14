@@ -3,11 +3,10 @@ body {
 }
 
 .container {
-	margin-left: 390px;
+	margin-left: 20%;
 	margin-bottom: 90px;
 	padding-top: 50px;
 	padding-left: 80px;
-	max-width: 1440px;
 }
 
 .header {
@@ -24,4 +23,33 @@ body {
 	height: 90px;
 	background-color: $color--tuna;
 	z-index: 2;
+}
+
+@media(max-width: 1680px) {
+	.container {
+		padding-top: 35px;
+		padding-left: 45px;
+	}
+}
+
+@media(max-width: 1366px) {
+	.container {
+		padding-top: 25px;
+		padding-left: 30px;
+	}
+
+	.footer {
+		height: 70px;
+	}
+}
+
+@media(max-width: 1024px) {
+	.container {
+		padding-top: 15px;
+		padding-left: 22px;
+	}
+
+	.footer {
+		height: 60px;
+	}
 }

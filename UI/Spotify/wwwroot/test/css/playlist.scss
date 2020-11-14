@@ -3,7 +3,7 @@
 	margin: auto;
 	display: flex;
 	align-items: center;
-	width: 342px;
+	width: 87%;
 	height: auto;
 	padding: 5px;
 	margin-bottom: 7px;
@@ -21,12 +21,50 @@
 	}
 
 	&__text {
-		padding-left: 16px;
+		margin-left: 16px;
 		font-family: 'SF Pro Rounded';
 		font-weight: bold;
 		color: $color--light;
 		font-size: 25px;
 		line-height: 30px;
 		vertical-align: middle;
+	}
+}
+
+@media(max-width: 1680px){
+	.playlist {
+		img {
+			width: 45px;
+		}
+	
+		&__text {
+			font-size: 22px;
+		}
+	}
+}
+
+@media(max-width: 1366px){
+	.playlist {
+		img {
+			width: 40px;
+		}
+	
+		&__text {
+			margin-left: 8px;
+			font-size: 18px;
+		}
+	}
+}
+
+@media(max-width: 1366px){
+	.playlist {
+		img {
+			width: 35px;
+		}
+	
+		&__text {
+			margin-left: 5px;
+			font-size: 15px;
+		}
 	}
 }

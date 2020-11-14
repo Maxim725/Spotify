@@ -1,6 +1,6 @@
 .sidenav {
 	height: 100%;
-	width: 390px;
+	width: 20%;
 	position: fixed;
 	z-index: 1;
 	top: 0;
@@ -10,7 +10,7 @@
 	padding: 0;
 
 	&__hr {
-		width: 341.7px;
+		width: 87%;
 		border: 1px solid $color--tuna;
 		margin-bottom: 10px;
 	}
@@ -21,7 +21,7 @@
 	margin: auto;
 	display: flex;
 	align-items: center;
-	width: 342px;
+	width: 87%;
 	height: 53px;
 	margin-bottom: 10px;
 	border-radius: 10px;
@@ -47,7 +47,7 @@
 
 	.nav-a {
 		&__text {
-			padding-left: 19px;
+			margin-left: 19px;
 			font-family: 'SF Pro Rounded';
 			font-weight: bold;
 			color: $color--light;
@@ -61,5 +61,67 @@
 			width: 30px;
 			height: auto;
 		}
+	}
+}
+
+@media(max-width: 1680px) {
+	.sidenav {
+		.nav-a {
+			&__text {
+				font-size: 22px;
+			}
+	
+			&__img {
+				vertical-align: middle;
+				width: 25px;
+				height: auto;
+			}
+		}
+	}
+	
+	.nav-item {
+		height: 48px;
+	}
+}
+
+@media(max-width: 1366px) {
+	.sidenav {
+		.nav-a {
+			&__text {
+				font-size: 18px;
+				margin-left: 8px;
+			}
+	
+			&__img {
+				vertical-align: middle;
+				width: 22px;
+				height: auto;
+			}
+		}
+	}
+	
+	.nav-item {
+		height: 42px;
+	}
+}
+
+@media(max-width: 1024px) {
+	.sidenav {
+		.nav-a {
+			&__text {
+				font-size: 16px;
+				margin-left: 6px;
+			}
+
+			&__img {
+				vertical-align: middle;
+				width: 20px;
+				height: auto;
+			}
+		}
+	}
+	
+	.nav-item {
+		height: 38px;
 	}
 }
