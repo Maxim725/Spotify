@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.css">
+	<!-- <link rel="stylesheet" href="css/normalize.css"> -->
+	<script>
+		window.SetVolume = function(val)
+		{
+			console.log(val)
+			if (val > 20) {
+				document.querySelector(".player__volume img")[0].src="svg/high_volume.svg";
+			}
+			else {
+				document.querySelector(".player__volume img")[0].src="svg/low_volume.svg";
+			}
+			
+		}
+	</script>
+	<title>Main</title>
+</head>
+<body>
+	<div class="sidenav">
+		<div class="logo">
+			<a href="#">
+				<img src="svg/logo-with-text.svg" alt="">
+			</a>
+		</div>
+		<div class="nav-bar">
+			<nav class="nav">
+				<div class="nav-item nav-item--selected">
+					<a href="#" class='nav-a'>
+						<img src="svg/house.svg" alt="" class="nav-a__img">
+						<span class="nav-a__text">
+							Главная
+						</span>
+					</a>
+				</div>
+
+				<div class="nav-item">
+					<a href="#" class='nav-a'>
+						<img src="svg/heart.svg" alt="" class="nav-a__img">
+						<span class="nav-a__text">
+							Для вас
+						</span>
+					</a>
+				</div>
+
+				<div class="nav-item">
+					<a href="#" class='nav-a'>
+						<img src="svg/list.svg" alt="" class="nav-a__img">
+						<span class="nav-a__text">
+							Медиатека
+						</span>
+					</a>
+				</div>
+			</nav>
+		</div>
+		<hr class='sidenav__hr'>
+		<div class="playlists">
+			<div class="playlist">
+				<a href="#">
+					<img src="example/example-playlist.png">
+					<span class="playlist__text">
+						Плейлист 1
+					</span>
+				</a>
+			</div>
+
+			<div class="playlist">
+				<a href="#">
+					<img src="svg/addplaylist.svg">
+					<span class="playlist__text">
+						Создать плейлист
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<header class="header">
+			<input type="text" class="search" placeholder="Поиск">
+			<div class="user-menu">
+				<a href="#" class="user-menu__text">
+					@figmamusic
+				</a>
+				<button class="user-menu__img">
+					<ul class="user-menu__list">
+						<li class="user-menu__item">
+							<a href="#">
+								Аккаунт
+							</a>
+						</li>
+						<li class="user-menu__item">
+							<a href="#">
+								Выйти
+							</a>
+						</li>
+					</ul>
+				</button>
+			</div>
+		</header>
+		<main class="main">
+			<div class="albums">
+				<h2 class="title title--main">
+					Недавно добавленные
+				</h2>
+				<div class="album-list">
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example1.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									FRANCHISE
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Travis Scott
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Сингл
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example2.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Было или нет?
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									SALUKI
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Сингл
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example3.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									OLD BLOOD
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Boulevard Depo
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example4.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Lamborghini
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Элджей
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Сингл
+							</span>
+						</div>
+					</div>
+					<div class="album album-last">
+						<a href="#">
+							<img src="example/album-example5.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									SAVAGE MODE II
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									21 Savage
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<button class="album-list__next-button">
+						􀆉
+					</button>
+				</div>
+			</div>
+			<div class="albums">
+				<h2 class="title title--main">
+					Лучшие треки
+				</h2>
+				<h4 class="title title--second">
+					Подборки хитов по исполнителям
+				</h4>
+				<div class="album-list">
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example6.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example7.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example8.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example9.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album">
+						<a href="#">
+							<img src="example/album-example10.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<div class="album album-last">
+						<a href="#">
+							<img src="example/album-example11.png" alt="" class='album__img'>
+						</a>
+						<button class="album__play-button"></button>
+						<div class="album__text">
+							<span class="album__name">
+								<a href="#">
+									Rager
+								</a>
+							</span>
+							<span class="album__artist">
+								<a href="#">
+									Telly Grave
+								</a>
+							</span>
+							<span class="album__info">
+								Последний релиз · Альбом
+							</span>
+						</div>
+					</div>
+					<button class="album-list__next-button">
+						􀆉
+					</button>
+				</div>
+			</div>
+		</main>
+	</div>
+	<div class="footer">
+		<div class="player">
+			<div class="player__left-side">
+				<a href="#">
+					<img src="example/footer-example.png" alt="" class='player__track-cover'>
+				</a>
+				<div class="player__track-creds">
+					<a class="player__track-title" href="#">
+						Locked In
+					</a>
+					<a class="player__track-artist" href="#">
+						Spotify
+					</a>
+				</div>
+			</div>
+			<div class="player__center-side">
+				<div class="player__center-side-up">
+					<button class="player__control-button">
+						<img src="svg/repeat.svg" alt="" class="">
+					</button>
+					<button class="player__control-button">
+						<img src="svg/previous_track.svg" alt="">
+					</button>
+					<button class="player__control-button">
+						<img src="svg/footer_play.svg" alt="">
+					</button>
+					<button class="player__control-button">
+						<img src="svg/next_track.svg" alt="">
+					</button>
+					<button class="player__control-button">
+						<img src="svg/shuffle.svg" alt="">
+					</button>
+				</div>
+				<div class="player__center-side-bottom">
+					<span class="player__time-passed">
+						0:02
+					</span>
+					<input class="player__track-progress" type="range" min="0" max="100" step="1" value="0"></input>
+					<span class="player__time-left">
+						3:20
+					</span>
+				</div>
+			</div>
+			<div class="player__right-side">
+				<div class="player__volume">
+					<img src="svg/low_volume.svg">
+					<input type="range" min="0" max="100" step="1" value="0" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

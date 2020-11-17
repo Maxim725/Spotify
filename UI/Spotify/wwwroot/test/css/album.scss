@@ -1,0 +1,236 @@
+.album-list {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+
+	&__next-button {
+		font-family: 'SF Pro Text';
+		font-weight: thin;
+		font-size: 36px;
+		color: $color--light;
+		transform: rotate(-180deg);
+		padding: 0;
+		margin-left: 5px;
+	}
+}
+
+.album {
+	position: relative;
+	width: 220px;
+	height: 310px;
+	background: rgba(28, 28, 30, 0.8);
+	border-radius: 20px;
+	margin-right: 18px;
+
+	&:hover {
+		background: $color--tuna;
+		transition: .6s;
+	
+		.album__img {
+			box-shadow: 1px 0px 12px 6px rgba(0, 0, 0, 0.35);
+			transition: .9s;
+		}
+
+		.album__play-button {
+			opacity: 100%;
+			transition: .4s;
+		}
+
+		.album__play-button {
+			transition: .8s;
+			box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.45);
+		}
+	}
+
+	&:last-of-type {
+		margin: 0;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__img {
+		width: 180px;
+		height: 180px;
+		object-fit: cover;
+		border-radius: 20px;
+		margin: 20px;
+		margin-bottom: 10px;
+	}
+
+	&__name a, &__artist a {
+		margin: 0 20px;
+		font-family: SF Pro Rounded;
+		font-weight: bold;
+		font-size: 24px;
+		color: $color--light-gray;
+
+		// width: 80%;
+		overflow: hidden;
+		display: inline-block;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__info {
+		margin: 0 20px;
+		font-family: SF Pro Rounded;
+		font-size: 14px;
+		color: $color--light-gray;
+	}
+
+	&__play-button {
+		position: absolute;
+		left: 67.27%;
+		right: 14.55%;
+		top: 47.19%;
+		bottom: 39.6%;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		opacity: 0%;
+		background-image: url('../svg/play_button.svg');
+		background-size: cover;
+	
+		&:focus {
+			background-image: url('../svg/stop_button.svg');
+			background-size: cover;
+		}
+	}
+}
+
+
+@media(max-width: 1680px) {
+	.album-list {
+		margin-top: 15px;
+
+		&__next-button {
+			font-size: 32px;
+		}
+	}
+
+	.album {
+		width: 200px;
+		height: 280px;
+		margin-right: 12px;
+		border-radius: 18px;
+
+		&__img {
+			width: 164px;
+			height: 164px;
+			margin: 18px;
+			margin-bottom: 9px;
+			border-radius: 18px;
+		}
+
+		&__name a, &__artist a {
+			margin: 0 18px;
+			font-size: 22px;
+		}
+	
+		&__info {
+			margin: 0 18px;
+			font-size: 12px;
+		}
+	
+		&__play-button {
+			width: 36px;
+			height: 36px;
+		}
+	}
+}
+
+@media(max-width: 1366px) {
+	.album-list__next-button {
+		font-size: 26px;
+	}
+
+	.album {
+		width: 162px;
+		height: 227px;
+		margin-right: 9px;
+		border-radius: 15px;
+
+		&:last-of-type {
+			margin-right: 6px;
+		}
+
+		&__img {
+			width: 132px;
+			height: 132px;
+			margin: 15px;
+			margin-bottom: 7px;
+			border-radius: 15px;
+		}
+
+		&__name a, &__artist a {
+			margin: 0 15px;
+			font-size: 16px;
+		}
+	
+		&__info {
+			margin: 0 15px;
+			font-size: 10px;
+		}
+	
+		&__play-button {
+			width: 30px;
+			height: 30px;
+		}
+		
+		// &:last-of-type {
+		// 	display: none;
+		// }
+
+		// &:nth-last-of-type(-n+2) {
+		// 	margin: 0;
+		// }
+	}
+}
+
+@media(max-width: 1024px) {
+	.album-list__next-button {
+		font-size: 22px;
+	}
+
+	.album {
+		width: 150px;
+		height: 210px;
+		margin-right: 7px;
+		border-radius: 15px;
+
+		&__img {
+			width: 122px;
+			height: 122px;
+			margin: 13px;
+			margin-bottom: 6px;
+			border-radius: 15px;
+		}
+
+		&__name a, &__artist a {
+			margin: 0 13px;
+			font-size: 14px;
+		}
+	
+		&__info {
+			margin: 0 13px;
+			font-size: 8px;
+		}
+	
+		&__play-button {
+			width: 25px;
+			height: 25px;
+		}
+		
+		&:last-of-type {
+			margin: 0;
+			display: none;
+		}
+
+		&:nth-last-of-type(-n+2) {
+			margin: 0;
+		}
+	}
+}
