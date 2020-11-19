@@ -105,7 +105,7 @@ body {
   height: 100%;
   width: 20%;
   position: fixed;
-  z-index: 1;
+  z-index: .9;
   top: 0;
   left: 0;
   background-color: #1C1C1E;
@@ -662,7 +662,7 @@ body {
       margin: 0; } }
 
 .playlist {
-  padding-left: 18px;
+  margin-left: 18px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -676,8 +676,9 @@ body {
   .playlist img {
     vertical-align: middle;
     width: 50px;
-    height: auto;
-    border-radius: 5px; }
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover; }
   .playlist__text {
     margin-left: 16px;
     font-family: 'SF Pro Rounded';
@@ -689,23 +690,181 @@ body {
 
 @media (max-width: 1680px) {
   .playlist img {
-    width: 45px; }
+    width: 45px;
+    height: 45px; }
   .playlist__text {
     font-size: 22px; } }
 
 @media (max-width: 1366px) {
   .playlist img {
-    width: 40px; }
+    width: 40px;
+    height: 40px; }
   .playlist__text {
     margin-left: 8px;
     font-size: 18px; } }
 
 @media (max-width: 1366px) {
   .playlist img {
-    width: 35px; }
+    width: 35px;
+    height: 35px; }
   .playlist__text {
     margin-left: 5px;
     font-size: 15px; } }
+
+.profile {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0; }
+  .profile:target {
+    visibility: visible;
+    opacity: 1; }
+  .profile__window {
+    margin: 12% auto;
+    padding: 40px 50px;
+    background: #3A3A3C;
+    border-radius: 40px;
+    position: relative;
+    width: 40%;
+    height: auto; }
+    .profile__window hr {
+      width: 100%;
+      border: 1px solid #1C1C1E;
+      margin-top: 25px;
+      margin-bottom: 25px; }
+    .profile__window .playlist {
+      margin-left: 0;
+      width: 100%; }
+    .profile__window .playlist:last-of-type {
+      margin-bottom: 0; }
+  .profile__img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url("../example/1.jpg");
+    background-size: cover;
+    border: 0;
+    position: relative;
+    margin-right: 30px; }
+  .profile__top, .profile__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; }
+    .profile__top input, .profile__bottom input {
+      width: 450px;
+      height: 44px;
+      background: rgba(118, 118, 128, 0.24);
+      border: 0;
+      border-radius: 10px;
+      font-family: 'SF Pro Text';
+      font-size: 17px;
+      line-height: 24px;
+      color: #FFFFFF;
+      padding: 0;
+      padding-left: 13px; }
+    .profile__top button, .profile__bottom button {
+      font-family: SF Pro Text;
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+      color: #5856D6;
+      background: #2C2C2E;
+      border-radius: 14px;
+      padding: 8px 22px;
+      height: 44px;
+      margin-left: 15px; }
+      .profile__top button:hover, .profile__bottom button:hover {
+        filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.35));
+        transition: .7s; }
+      .profile__top button:active, .profile__bottom button:active {
+        background-color: #1D1D1E;
+        filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.35)); }
+  .profile__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .profile__bottom input {
+      width: 100%; }
+  .profile__superbutton {
+    font-family: SF Pro Text;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color: #5856D6;
+    background: #2C2C2E;
+    border-radius: 14px;
+    width: 100%;
+    height: 44px; }
+    .profile__superbutton:hover {
+      filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.35));
+      transition: .7s; }
+    .profile__superbutton:active {
+      background-color: #1D1D1E;
+      filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.35)); }
+
+@media (max-width: 1680px) {
+  .profile__img {
+    width: 90px;
+    height: 90px; }
+  .profile__top input {
+    width: 370px; } }
+
+@media (max-width: 1366px) {
+  .profile__window {
+    margin: 10% auto;
+    padding: 30px 40px; }
+    .profile__window hr {
+      margin-top: 20px;
+      margin-bottom: 20px; }
+    .profile__window .playlist img {
+      width: 45px;
+      height: 45px; }
+    .profile__window .playlist__text {
+      font-size: 20px; }
+  .profile__img {
+    width: 75px;
+    height: 75px; }
+  .profile__top input {
+    width: 270px; }
+  .profile__top, .profile__bottom {
+    margin-bottom: 15px; }
+    .profile__top input, .profile__top button, .profile__bottom input, .profile__bottom button {
+      height: 40px;
+      font-size: 20px; }
+  .profile__superbutton {
+    height: 40px;
+    font-size: 20px; } }
+
+@media (max-width: 1024px) {
+  .profile__window {
+    margin: 12% auto;
+    padding: 30px 40px; }
+    .profile__window hr {
+      margin-top: 20px;
+      margin-bottom: 20px; }
+    .profile__window .playlist img {
+      width: 40px;
+      height: 40px; }
+    .profile__window .playlist__text {
+      font-size: 18px; }
+  .profile__img {
+    width: 60px;
+    height: 60px; }
+  .profile__top input {
+    width: 155px; }
+  .profile__top, .profile__bottom {
+    margin-bottom: 15px; }
+    .profile__top input, .profile__top button, .profile__bottom input, .profile__bottom button {
+      font-size: 18px;
+      height: 35px; }
+  .profile__superbutton {
+    height: 35px;
+    font-size: 18px; } }
 
 button {
   border: none;

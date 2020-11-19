@@ -88,7 +88,7 @@
 				<button class="user-menu__img">
 					<ul class="user-menu__list">
 						<li class="user-menu__item">
-							<a href="#">
+							<a href="#profile">
 								Аккаунт
 							</a>
 						</li>
@@ -426,6 +426,51 @@
 				<div class="player__volume">
 					<img src="svg/low_volume.svg">
 					<input type="range" min="0" max="100" step="1" value="0" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="profile" class="profile">
+		<div class="profile__window">
+			<div class="profile__top">
+				<div class="profile__img"></div>
+				<div class="profile__name">
+					<input type="text" value="yomayams">
+					<button>Изменить</button>
+				</div>
+			</div>
+			<div class="profile__bottom">
+				<input type="text" value="yomayams@gmail.com">
+				<button>Изменить</button>
+			</div>
+			<button class="profile__superbutton">Сменить пароль</button>
+			<hr>
+			<div class="playlists">
+				<div class="playlist">
+					<a href="#">
+						<img src="example/example-playlist.png">
+						<span class="playlist__text">
+							Плейлист 1
+						</span>
+					</a>
+				</div>
+
+				<div class="playlist">
+					<a href="#">
+						<img src="example/album-example.png">
+						<span class="playlist__text">
+							Плейлист 2
+						</span>
+					</a>
+				</div>
+
+				<div class="playlist">
+					<a href="#">
+						<img src="svg/addplaylist.svg">
+						<span class="playlist__text">
+							Создать плейлист
+						</span>
+					</a>
 				</div>
 			</div>
 		</div>
