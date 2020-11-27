@@ -92,8 +92,7 @@ namespace Spotify.DAL.Init
                     Subscriptions = new List<UserSubscription>(),
                     LikedAlbums = new List<UserLikedAlbum>(),
                     Playlists = new List<UserPlaylist>()
-                },
-
+                }
             };
 
             context.Users.AddRange(users);
@@ -501,7 +500,6 @@ namespace Spotify.DAL.Init
                     Duration = 2 * 60 - 11,
                     Plays = 132
                 }
-                
             };
 
             context.Tracks.AddRange(tracks);
