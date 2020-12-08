@@ -1,4 +1,4 @@
-.user-menu {
+.profile-menu {
 	margin-right: 90px;
 	display: flex;
 	align-items: center;
@@ -18,7 +18,7 @@
 		}
 
 		&:focus {
-			.user-menu__list {
+			.profile-menu__list {
 				display: block;
 			}
 		}
@@ -43,11 +43,11 @@
 		text-align: center;
 
 		&:hover {
-			background: rgba(62, 62, 66, 0.65);
+			background: #38383B;
 		}
 
 		&:active {
-			background: rgba(0, 0, 0, 0.15);
+			background: #252527;
 		}
 
 		&:first-child {
@@ -75,7 +75,7 @@
 }
 
 @media(max-width: 1366px) {
-	.user-menu {
+	.profile-menu {
 		margin-right: 65px;
 	
 		&__img {

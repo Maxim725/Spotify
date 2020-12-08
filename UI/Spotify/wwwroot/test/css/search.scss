@@ -16,6 +16,32 @@
 	background-image: url('../svg/search.svg');
 }
 
+.search-view {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+	visibility: hidden;
+	opacity: 0;
+
+	&:target {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	&__window {
+		position: absolute;
+		width: 895px;
+		height: 934px;
+		left: 468px;
+		top: 136px;
+		background: #323236;
+		border-radius: 10px;
+	}
+}
+
 @media(max-width: 1680px) {
 	.search {
 		height: 25px;

@@ -21,7 +21,14 @@
 
 @font-face {
 	font-family: 'SF Pro Text'; /*a name to be used later*/
-	src: url(../fonts/SF-Pro.ttf);
+	src: url(../fonts/SF-Pro-Text-Bold.otf);
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: 'SF Pro Text'; /*a name to be used later*/
+	src: url(../fonts/SF-Pro-Text-Ultralight.otf);
 	font-style: normal;
 	font-weight: thin;
 }
