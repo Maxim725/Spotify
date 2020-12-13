@@ -1,0 +1,360 @@
+﻿.artist {
+    margin-top: 25px;
+    // margin-right: 90px;
+    margin-bottom: 100px;
+
+    &__main {
+        display: flex;
+        margin-bottom: 15px;
+
+        &-img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 1px 1px 12px 6px rgba(0, 0, 0, 0.35);
+        }
+
+        &-right {
+            display: flex;
+            flex-direction: column;
+            margin-left: 40px;
+
+            h1 {
+                margin: 0;
+                font-family: SF Pro Rounded;
+                font-weight: bold;
+                font-size: 96px;
+                color: #FFFFFF;
+                margin-bottom: 30px;
+            }
+
+            button {
+                padding: 0;
+                margin-right: 27px;
+                border: 0;
+
+                img:hover {
+                    box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.45);
+                }
+            }
+
+            button:first-of-type {
+                img {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+
+            button:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+
+    h2 {
+        margin: 0;
+        font-family: SF Pro Rounded;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 40px;
+        color: #FFFFFF;
+        margin-bottom: 24px;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    &__tracks {
+        width: 100%;
+        display: flex;
+        margin-right: 5px;
+        margin-bottom: 15px;
+        align-items: center;
+
+        &-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &-column {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &__track {
+        padding: 2px;
+        padding-top: 7px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        width: 430px;
+        height: 60px;
+        border-top: 2px solid $color--ship-gray;
+
+        &-left {
+            display: flex;
+            align-items: center;
+
+            button {
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 7px;
+                }
+
+                border-radius: 7px;
+                margin-right: 10px;
+            }
+        }
+
+        &-creds {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-name, &-album {
+            font-family: SF Pro Text;
+            font-style: normal;
+            font-weight: thin;
+            font-size: 25px;
+        }
+
+        &-name {
+            color: #FFFFFF;
+            margin-bottom: -3px;
+        }
+
+        &-album {
+            color: $color--spun-rearl;
+            margin-top: -3px;
+        }
+    }
+
+    &__track:hover {
+        button:last-of-type {
+            opacity: 1;
+        }
+    }
+}
+
+@media(max-width: 1680px) {
+    .artist {
+        margin-top: 20px;
+        margin-bottom: 100px;
+
+        &__main {
+            margin-bottom: 12px;
+
+            &-img {
+                width: 220px;
+                height: 220px;
+            }
+
+            &-right {
+                margin-left: 30px;
+
+                h1 {
+                    font-size: 85px;
+                    margin-bottom: 25px;
+                }
+
+                button:first-of-type {
+                    img {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        &__tracks {
+            margin-right: 5px;
+            margin-bottom: 15px;
+        }
+
+        &__track {
+            width: 380px;
+            height: 50px;
+
+            &-left {
+                button {
+                    img {
+                        width: 45px;
+                        height: 45px;
+                        border-radius: 5px;
+                    }
+
+                    border-radius: 5px;
+                    margin-right: 8px;
+                }
+            }
+
+            &-name, &-album {
+                font-size: 22px;
+            }
+
+            &-name {
+                margin-bottom: -2px;
+            }
+
+            &-album {
+                margin-top: -2px;
+            }
+        }
+    }
+}
+
+@media(max-width: 1366px) {
+    .artist {
+        margin-top: 15px;
+        margin-bottom: 50px;
+
+        &__main {
+            margin-bottom: 8px;
+
+            &-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            &-right {
+                margin-left: 25px;
+
+                h1 {
+                    font-size: 75px;
+                    margin-bottom: 20px;
+                }
+
+                button:first-of-type {
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        &__tracks {
+            margin-right: 5px;
+            margin-bottom: 12px;
+        }
+
+        &__track {
+            width: 320px;
+            height: 40px;
+
+            &-left {
+                button {
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 5px;
+                    }
+
+                    border-radius: 5px;
+                    margin-right: 5px;
+                }
+            }
+
+            &-name, &-album {
+                font-size: 18px;
+            }
+
+            &-name {
+                margin-bottom: -1px;
+            }
+
+            &-album {
+                margin-top: -1px;
+            }
+        }
+    }
+}
+
+@media(max-width: 1024px) {
+    .artist {
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        &__main {
+            margin-bottom: 5px;
+
+            &-img {
+                width: 160px;
+                height: 160px;
+            }
+
+            &-right {
+                margin-left: 20px;
+
+                h1 {
+                    font-size: 60px;
+                    margin-bottom: 15px;
+                }
+
+                button:first-of-type {
+                    img {
+                        width: 55px;
+                        height: 55px;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        &__tracks {
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        &__track {
+            width: 240px;
+            height: 30px;
+
+            &-left {
+                button {
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 5px;
+                    }
+
+                    border-radius: 5px;
+                    margin-right: 3px;
+                }
+            }
+
+            &-name, &-album {
+                font-size: 13px;
+            }
+
+            &-name {
+                margin-bottom: 0;
+            }
+
+            &-album {
+                margin-top: 0;
+            }
+        }
+    }
+}
