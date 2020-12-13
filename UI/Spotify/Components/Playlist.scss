@@ -1,0 +1,74 @@
+﻿.playlist {
+    margin-left: 18px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    width: 87%;
+    height: auto;
+    padding: 5px;
+    margin-bottom: 7px;
+
+    &:hover {
+        background: $color--jumbo-light;
+        border-radius: 10px;
+    }
+
+    img {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    &__text {
+        margin-left: 16px;
+        font-family: 'SF Pro Rounded';
+        font-weight: bold;
+        color: $color--light;
+        font-size: 25px;
+        line-height: 30px;
+        vertical-align: middle;
+    }
+}
+
+@media(max-width: 1680px) {
+    .playlist {
+        img {
+            width: 45px;
+            height: 45px;
+        }
+
+        &__text {
+            font-size: 22px;
+        }
+    }
+}
+
+@media(max-width: 1366px) {
+    .playlist {
+        img {
+            width: 40px;
+            height: 40px;
+        }
+
+        &__text {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+    }
+}
+
+@media(max-width: 1366px) {
+    .playlist {
+        img {
+            width: 35px;
+            height: 35px;
+        }
+
+        &__text {
+            margin-left: 5px;
+            font-size: 15px;
+        }
+    }
+}

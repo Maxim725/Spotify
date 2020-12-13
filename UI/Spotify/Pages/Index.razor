@@ -1,7 +1,15 @@
 ﻿@page "/"
 
-<h1 class="header--test">Hello, world!</h1>
+<div class="sidebar">
+    <NavMenu />
+</div>
 
-Welcome to your new app.
+<div class="main">
+    <div class="top-row px-4 auth">
+        <LoginDisplay />
+        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    </div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    <div class="content px-4">
+    </div>
+</div>
