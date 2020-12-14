@@ -5,6 +5,7 @@ using Spotify.Domain.Entities.Intermediate;
 using System.IO;
 using System.Text;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Spotify.DAL
 {
@@ -54,29 +55,29 @@ namespace Spotify.DAL
             };
 
             context.Authors.Add(testAuthor);
-			context.SaveChanges();
+            context.SaveChanges();
 
-			Album testAlbum = new Album
+            Album testAlbum = new Album
             {
                 CreatedOn = DateTime.Now,
-				UpdatedOn = DateTime.Now,
-				PublishedOn = DateTime.Now,
-				Description = "",
-				Authors = new List<AlbumAuthor>(),
-				CreatedById = 1,
-				Title = "Awkward Mystery",
-				Plays = 0,
-				Cover = ""
+                UpdatedOn = DateTime.Now,
+                PublishedOn = DateTime.Now,
+                Description = "",
+                Authors = new List<AlbumAuthor>(),
+                CreatedById = 1,
+                Title = "Awkward Mystery",
+                Plays = 0,
+                Cover = ""
             };
 
-			context.Albums.Add(testAlbum);
-			context.SaveChanges();
+            context.Albums.Add(testAlbum);
+            context.SaveChanges();
 
-			Track testTrack = new Track
+            Track testTrack = new Track
             {
                 CreatedOn = DateTime.Now,
                 CreatedById = 1,
-				AlbumId = testAlbum.AlbumId,
+                AlbumId = testAlbum.AlbumId,
                 Title = "Awkward Mystery",
                 Duration = 2 * 60 + 6,
                 Plays = 0
@@ -121,6 +122,38 @@ namespace Spotify.DAL
             }
 
             return result;
+        }
+
+        public bool UploadContent(int id, string initialFolder, IFormFile file)
+        {
+            DirectoryInfo di = new DirectoryInfo(initialFolder + Path(id));
+            if (!di.Exists)
+            {
+                di.Create();
+            }
+            return false;
+
+            string Path(int id)
+            {
+
+                StringBuilder sb = new StringBuilder();
+
+                int it = id.ToString().Length;
+
+                while (it < 8)
+                {
+                    sb.Append("0");
+                    it++;
+                }
+                sb.Append(id);
+
+                sb.Insert(0, '/');
+                sb.Insert(3, '/');
+                sb.Insert(6, '/');
+                sb.Insert(9, '/');
+
+                return sb.ToString();
+            }
         }
     }
 }
