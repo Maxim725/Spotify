@@ -341,5 +341,5 @@ healthchecksdb
 /UI/Spotify/polymusic.db*
 
 # Project
-/_Data
+_Data
 .vscode
