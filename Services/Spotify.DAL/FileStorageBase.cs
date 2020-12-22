@@ -12,11 +12,17 @@ namespace Spotify.DAL
     public class FileStorageBase : IFileStorage<int>
     {
         private string defaultDataFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "_Data");
-        public byte[] GetFileById(int fid)
+        public byte[] GetFileById(FileStorageFileType ftype, int fid)
         {
-            string filePath = Path.Combine(defaultDataFolderPath, GenerateStringBySeed(fid));
+            string filePath = Path.Combine(defaultDataFolderPath, ftype.ToString(), GenerateStringById(fid));
 
-            return File.ReadAllBytes(filePath);
+            if (File.Exists(filePath))
+            {
+                return File.ReadAllBytes(filePath);
+            } else
+            {
+                return new byte[0];
+            }
         }
 
         public void Init(SpotifyDbContext context)
@@ -24,6 +30,12 @@ namespace Spotify.DAL
             if (!Directory.Exists(defaultDataFolderPath))
             {
                 Directory.CreateDirectory(defaultDataFolderPath);
+
+                foreach (string dataType in Enum.GetNames(typeof (FileStorageFileType)))
+                {
+                    string subDir = Path.Combine(Path.Combine(defaultDataFolderPath, dataType));
+                    Directory.CreateDirectory(subDir);
+                }
 
                 string deafultTrackPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/Ionics - Awkward Mystery.mp3");
                 byte[] trackData = File.ReadAllBytes(deafultTrackPath);
@@ -34,15 +46,13 @@ namespace Spotify.DAL
 
                 if (testTrack == null)
                 {
-                    testTrack = AddTestTrackToDb(context);
+                    string trackPath = StoreFile(FileStorageFileType.Track, context.Tracks.Count() + 1, trackData);
+                    testTrack = AddTestTrackToDb(context, trackPath);
                 }
-
-                string trackFileId = StoreFile(testTrack.TrackId, trackData);
-                Console.WriteLine(trackFileId);
             }
         }
 
-        private Track AddTestTrackToDb(SpotifyDbContext context)
+        private Track AddTestTrackToDb(SpotifyDbContext context, string path)
         {
             Author testAuthor = new Author
             {
@@ -80,7 +90,8 @@ namespace Spotify.DAL
                 AlbumId = testAlbum.AlbumId,
                 Title = "Awkward Mystery",
                 Duration = 2 * 60 + 6,
-                Plays = 0
+                Plays = 0,
+                Path = path
             };
 
             context.Tracks.Add(testTrack);
@@ -98,62 +109,22 @@ namespace Spotify.DAL
             return testTrack;
         }
 
-        public void RemoveFileById(int fid)
+        public void RemoveFileById(FileStorageFileType ftype, int fid)
         {
             throw new NotImplementedException();
         }
 
-        public string StoreFile(int fid, byte[] fileData)
+        public string StoreFile(FileStorageFileType ftype, int fid, byte[] fileData)
         {
-            string filePath = Path.Combine(defaultDataFolderPath, GenerateStringBySeed(fid));
+            string filePath = Path.Combine(defaultDataFolderPath, ftype.ToString(), GenerateStringById(fid));
             File.WriteAllBytes(filePath, fileData);
 
             return filePath;
         }
 
-        private string GenerateStringBySeed(int seed, int length = 32, string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+        private string GenerateStringById(int seed)
         {
-            Random generator = new Random(seed);
-            string result = "";
-
-            for (int i = 0; i < length; i++)
-            {
-                result += alphabet[generator.Next(0, alphabet.Length)];
-            }
-
-            return result;
-        }
-
-        public bool UploadContent(int id, string initialFolder, IFormFile file)
-        {
-            DirectoryInfo di = new DirectoryInfo(initialFolder + Path(id));
-            if (!di.Exists)
-            {
-                di.Create();
-            }
-            return false;
-
-            string Path(int id)
-            {
-
-                StringBuilder sb = new StringBuilder();
-
-                int it = id.ToString().Length;
-
-                while (it < 8)
-                {
-                    sb.Append("0");
-                    it++;
-                }
-                sb.Append(id);
-
-                sb.Insert(0, '/');
-                sb.Insert(3, '/');
-                sb.Insert(6, '/');
-                sb.Insert(9, '/');
-
-                return sb.ToString();
-            }
+            return seed.ToString("X8");
         }
     }
 }

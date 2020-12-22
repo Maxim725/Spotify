@@ -5,14 +5,20 @@ using System.Text;
 
 namespace Spotify.DAL
 {
+    public enum FileStorageFileType {
+        Track,
+        Avatar
+    }
+
+
     public interface IFileStorage<T>
     {
         void Init(SpotifyDbContext context);
 
-        string StoreFile(T fid, byte[] fileData);
+        string StoreFile(FileStorageFileType ftype, T fid, byte[] fileData);
 
-        byte[] GetFileById(T fid);
+        byte[] GetFileById(FileStorageFileType ftype, T fid);
 
-        void RemoveFileById(T fuid);
+        void RemoveFileById(FileStorageFileType ftype, T fuid);
     }
 }

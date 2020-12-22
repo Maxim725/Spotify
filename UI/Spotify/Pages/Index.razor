@@ -26,7 +26,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        byte[] file = FS.GetFileById(14);
+        byte[] file = FS.GetFileById(FileStorageFileType.Track, 1);
         fileData = "data:audio/mp3;base64," + Convert.ToBase64String(file);
     }
 }
