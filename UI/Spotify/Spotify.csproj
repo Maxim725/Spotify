@@ -6,10 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="InitialData\default-avatar.jpg" />
+    <None Remove="InitialData\default-cover.png" />
     <None Remove="InitialData\Ionics - Awkward Mystery.mp3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="InitialData\default-avatar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InitialData\default-cover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="InitialData\Ionics - Awkward Mystery.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

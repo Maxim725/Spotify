@@ -12,18 +12,6 @@ namespace Spotify.DAL
     public class FileStorageBase : IFileStorage<int>
     {
         private string defaultDataFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "_Data");
-        public byte[] GetFileById(FileStorageFileType ftype, int fid)
-        {
-            string filePath = Path.Combine(defaultDataFolderPath, ftype.ToString(), GenerateStringById(fid));
-
-            if (File.Exists(filePath))
-            {
-                return File.ReadAllBytes(filePath);
-            } else
-            {
-                return new byte[0];
-            }
-        }
 
         public void Init(SpotifyDbContext context)
         {
@@ -38,7 +26,11 @@ namespace Spotify.DAL
                 }
 
                 string deafultTrackPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/Ionics - Awkward Mystery.mp3");
+                string defaultCoverPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/default-cover.png");
+                string defaultAvatarPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/default-avatar.jpg");
                 byte[] trackData = File.ReadAllBytes(deafultTrackPath);
+                byte[] coverData = File.ReadAllBytes(defaultCoverPath);
+                byte[] avatarData = File.ReadAllBytes(defaultAvatarPath);
 
                 Track testTrack = context.Tracks
                     .Where(x => x.Title == "Awkward Mystery")
@@ -46,13 +38,15 @@ namespace Spotify.DAL
 
                 if (testTrack == null)
                 {
-                    string trackPath = StoreFile(FileStorageFileType.Track, context.Tracks.Count() + 1, trackData);
-                    testTrack = AddTestTrackToDb(context, trackPath);
+                    string trackPath = StoreFile(FileStorageFileType.Track, context.Tracks.Count() + 1, trackData, Path.GetExtension(deafultTrackPath));
+                    string coverPath = StoreFile(FileStorageFileType.Cover, context.Albums.Count() + 1, coverData, Path.GetExtension(defaultCoverPath));
+                    string avatarPath = StoreFile(FileStorageFileType.Avatar, 1, avatarData, Path.GetExtension(defaultAvatarPath));
+                    testTrack = AddTestTrackToDb(context, trackPath, coverPath, avatarPath);
                 }
             }
         }
 
-        private Track AddTestTrackToDb(SpotifyDbContext context, string path)
+        private Track AddTestTrackToDb(SpotifyDbContext context, string trackPath, string coverPath, string avatarPath)
         {
             Author testAuthor = new Author
             {
@@ -61,7 +55,7 @@ namespace Spotify.DAL
                 Name = "Ionics",
                 Description = "",
                 Plays = 0,
-                Avatar = ""
+                Avatar = avatarPath
             };
 
             context.Authors.Add(testAuthor);
@@ -77,7 +71,7 @@ namespace Spotify.DAL
                 CreatedById = 1,
                 Title = "Awkward Mystery",
                 Plays = 0,
-                Cover = ""
+                Cover = coverPath
             };
 
             context.Albums.Add(testAlbum);
@@ -91,7 +85,7 @@ namespace Spotify.DAL
                 Title = "Awkward Mystery",
                 Duration = 2 * 60 + 6,
                 Plays = 0,
-                Path = path
+                Path = trackPath
             };
 
             context.Tracks.Add(testTrack);
@@ -109,17 +103,14 @@ namespace Spotify.DAL
             return testTrack;
         }
 
-        public void RemoveFileById(FileStorageFileType ftype, int fid)
+        public string StoreFile(FileStorageFileType ftype, int fid, byte[] fileData, string ext)
         {
-            throw new NotImplementedException();
-        }
-
-        public string StoreFile(FileStorageFileType ftype, int fid, byte[] fileData)
-        {
-            string filePath = Path.Combine(defaultDataFolderPath, ftype.ToString(), GenerateStringById(fid));
+            string generatedName = GenerateStringById(fid);
+            string filePath = Path.Combine(defaultDataFolderPath, ftype.ToString(), generatedName + ext);
+            Console.WriteLine(filePath);
             File.WriteAllBytes(filePath, fileData);
 
-            return filePath;
+            return $"/{ftype}s/{generatedName + ext}";
         }
 
         private string GenerateStringById(int seed)

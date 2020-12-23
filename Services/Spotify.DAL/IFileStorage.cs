@@ -7,7 +7,8 @@ namespace Spotify.DAL
 {
     public enum FileStorageFileType {
         Track,
-        Avatar
+        Avatar,
+        Cover
     }
 
 
@@ -15,10 +16,6 @@ namespace Spotify.DAL
     {
         void Init(SpotifyDbContext context);
 
-        string StoreFile(FileStorageFileType ftype, T fid, byte[] fileData);
-
-        byte[] GetFileById(FileStorageFileType ftype, T fid);
-
-        void RemoveFileById(FileStorageFileType ftype, T fuid);
+        string StoreFile(FileStorageFileType ftype, T fid, byte[] fileData, string ext);
     }
 }

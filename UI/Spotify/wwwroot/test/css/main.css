@@ -252,21 +252,22 @@ body {
       font-size: 18px; } }
 
 .search {
-  width: 940px;
-  height: 30px;
-  background: rgba(118, 118, 128, 0.24);
-  border: 1px solid rgba(118, 118, 128, 0.24);
-  border-radius: 10px;
-  font-family: 'SF Pro Text';
-  font-size: 16px;
-  line-height: 24px;
-  color: #FFFFFF;
-  padding: 8px;
-  padding-left: 35px;
-  background-repeat: no-repeat;
-  background-position: left 11px center;
-  flex: 0.8;
-  background-image: url("../svg/search.svg"); }
+    width: 940px;
+    height: 30px;
+    background: rgba(118, 118, 128, 0.24);
+    border: 1px solid rgba(118, 118, 128, 0.24);
+    border-radius: 10px;
+    font-family: 'SF Pro Text';
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding: 8px;
+    padding-left: 35px;
+    background-repeat: no-repeat;
+    background-position: left 11px center;
+    flex: 0.8;
+    background-image: url("/images/icons/search.svg");
+}
 
 @media (max-width: 1680px) {
   .search {
@@ -564,7 +565,7 @@ body {
     font-family: SF Pro Rounded;
     font-size: 14px;
     color: #D6D6D6; }
-  .album__play-button {
+.album__play-button {
     position: absolute;
     left: 67.27%;
     right: 14.55%;
@@ -574,11 +575,13 @@ body {
     height: 40px;
     border-radius: 50%;
     opacity: 0%;
-    background-image: url("../svg/play_button.svg");
-    background-size: cover; }
+    background-image: url("/images/icons/play_button.svg");
+    background-size: cover;
+}
     .album__play-button:focus {
-      background-image: url("../svg/stop_button.svg");
-      background-size: cover; }
+        background-image: url("/images/icons/stop_button.svg");
+        background-size: cover;
+    }
 
 @media (max-width: 1680px) {
   .album-list {

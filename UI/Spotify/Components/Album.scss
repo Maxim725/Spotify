@@ -90,11 +90,11 @@
 		height: 40px;
 		border-radius: 50%;
 		opacity: 0%;
-		background-image: url('../svg/play_button.svg');
+		background-image: url('/images/icons/play_button.svg');
 		background-size: cover;
 
 		&:focus {
-			background-image: url('../svg/stop_button.svg');
+			background-image: url('/images/icons/stop_button.svg');
 			background-size: cover;
 		}
 	}

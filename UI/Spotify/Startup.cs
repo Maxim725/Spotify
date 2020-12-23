@@ -17,6 +17,8 @@ using Spotify.Areas.Identity;
 using Spotify.Data;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Spotify
 {
@@ -45,6 +47,7 @@ namespace Spotify
                 pipeline.AddScssBundle("/css/site.css", "/Components/main.scss").UseContentRoot();
             });
             services.AddSingleton<IFileStorage<int>, FileStorageBase>();
+            services.AddSingleton<ITrackListProvider, TrackListProviderTest>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<User>>();
@@ -69,6 +72,18 @@ namespace Spotify
             app.UseHttpsRedirection();
             app.UseWebOptimizer();
             app.UseStaticFiles();
+
+            foreach (string dataType in Enum.GetNames(typeof(FileStorageFileType)))
+            {
+                app.UseFileServer(new FileServerOptions
+                {
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), "_Data", dataType)),
+                    RequestPath = $"/{dataType}s"
+                });
+            }
+
+            
 
             app.UseRouting();
 
