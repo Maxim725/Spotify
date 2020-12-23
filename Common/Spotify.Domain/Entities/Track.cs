@@ -34,5 +34,7 @@ namespace Spotify.Domain.Entities
 		public IEnumerable<TrackGenre> Genres { get; set; }
 
 		public IEnumerable<TrackTag> Tags { get; set; }
+
+		public string Path { get; set; }
 	}
 }

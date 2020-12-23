@@ -44,6 +44,7 @@ namespace Spotify
             {
                 pipeline.AddScssBundle("/css/site.css", "/Components/main.scss").UseContentRoot();
             });
+            services.AddSingleton<IFileStorage<int>, FileStorageBase>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<User>>();
