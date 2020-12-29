@@ -38,7 +38,7 @@ namespace Spotify.Services
                                                        .Include(x => x.User)
                                                        .Include(x => x.Author)
                                                        .Where(x => x.UserId.Equals(id));
-            if(authors is null)
+            if (authors is null)
             {
                 return Enumerable.Empty<UserLikedAuthor>();
             }
@@ -53,7 +53,7 @@ namespace Spotify.Services
                                                      .Include(x => x.Playlist)
                                                      .Include(x => x.User)
                                                      .Where(x => x.UserId.Equals(id));
-            if(playlists is null)
+            if (playlists is null)
             {
                 return Enumerable.Empty<UserPlaylist>();
             }
@@ -77,7 +77,7 @@ namespace Spotify.Services
                                    .Include(x => x.Tracks)
                                    .Include(x => x.CreatedBy)
                                    .FirstOrDefault(x => x.PlaylistId.Equals(id));
-            return playlist;       
+            return playlist;
         }
         public Track GetTrackById(int id)
         {
@@ -90,5 +90,6 @@ namespace Spotify.Services
 
         // систему рекомендаций сюда дописать
 
-    
+
+    }
 }

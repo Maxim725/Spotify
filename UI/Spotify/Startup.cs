@@ -17,6 +17,7 @@ using Spotify.Areas.Identity;
 using Spotify.Data;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
+using Spotify.Services;
 
 namespace Spotify
 {
@@ -48,6 +49,7 @@ namespace Spotify
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<User>>();
             services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<SearchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

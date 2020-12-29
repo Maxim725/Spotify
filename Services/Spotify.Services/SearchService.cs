@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Spotify.Services
 {
@@ -45,6 +46,70 @@ namespace Spotify.Services
             var albums = _db.Albums.Where(x => x.Title.Contains(name));
             return albums;
         }
-        
+
+        private class Model : IComparable<Model>
+        {
+            public string TrackName { get; set; }
+            public int IdTrack { get; set; }
+            public int Weight { get; set; } = 0;
+
+            public int CompareTo(Model other)
+            {
+                if (other == null) return 1;
+
+                else return this.Weight.CompareTo(other.Weight);
+            }
+        }
+
+        public IEnumerable<Track> SearchTrack(string query)
+        {
+            List<Model> trackNames = _db.Tracks.Select(t => new Model { TrackName = t.Title + " - " + string.Concat(t.Authors.Select(t => t.Author.Name + " ")), IdTrack = t.TrackId }).ToList();
+
+
+            for (int i = 0; i < trackNames.Count(); i++)
+                trackNames[i].TrackName = Regex.Replace(trackNames[i].TrackName, @"/[\(\)]/gi", "");
+
+            var queryWords = Regex.Replace(query.ToLower(), @"/[\(\)]/gi", "").Split(' ');
+
+            foreach (Model trackName in trackNames)
+            {
+                for (int i = 0; i < trackName.TrackName.Length; i++) {
+                    int w = 0;
+                    var weightGroup = trackName.TrackName.Split(' ').Select((x) =>
+                    {
+                        foreach (var queryWord in queryWords)
+                            return x.Contains(queryWord);
+
+
+                        return false;
+                    });
+
+                    weightGroup.Select((x) =>
+                    {
+                        if (x == true) w++;
+                        
+                        return x;
+                    });
+
+
+                    trackName.Weight = w;
+                
+                }
+            }
+
+            trackNames.Sort();
+
+            List<Track> tracks = new List<Track>();
+            foreach(Model trackName in trackNames)
+            {
+                var item = _db.Tracks.FirstOrDefaultAsync(x => x.TrackId.Equals(trackName.IdTrack));
+                if (item == null)
+                    continue;
+                else
+                    tracks.Add(item.Result);
+            }
+            return tracks;
+
+        }
     }
 }
