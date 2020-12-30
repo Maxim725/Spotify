@@ -1,0 +1,218 @@
+﻿@page "/debug/player"
+@using Spotify.DAL
+@using Spotify.Domain.Entities
+@using Spotify.Domain.Entities.Intermediate
+@using System
+@using System.IO
+@inject IFileStorage<int> FS
+@inject ITrackListProvider TP
+@inject SpotifyDbContext context
+
+<div class="sidenav">
+    <div class="logo">
+        <a href="#">
+            <img src="/images/icons/logo-with-text.svg" alt="">
+        </a>
+    </div>
+    <div class="nav-bar">
+        <nav class="nav">
+            <div class="nav-item nav-item--selected">
+                <a href="#" class='nav-a'>
+                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
+                    <span class="nav-a__text">
+                        Главная
+                    </span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class='nav-a'>
+                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
+                    <span class="nav-a__text">
+                        Для вас
+                    </span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class='nav-a'>
+                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
+                    <span class="nav-a__text">
+                        Медиатека
+                    </span>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <hr class='sidenav__hr'>
+    <div class="playlists">
+        <div class="playlist">
+            <a href="#">
+                <img src="/images/debug/example-playlist.png">
+                <span class="playlist__text">
+                    Плейлист 1
+                </span>
+            </a>
+        </div>
+
+        <div class="playlist">
+            <a href="#">
+                <img src="/images/icons/addplaylist.svg">
+                <span class="playlist__text">
+                    Создать плейлист
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <header class="header">
+        <input type="text" class="search" placeholder="Поиск">
+        <div class="profile-menu">
+            <a href="#" class="profile-menu__text">
+                @@figmamusic
+            </a>
+            <button class="profile-menu__img">
+                <ul class="profile-menu__list">
+                    <li class="profile-menu__item">
+                        <a href="#profile">
+                            Аккаунт
+                        </a>
+                    </li>
+                    <li class="profile-menu__item">
+                        <a href="#">
+                            Выйти
+                        </a>
+                    </li>
+                </ul>
+            </button>
+        </div>
+    </header>
+    <main class="main">
+        <div class="albums">
+            <h2 class="title title--main">
+                Тестовые треки
+            </h2>
+            <div class="album-list">
+                @foreach (Track track in tracks)
+                {
+                    Spotify.Domain.Entities.Album album = getAlbum(track.AlbumId);
+                    IEnumerable<Spotify.Domain.Entities.Author> artists = getAuthors(track.TrackId);
+
+                    <div class="album">
+                        <a href="#">
+                            <img src=@album.Cover alt="Album cover" class='album__img'>
+                        </a>
+                        <button class="album__play-button" @onclick="@(e => playTrack(track, album, artists))"></button>
+                        <div class="album__text">
+                            <span class="album__name">
+                                <a href="#">
+                                    @track.Title
+                                </a>
+                            </span>
+                            <span class="album__artist">
+                                @foreach (Author author in artists)
+                                {
+                                    <a href=@($"/author/{author.AuthorId}")>
+                                        @author.Name
+                                    </a>
+                                }
+                            </span>
+                            <span class="album__info">
+                                Сингл
+                            </span>
+                        </div>
+                    </div>
+                }
+                <button class="album-list__next-button">
+                    􀆉
+                </button>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="footer">
+    <Player @ref="player"></Player>
+</div>
+<div id="profile" class="profile">
+    <div class="profile__window">
+        <div class="profile__top">
+            <div class="profile__img"></div>
+            <div class="profile__name">
+                <input type="text" value="yomayams">
+                <button>Изменить</button>
+            </div>
+        </div>
+        <div class="profile__bottom">
+            <input type="text" value="yomayams@gmail.com">
+            <button>Изменить</button>
+        </div>
+        <button class="profile__superbutton">Сменить пароль</button>
+        <hr>
+        <div class="playlists">
+            <div class="playlist">
+                <a href="#">
+                    <img src="/images/debug/example-playlist.png">
+                    <span class="playlist__text">
+                        Плейлист 1
+                    </span>
+                </a>
+            </div>
+
+            <div class="playlist">
+                <a href="#">
+                    <img src="/images/debug/album-example.png">
+                    <span class="playlist__text">
+                        Плейлист 2
+                    </span>
+                </a>
+            </div>
+
+            <div class="playlist">
+                <a href="#">
+                    <img src="/images/icons/addplaylist.svg">
+                    <span class="playlist__text">
+                        Создать плейлист
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private IEnumerable<Track> tracks;
+    private Player player;
+
+    protected override async Task OnInitializedAsync()
+    {
+        tracks = TP.getTracks(context);
+
+    }
+
+    protected IEnumerable<Author> getAuthors(int trackId)
+    {
+        List<int> authorIds = context.TrackAuthor
+            .Where(x => x.TrackId == trackId)
+            .ToList().ConvertAll<int>(x => x.AuthorId);
+
+        IEnumerable<Author> authors = context.Authors
+            .Where(x => authorIds.Contains(x.AuthorId));
+
+        return authors;
+    }
+
+    protected Spotify.Domain.Entities.Album getAlbum(int albumId)
+    {
+        Spotify.Domain.Entities.Album album = context.Albums
+            .Where(x => x.AlbumId == albumId)
+            .FirstOrDefault();
+
+        return album;
+    }
+
+    private void playTrack(Track track, Spotify.Domain.Entities.Album album, IEnumerable<Author> authors)
+    {
+        player.changeTrack(track, album, authors);
+    }
+}
