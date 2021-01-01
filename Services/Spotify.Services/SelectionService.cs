@@ -87,6 +87,18 @@ namespace Spotify.Services
                              .FirstOrDefault(x => x.TrackId.Equals(id));
             return track;
         }
+        public IEnumerable<Author> GetAuthorsByTrackId(int trackId)
+        {
+            IEnumerable<int> authorsId = _db.TrackAuthor.Where(x => x.TrackId == trackId).Select(x => x.AuthorId);
+
+            IEnumerable<Author> authors = _db.Authors.Where(x => authorsId.Contains(x.AuthorId));
+
+            return authors;
+        }
+        public Album GetAlbumByTrackId(int trackId)
+        {
+            return _db.Tracks.Include(x =>x.Album).FirstOrDefault(x => x.TrackId.Equals(trackId)).Album;
+        }
 
         // систему рекомендаций сюда дописать
 
