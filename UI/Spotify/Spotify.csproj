@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Services\Spotify.DAL\Spotify.DAL.csproj" />
+    <ProjectReference Include="..\..\Services\Spotify.Services\Spotify.Services.csproj" />
   </ItemGroup>
 
 </Project>
