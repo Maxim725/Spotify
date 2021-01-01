@@ -16,7 +16,7 @@
     <div class="content px-4">
         @if (fileData.Length > 0)
         {
-            <audio src=@fileData typeof="audio/mpeg" controls></audio>
+            <button onclick="player.play('@fileData');">Play 01</button>
         }
     </div>
 </div>
