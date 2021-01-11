@@ -33,7 +33,7 @@ namespace Spotify.DAL.Init
                 new User {
                     UserName = "Polymusic", Email = "polymusic@test.com",
                     CreatedOn = DateTime.Now, UpdatedOn = DateTime.Now,
-                    Avatar = "", LikedAuthors = new List<UserLikedAuthor>(),
+                    Avatar = "Spotify/User/polyMusic.jpg", LikedAuthors = new List<UserLikedAuthor>(),
                     LikedTracks = new List<UserLikedTrack>(),
                     Subscriptions = new List<UserSubscription>(),
                     LikedAlbums = new List<UserLikedAlbum>(),
@@ -107,7 +107,7 @@ namespace Spotify.DAL.Init
                     Name = "Северный Флот",
                     Description = "«Северный Флот» — российская рок-группа. Основана музыкантами группы «Король и Шут» в 2013 году после смерти Михаила Горшенёва.",
                     Plays = 0,
-                    Avatar = ""
+                    Avatar = "Spotify/Author/Северный_Флот/Северный_Флот.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2017, 5, 24),
@@ -115,7 +115,7 @@ namespace Spotify.DAL.Init
                     Name = "Obladaet",
                     Description = "«Obladaet» - Мечта любой школьницы. Король русского трилла.",
                     Plays = 4,
-                    Avatar = "Spotify/Author/Obladaetjpg"
+                    Avatar = "Spotify/Author/Obladaet/Obladaet.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2012, 5, 21),
@@ -123,7 +123,7 @@ namespace Spotify.DAL.Init
                     Name = "Хаски",
                     Description = "Хаски это не порода собак в данном случае. Это Есенин 21 века по тексту, Дафт панк на старте по звучанию",
                     Plays = 3,
-                    Avatar = "Spotify/Author/Хаски.jpg"
+                    Avatar = "Spotify/Author/Хаски/Хаски.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2010, 2, 11),
@@ -131,7 +131,7 @@ namespace Spotify.DAL.Init
                     Name = "Travis Scott",
                     Description = "«Travis Scott» - Король.",
                     Plays = 65654,
-                    Avatar = "Spotify/Author/Travis_Scott.jpg"
+                    Avatar = "Spotify/Author/Travis_Scott/Travis_Scott.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2017, 5, 24),
@@ -139,7 +139,7 @@ namespace Spotify.DAL.Init
                     Name = "Gorillaz",
                     Description = "Gorillaz это вам не обезьянки. Экспериментальный фанк рок с мультяшками!",
                     Plays = 43432,
-                    Avatar = "Spotify/Author/Gorillaz.jpg"
+                    Avatar = "Spotify/Author/Gorillaz/Gorillaz.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2020, 3, 19),
@@ -147,7 +147,7 @@ namespace Spotify.DAL.Init
                     Name = "Drake",
                     Description = "Drake - главный живой хитмейкер всго мира.",
                     Plays = 656,
-                    Avatar = "Spotify/Author/Drake.jpg"
+                    Avatar = "Spotify/Author/Drake/Drake.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2017, 5, 24),
@@ -155,7 +155,7 @@ namespace Spotify.DAL.Init
                     Name = "Kanye West",
                     Description = "Уверовал и поехала башка",
                     Plays = 400,
-                    Avatar = "Spotify/Author/Kanye_West.jpg"
+                    Avatar = "Spotify/Author/Kanye_West/Kanye_West.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2019, 2, 14),
@@ -163,7 +163,7 @@ namespace Spotify.DAL.Init
                     Name = "Daft Punk",
                     Description = "Legends.",
                     Plays = 76575,
-                    Avatar = "Spotify/Author/Daft_Punk.jpg"
+                    Avatar = "Spotify/Author/Daft_Punk/Daft_Punk.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2020, 3, 11),
@@ -171,7 +171,7 @@ namespace Spotify.DAL.Init
                     Name = "Kizaru",
                     Description = "Чел из розыска интерпола на свободе один из самых популярных реперов СНГ.",
                     Plays = 432432,
-                    Avatar = "Spotify/Author/Obladaet"
+                    Avatar = "Spotify/Author/Kizaru/Kizaru.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2018, 2, 14),
@@ -179,7 +179,7 @@ namespace Spotify.DAL.Init
                     Name = "Joji",
                     Description = "Pink guy, I'm gay, Genius artist.",
                     Plays = 443243,
-                    Avatar = "Spotify/Author/Joji.jpg"
+                    Avatar = "Spotify/Author/Joji/Joji.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2014, 3, 4),
@@ -187,7 +187,7 @@ namespace Spotify.DAL.Init
                     Name = "Saluki",
                     Description = "Saliku - бывший битмейкер, крутой репер.",
                     Plays = 454,
-                    Avatar = "Spotify/Author/Saluki.jpg"
+                    Avatar = "Spotify/Author/Saluki/Saluki.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2013, 2, 1),
@@ -195,7 +195,7 @@ namespace Spotify.DAL.Init
                     Name = "Morgenstern",
                     Description = "",
                     Plays = 777,
-                    Avatar = "Spotify/Author/Morgenstern.jpg"
+                    Avatar = "Spotify/Author/Morgenstern/Morgenstern.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2018, 3, 15),
@@ -203,7 +203,7 @@ namespace Spotify.DAL.Init
                     Name = "Pharaoh",
                     Description = "СкрСкрСкр.",
                     Plays = 43232,
-                    Avatar = "Spotify/Author/Pharaoh.jpg"
+                    Avatar = "Spotify/Author/Pharaoh/Pharaoh.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2012, 1, 3),
@@ -211,7 +211,7 @@ namespace Spotify.DAL.Init
                     Name = "Asap Rocky",
                     Description = "Раким секс идол мира хип хопа.",
                     Plays = 4432,
-                    Avatar = "Spotify/Author/Asap_Rocky.jpg"
+                    Avatar = "Spotify/Author/Asap_Rocky/Asap_Rocky.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2020, 2, 13),
@@ -219,7 +219,7 @@ namespace Spotify.DAL.Init
                     Name = "Justin Bieber",
                     Description = "Justin Bieber is a Baby, baby, Baby oooooooh...",
                     Plays = 54534,
-                    Avatar = "Spotify/Author/Justin_Bieber.jpg"
+                    Avatar = "Spotify/Author/Justin_Bieber/Justin_Bieber.jpg"
                 },
                 new Author {
                     CreatedOn = new DateTime(2017, 5, 22),
@@ -227,7 +227,7 @@ namespace Spotify.DAL.Init
                     Name = "Schoolboy Q",
                     Description = "Мальчик з школы вышел",
                     Plays = 44323,
-                    Avatar = "Spotify/Author/Schoolboy_Q.jpg"
+                    Avatar = "Spotify/Author/Schoolboy_Q/Schoolboy_Q.jpg"
                 }
             };
 
@@ -245,7 +245,7 @@ namespace Spotify.DAL.Init
                     CreatedById = 1,
                     Title = "Мизантропия",
                     Plays = 0,
-                    Cover = ""
+                    Cover = "Spotify/Author/Северный_Флот/Albums/Мизантропия/Cover.jpg"
                 },
                 new Album {
                     CreatedOn = DateTime.Now,
@@ -267,7 +267,7 @@ namespace Spotify.DAL.Init
                     CreatedById = 1,
                     Title = "Cozy Tapes",
                     Plays = 23,
-                    Cover = "Spotify/Author/Drake/Albums/Scorpion/Cover.jpg"
+                    Cover = "Spotify/Author/Asap_Rocky/Albums/Cozy_Tapes/Cover.jpg"
                 },
                 new Album {
                     CreatedOn = DateTime.Now,
@@ -456,7 +456,7 @@ namespace Spotify.DAL.Init
                 new Track {
                     CreatedOn = DateTime.Now,
                     CreatedById = 1,
-                    Title = "Оущит",
+                    Title = "Оу Щит",
                     AlbumId = 5,
                     Duration = 2 * 60 - 14,
                     Plays = 332
