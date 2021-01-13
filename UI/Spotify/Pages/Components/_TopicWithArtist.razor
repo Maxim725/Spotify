@@ -1,0 +1,35 @@
+﻿@if (!String.IsNullOrWhiteSpace(Title))
+{
+<h2>
+    Title
+</h2>
+}
+<div class="search__artists__layout">
+    <div class="search__artists">
+        <a href="#">
+            <img src="example/boka1.jpg" alt="" class="search__artist">
+        </a>
+        <a href="#">
+            <img src="example/boka2.jpg" alt="" class="search__artist">
+        </a>
+        <a href="#">
+            <img src="example/boka3.jpg" alt="" class="search__artist">
+        </a>
+        <a href="#">
+            <img src="example/boka2.jpg" alt="" class="search__artist">
+        </a>
+        <a href="#">
+            <img src="example/boka1.jpg" alt="" class="search__artist">
+        </a>
+        <a href="#">
+            <img src="example/boka3.jpg" alt="" class="search__artist">
+        </a>
+    </div>
+    <button class="album-list__next-button">
+        􀆉
+    </button>
+</div>
+@code {
+    [Parameter]
+    public string Title { get; set; }
+}
