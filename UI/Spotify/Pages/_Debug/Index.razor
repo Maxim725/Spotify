@@ -1,4 +1,5 @@
-﻿@page "/debug"
+@using Spotify.Pages.Components 
+@page "/debug"
 
 <div class="sidenav">
     <div class="logo">
@@ -40,7 +41,7 @@
     <div class="playlists">
         <div class="playlist">
             <a href="#">
-                <img src="/images/debug/example-playlist.png">
+                <img src="/test/example/example-playlist.png">
                 <span class="playlist__text">
                     Плейлист 1
                 </span>
@@ -61,23 +62,36 @@
     <header class="header">
         <input type="text" class="search" placeholder="Поиск">
         <div class="profile-menu">
-            <a href="#" class="profile-menu__text">
-                @@figmamusic
-            </a>
-            <button class="profile-menu__img">
-                <ul class="profile-menu__list">
-                    <li class="profile-menu__item">
-                        <a href="#profile">
-                            Аккаунт
-                        </a>
-                    </li>
-                    <li class="profile-menu__item">
-                        <a href="#">
-                            Выйти
-                        </a>
-                    </li>
-                </ul>
-            </button>
+			@{
+				bool user = true;
+			}
+			@if (user) {
+				<a href="#" class="profile-menu__text">
+               		@@figmamusic
+            	</a>
+			}
+				@if (user)
+				{
+					<button class="profile-menu__img">
+						<ul class="profile-menu__list">
+		                    <li class="profile-menu__item">
+		                        <a href="javascript:ProfileShow()">
+		                            Аккаунт
+		                        </a>
+		                    </li>
+		                    <li class="profile-menu__item">
+		                        <a href="#">
+		                            Выйти
+		                        </a>
+		                    </li>
+						</ul>
+					</button>
+				}
+				else {
+					<a href="javascript:RegShow()">
+						<img class="profile-menu__img-default" src="/images/icons/user_profile.svg">
+					</a>
+				}
         </div>
     </header>
     <main class="main">
@@ -88,7 +102,7 @@
             <div class="album-list">
                 <div class="album">
                     <a href="/debug/album">
-                        <img src="/images/debug/album-example.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -109,7 +123,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example1.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example1.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -130,7 +144,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example2.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example2.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -151,7 +165,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example3.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example3.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -172,7 +186,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example4.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example4.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -193,7 +207,7 @@
                 </div>
                 <div class="album album-last">
                     <a href="#">
-                        <img src="/images/debug/album-example5.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example5.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -227,7 +241,7 @@
             <div class="album-list">
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example6.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example6.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -248,7 +262,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example7.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example7.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -269,7 +283,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example8.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example8.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -290,7 +304,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example9.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example9.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -311,7 +325,7 @@
                 </div>
                 <div class="album">
                     <a href="#">
-                        <img src="/images/debug/album-example10.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example10.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -332,7 +346,7 @@
                 </div>
                 <div class="album album-last">
                     <a href="#">
-                        <img src="/images/debug/album-example11.png" alt="" class='album__img'>
+                        <img src="/test/example/album-example11.png" alt="" class='album__img'>
                     </a>
                     <button class="album__play-button"></button>
                     <div class="album__text">
@@ -362,7 +376,7 @@
     <div class="player">
         <div class="player__left-side">
             <a href="#">
-                <img src="/images/debug/footer-example.png" alt="" class='player__track-cover'>
+                <img src="/test/example/footer-example.png" alt="" class='player__track-cover'>
             </a>
             <div class="player__track-creds">
                 <a class="player__track-title" href="#">
@@ -427,7 +441,7 @@
         <div class="playlists">
             <div class="playlist">
                 <a href="#">
-                    <img src="/images/debug/example-playlist.png">
+                    <img src="/test/example/example-playlist.png">
                     <span class="playlist__text">
                         Плейлист 1
                     </span>
@@ -436,7 +450,7 @@
 
             <div class="playlist">
                 <a href="#">
-                    <img src="/images/debug/album-example.png">
+                    <img src="/test/example/album-example.png">
                     <span class="playlist__text">
                         Плейлист 2
                     </span>
@@ -452,5 +466,31 @@
                 </a>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="profile-reg" class="profile-reg">
+    <div class="profile-reg__window">
+        <h2>
+			Чтобы продолжить, войдите в PolyMusic
+		</h2>
+		<div class="profile-reg__inputs">
+			<span>
+				Эл. почта или имя пользователя
+			</span>
+			<input type="email" placeholder="Эл. почта или имя пользователя">
+			<span>
+				Пароль
+			</span>
+			<input type="password" placeholder="Пароль">
+		</div>
+		<button>Войти</button>
+		<hr>
+		<div class="profile-reg__bottom">
+			<span>
+				Нет аккаунта?
+			</span>
+			<button>Регистрация в PolyMusic</button>
+		</div>
     </div>
 </div>

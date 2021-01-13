@@ -5,6 +5,7 @@
 @using Spotify.Domain.Entities
 @inject WeatherForecastService ForecastService
 @inject SearchService  service
+@inject SelectionService   selectionService
 
 <h1>Weather forecast</h1>
 
@@ -41,6 +42,12 @@ else
                     <td>@track.Title</td>
                 </tr>
             }
+            @foreach (var track in recTracks)
+            {
+                <tr>
+                    <td>@track.Title</td>
+                </tr>
+            }
         </tbody>
     </table>
 }
@@ -48,13 +55,14 @@ else
 @code {
     private WeatherForecast[] forecasts;
     private IEnumerable<Track> tracks;
+    private IEnumerable<Track> recTracks;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
 
         tracks = service.SearchTrack("Поднима зна");
-
+        recTracks = selectionService.Recommendation(new List<int>());
 
     }
 

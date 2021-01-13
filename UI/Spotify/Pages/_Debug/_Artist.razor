@@ -1,62 +1,7 @@
-﻿@page "/debug/artist"
+﻿@using Spotify.Pages.Components  
+@page "/debug/artist"
 
-<div class="sidenav">
-    <div class="logo">
-        <a href="#">
-            <img src="/images/icons/logo-with-text.svg" alt="">
-        </a>
-    </div>
-    <div class="nav-bar">
-        <nav class="nav">
-            <div class="nav-item nav-item--selected">
-                <a href="#" class='nav-a'>
-                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Главная
-                    </span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="#" class='nav-a'>
-                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Для вас
-                    </span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="#" class='nav-a'>
-                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Медиатека
-                    </span>
-                </a>
-            </div>
-        </nav>
-    </div>
-    <hr class='sidenav__hr'>
-    <div class="playlists">
-        <div class="playlist">
-            <a href="#">
-                <img src="/images/debug/example-playlist.png">
-                <span class="playlist__text">
-                    Плейлист 1
-                </span>
-            </a>
-        </div>
-
-        <div class="playlist">
-            <a href="#">
-                <img src="/images/icons/addplaylist.svg">
-                <span class="playlist__text">
-                    Создать плейлист
-                </span>
-            </a>
-        </div>
-    </div>
-</div>
+<_Sidebar></_Sidebar>
 <div class="container">
     <header class="header">
         <input type="text" class="search" placeholder="Поиск">
@@ -67,7 +12,7 @@
             <button class="profile-menu__img">
                 <ul class="profile-menu__list">
                     <li class="profile-menu__item">
-                        <a href="#profile">
+                        <a href="javascript:ProfileShow()">
                             Аккаунт
                         </a>
                     </li>
@@ -494,5 +439,31 @@
                 </a>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="profile-reg" class="profile-reg">
+    <div class="profile-reg__window">
+        <h2>
+			Чтобы продолжить, войдите в PolyMusic
+		</h2>
+		<div class="profile-reg__inputs">
+			<span>
+				Эл. почта или имя пользователя
+			</span>
+			<input type="email" placeholder="Эл. почта или имя пользователя">
+			<span>
+				Пароль
+			</span>
+			<input type="password" placeholder="Пароль">
+		</div>
+		<button>Войти</button>
+		<hr>
+		<div class="profile-reg__bottom">
+			<span>
+				Нет аккаунта?
+			</span>
+			<button>Регистрация в PolyMusic</button>
+		</div>
     </div>
 </div>
