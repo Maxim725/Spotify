@@ -161,17 +161,32 @@ namespace Spotify.Services
             {
                 for(int i = 0; i < randId.Length; i++)
                 {
-                    int value = rand.Next(1, countTracks - 1);
+                    int value = rand.Next(1, countTracks);
                     if (!randId.Contains(value))
-                    randId[i] = value;
+                    {
+                        randId[i] = value;
+                    }
+                    else
+                    {
+                        i--;
+                        continue;
+                    }
                 }
                 
+            }
+            else if(countTracks == 0)
+            {
+                return new List<Track>();
+            }
+            else if(countTracks == 1)
+            {
+                randId[0] = _db.Tracks.First().TrackId;
             }
             else
             {
                 for (int i = 0; i < randId.Length; i++)
                 {
-                    int value = rand.Next(1, countTracks - 1);
+                    int value = rand.Next(1, countTracks);
                     randId[i] = value;
                 }
             }
