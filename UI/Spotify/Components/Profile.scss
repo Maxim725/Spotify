@@ -15,11 +15,25 @@
 		&:hover {
 			box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
 			transition: .6s;
+
+			.profile-menu__list {
+				transition: 1s;
+				display: block;
+			}
 		}
 
-		&:focus {
-			.profile-menu__list {
-				display: block;
+		&-default {
+			width: 66px;
+			height: 66px;
+			border-radius: 50%;
+			background-size: cover;
+			border: 0;
+			position: relative;
+			background-image: url('../svg/user_profile.svg');
+
+			&:hover {
+				box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
+				transition: .6s;
 			}
 		}
 	}
@@ -29,7 +43,7 @@
 		left: -110px;
 		top: 60px;
 		display: none;
-		z-index: 1;
+		z-index: .9;
 	}
 
 	&__item {
@@ -84,16 +98,17 @@
 	left: 0;
 	right: 0;
 	background: rgba(0, 0, 0, 0.5);
-	visibility: hidden;
-	opacity: 0;
+	// visibility: hidden;
+	// opacity: 0;
+	display: none;
+	z-index: 1;
 
 	&:target {
-		visibility: visible;
-		opacity: 1;
+		// visibility: visible;
+		// opacity: 1;
 	}
 
 	&__window {
-		margin: 12% auto;
 		padding: 40px 50px;
 		background: $color--tuna;
 		border-radius: 40px;
@@ -210,13 +225,130 @@
 			filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.35));
 		}
 	}
+
+	&-reg {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0, 0, 0, 0.5);
+		// visibility: hidden;
+		// opacity: 0;
+		display: none;
+		z-index: 1;
+
+		&__window {
+			padding: 45px 45px;
+			background: $color--tuna;
+			border-radius: 40px;
+			position: relative;
+			width: 40%;
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+	
+			hr {
+				width: 50%;
+				border: 1px solid $color--shark;
+				margin-top: 25px;
+				margin-bottom: 25px;
+			}
+	
+			h2 {
+				font-family: SF Pro Text;
+				font-weight: 600;
+				font-size: 30px;
+				line-height: 24px;
+				text-align: center;
+				color: #FFFFFF;
+				margin: 0;
+				margin-bottom: 35px;
+			}
+		}
+
+		button {
+			font-family: SF Pro Text;
+			font-weight: bold;
+			font-size: 20px;
+			text-align: center;
+			color: $color--purple;
+			background: $color--jumbo-dark;
+			border-radius: 14px;
+			// width: 166px;
+			padding: 8px 22px;
+			margin-top: 25px;
+	
+			&:hover {
+				filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.35));
+				transition: .5s;
+			}
+	
+			&:active {
+				background-color: $color--shark;
+				filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.35));
+			}
+		}
+
+		span {
+			font-family: SF Pro Text;
+			font-weight: bold;
+			font-size: 20px;
+			color: #FFFFFF;
+			text-align: center;
+		}
+
+		&__inputs {
+			display: flex;
+		    flex-direction: column;
+			align-items: start;
+
+			span {
+				margin-top: 15px;
+			}
+
+			input {
+				width: 400px;
+				height: 44px;
+				background: $color--jumbo-dark;
+				border: 0;
+				border-radius: 10px;
+				font-family: 'SF Pro Text';
+				font-size: 17px;
+				line-height: 24px;
+				color: $color--white;
+				padding: 0;
+				padding-left: 13px;
+			}
+		}
+
+		&__bottom {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
 }
 
 @media(max-width: 1680px) {
 	.profile {
-		&__img {
+		&__img, &__img-default {
 			width: 90px;
 			height: 90px;
+		}
+
+		&-reg {
+			&__window {
+				h2 {
+					font-size: 27px;
+					margin-bottom: 30px;
+				}
+			}
 		}
 	}
 }
@@ -225,7 +357,7 @@
 	.profile-menu {
 		margin-right: 65px;
 	
-		&__img {
+		&__img, &__img-default {
 			width: 55px;
 			height: 55px;
 		}
@@ -257,7 +389,6 @@
 
 	.profile {
 		&__window {
-			margin: 10% auto;
 			padding: 30px 40px;
 
 			hr {
@@ -277,7 +408,7 @@
 			}
 		}
 
-		&__img {
+		&__img, &__img-default {
 			width: 75px;
 			height: 75px;
 
@@ -296,13 +427,42 @@
 			height: 40px;
 			font-size: 20px;
 		}
+
+		&-reg {
+			&__window {
+				padding: 35px 25px;
+		
+				h2 {
+					font-size: 22px;
+					margin-bottom: 12px;
+				}
+			}
+	
+			button {
+				font-size: 16px;
+			}
+
+			span {
+				font-size: 16px;
+			}
+	
+			&__inputs {
+				span {
+					margin-top: 12px;
+				}
+
+				input {
+					width: 350px;
+					height: 40px;
+				}
+			}
+		}
 	}
 }
 
 @media(max-width: 1024px) {
 	.profile {
 		&__window {
-			margin: 12% auto;
 			padding: 30px 40px;
 
 			hr {
@@ -323,7 +483,7 @@
 			}
 		}
 
-		&__img {
+		&__img, &__img-default {
 			width: 60px;
 			height: 60px;
 
@@ -341,6 +501,40 @@
 		&__superbutton {
 			height: 35px;
 			font-size: 18px;
+		}
+		&-reg {
+			&__window {
+				width: 45%;
+				padding: 20px 15px;
+		
+				h2 {
+					font-size: 18px;
+					margin-bottom: 8px;
+				}
+			}
+	
+			button {
+				font-size: 14px;
+				padding: 6px 18px;
+				margin-top: 20px;
+			}
+	
+			span {
+				font-size: 14px;
+			}
+
+			&__inputs {
+				span {
+					font-size: 14px;
+					margin-top: 8px;
+				}
+
+				input {
+					width: 330px;
+					height: 35px;
+					font-size: 14px;
+				}
+			}
 		}
 	}
 }
