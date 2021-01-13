@@ -1,62 +1,7 @@
-﻿@page "/debug/artist"
+﻿@using Spotify.Pages.Components  
+@page "/debug/artist"
 
-<div class="sidenav">
-    <div class="logo">
-        <a href="#">
-            <img src="/images/icons/logo-with-text.svg" alt="">
-        </a>
-    </div>
-    <div class="nav-bar">
-        <nav class="nav">
-            <div class="nav-item nav-item--selected">
-                <a href="#" class='nav-a'>
-                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Главная
-                    </span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="#" class='nav-a'>
-                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Для вас
-                    </span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="#" class='nav-a'>
-                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Медиатека
-                    </span>
-                </a>
-            </div>
-        </nav>
-    </div>
-    <hr class='sidenav__hr'>
-    <div class="playlists">
-        <div class="playlist">
-            <a href="#">
-                <img src="/images/debug/example-playlist.png">
-                <span class="playlist__text">
-                    Плейлист 1
-                </span>
-            </a>
-        </div>
-
-        <div class="playlist">
-            <a href="#">
-                <img src="/images/icons/addplaylist.svg">
-                <span class="playlist__text">
-                    Создать плейлист
-                </span>
-            </a>
-        </div>
-    </div>
-</div>
+<_Sidebar></_Sidebar>
 <div class="container">
     <header class="header">
         <input type="text" class="search" placeholder="Поиск">

@@ -51,6 +51,7 @@ namespace Spotify
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<User>>();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SearchService>();
+            services.AddScoped<SelectionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
