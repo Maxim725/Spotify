@@ -1,7 +1,63 @@
-﻿@using Spotify.Pages.Components 
+@using Spotify.Pages.Components 
 @page "/debug/search"
 
-<_Sidebar></_Sidebar>
+<div class="sidenav">
+    <div class="logo">
+        <a href="#">
+            <img src="/images/icons/logo-with-text.svg" alt="">
+        </a>
+    </div>
+    <div class="nav-bar">
+        <nav class="nav">
+            <div class="nav-item nav-item--selected">
+                <a href="#" class='nav-a'>
+                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
+                    <span class="nav-a__text">
+                        Главная
+                    </span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class='nav-a'>
+                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
+                    <span class="nav-a__text">
+                        Для вас
+                    </span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#" class='nav-a'>
+                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
+                    <span class="nav-a__text">
+                        Медиатека
+                    </span>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <hr class='sidenav__hr'>
+    <div class="playlists">
+        <div class="playlist">
+            <a href="#">
+                <img src="/images/debug/example-playlist.png">
+                <span class="playlist__text">
+                    Плейлист 1
+                </span>
+            </a>
+        </div>
+
+        <div class="playlist">
+            <a href="#">
+                <img src="/images/icons/addplaylist.svg">
+                <span class="playlist__text">
+                    Создать плейлист
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="container">
     <header class="header">
         <input type="text" class="search" placeholder="Поиск">
@@ -12,7 +68,7 @@
             <button class="profile-menu__img">
                 <ul class="profile-menu__list">
                     <li class="profile-menu__item">
-                        <a href="#profile">
+                        <a href="javascript:ProfileShow()">
                             Аккаунт
                         </a>
                     </li>
@@ -25,10 +81,336 @@
             </button>
         </div>
     </header>
-    <main class="main">
-        <_TopicWithAlbums Title="Недавно добавленные"></_TopicWithAlbums>
-        <_TopicWithAlbums Title="Лучшие треки" Subtitle="Подборки хитов по исполнителям"></_TopicWithAlbums>
-    </main>
+        <main class="main">
+            <div class="search__layout">
+                <h2>
+                    Артисты
+                </h2>
+                <div class="search__artists__layout">
+                    <div class="search__artists">
+                        <a href="#">
+                            <img src="example/boka1.jpg" alt="" class="search__artist">
+                        </a>
+                        <a href="#">
+                            <img src="example/boka2.jpg" alt="" class="search__artist">
+                        </a>
+                        <a href="#">
+                            <img src="example/boka3.jpg" alt="" class="search__artist">
+                        </a>
+                        <a href="#">
+                            <img src="example/boka2.jpg" alt="" class="search__artist">
+                        </a>
+                        <a href="#">
+                            <img src="example/boka1.jpg" alt="" class="search__artist">
+                        </a>
+                        <a href="#">
+                            <img src="example/boka3.jpg" alt="" class="search__artist">
+                        </a>                    
+                    </div>
+                    <button class="album-list__next-button">
+                        􀆉
+                    </button>
+                </div>
+            </div>
+            <div class="artist">
+                <h2>
+                    Треки
+                </h2>
+                <div class="artist__tracks">
+                    <div class="artist__tracks-container">
+                        <div class="artist__tracks-column">
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                        </div>
+                        <div class="artist__tracks-column">
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                        </div>
+                        <div class="artist__tracks-column">
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                            <div class="artist__track">
+                                <div class="artist__track-left">
+                                    <button>
+                                        <img src="example/boka2.jpg" alt="">
+                                    </button>
+                                </div>
+                                <div class="artist__track-creds">
+                                    <span class="artist__track-name">
+                                        Доля воровская
+                                    </span>
+                                    <span class="artist__track-album">
+                                        Доля воровская · 2018
+                                    </span>
+                                </div>
+                                <button></button>
+                            </div>
+                        </div>
+                        <button class="album-list__next-button">
+                            􀆉
+                        </button>
+                    </div>
+                </div>
+                <h2>
+                    Альбомы
+                </h2>
+                <div class="albums">
+                    <div class="album-list">
+                        <div class="album">
+                            <a href="#">
+                                <img src="example/album-example6.png" alt="" class='album__img'>
+                            </a>
+                            <button class="album__play-button"></button>
+                            <div class="album__text">
+                                <span class="album__name">
+                                    <a href="#">
+                                        Rager
+                                    </a>
+                                </span>
+                                <span class="album__artist">
+                                    <a href="#">
+                                        Telly Grave
+                                    </a>
+                                </span>
+                                <span class="album__info">
+                                    Последний релиз · Альбом
+                                </span>
+                            </div>
+                        </div>
+                        <div class="album">
+                            <a href="#">
+                                <img src="example/album-example7.png" alt="" class='album__img'>
+                            </a>
+                            <button class="album__play-button"></button>
+                            <div class="album__text">
+                                <span class="album__name">
+                                    <a href="#">
+                                        Rager
+                                    </a>
+                                </span>
+                                <span class="album__artist">
+                                    <a href="#">
+                                        Telly Grave
+                                    </a>
+                                </span>
+                                <span class="album__info">
+                                    Последний релиз · Альбом
+                                </span>
+                            </div>
+                        </div>
+                        <div class="album">
+                            <a href="#">
+                                <img src="example/album-example8.png" alt="" class='album__img'>
+                            </a>
+                            <button class="album__play-button"></button>
+                            <div class="album__text">
+                                <span class="album__name">
+                                    <a href="#">
+                                        Rager
+                                    </a>
+                                </span>
+                                <span class="album__artist">
+                                    <a href="#">
+                                        Telly Grave
+                                    </a>
+                                </span>
+                                <span class="album__info">
+                                    Последний релиз · Альбом
+                                </span>
+                            </div>
+                        </div>
+                        <div class="album">
+                            <a href="#">
+                                <img src="example/album-example9.png" alt="" class='album__img'>
+                            </a>
+                            <button class="album__play-button"></button>
+                            <div class="album__text">
+                                <span class="album__name">
+                                    <a href="#">
+                                        Rager
+                                    </a>
+                                </span>
+                                <span class="album__artist">
+                                    <a href="#">
+                                        Telly Grave
+                                    </a>
+                                </span>
+                                <span class="album__info">
+                                    Последний релиз · Альбом
+                                </span>
+                            </div>
+                        </div>
+                        <div class="album">
+                            <a href="#">
+                                <img src="example/album-example10.png" alt="" class='album__img'>
+                            </a>
+                            <button class="album__play-button"></button>
+                            <div class="album__text">
+                                <span class="album__name">
+                                    <a href="#">
+                                        Rager
+                                    </a>
+                                </span>
+                                <span class="album__artist">
+                                    <a href="#">
+                                        Telly Grave
+                                    </a>
+                                </span>
+                                <span class="album__info">
+                                    Последний релиз · Альбом
+                                </span>
+                            </div>
+                        </div>
+                        <div class="album album-last">
+                            <a href="#">
+                                <img src="example/album-example11.png" alt="" class='album__img'>
+                            </a>
+                            <button class="album__play-button"></button>
+                            <div class="album__text">
+                                <span class="album__name">
+                                    <a href="#">
+                                        Rager
+                                    </a>
+                                </span>
+                                <span class="album__artist">
+                                    <a href="#">
+                                        Telly Grave
+                                    </a>
+                                </span>
+                                <span class="album__info">
+                                    Последний релиз · Альбом
+                                </span>
+                            </div>
+                        </div>
+                        <button class="album-list__next-button">
+                            􀆉
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
 </div>
 <div class="footer">
     <div class="player">
@@ -48,19 +430,19 @@
         <div class="player__center-side">
             <div class="player__center-side-up">
                 <button class="player__control-button">
-                    <img src="/images/icons//repeat./images/icons/" alt="" class="">
+                    <img src="/images/icons/repeat.svg" alt="" class="">
                 </button>
                 <button class="player__control-button">
-                    <img src="/images/icons//previous_track./images/icons/" alt="">
+                    <img src="/images/icons/previous_track.svg" alt="">
                 </button>
                 <button class="player__control-button">
-                    <img src="/images/icons//footer_play./images/icons/" alt="">
+                    <img src="/images/icons/footer_play.svg" alt="">
                 </button>
                 <button class="player__control-button">
-                    <img src="/images/icons//next_track./images/icons/" alt="">
+                    <img src="/images/icons/next_track.svg" alt="">
                 </button>
                 <button class="player__control-button">
-                    <img src="/images/icons//shuffle./images/icons/" alt="">
+                    <img src="/images/icons/shuffle.svg" alt="">
                 </button>
             </div>
             <div class="player__center-side-bottom">
@@ -75,7 +457,7 @@
         </div>
         <div class="player__right-side">
             <div class="player__volume">
-                <img src="/images/icons//low_volume./images/icons/">
+                <img src="/images/icons/low_volume.svg">
                 <input type="range" min="0" max="100" step="1" value="0" oninput="" onchange="">
             </div>
         </div>
@@ -126,8 +508,29 @@
         </div>
     </div>
 </div>
-<div id='search' class="search-view">
-    <div class="search-view__window">
 
+<div id="profile-reg" class="profile-reg">
+    <div class="profile-reg__window">
+        <h2>
+			Чтобы продолжить, войдите в PolyMusic
+		</h2>
+		<div class="profile-reg__inputs">
+			<span>
+				Эл. почта или имя пользователя
+			</span>
+			<input type="email" placeholder="Эл. почта или имя пользователя">
+			<span>
+				Пароль
+			</span>
+			<input type="password" placeholder="Пароль">
+		</div>
+		<button>Войти</button>
+		<hr>
+		<div class="profile-reg__bottom">
+			<span>
+				Нет аккаунта?
+			</span>
+			<button>Регистрация в PolyMusic</button>
+		</div>
     </div>
 </div>
