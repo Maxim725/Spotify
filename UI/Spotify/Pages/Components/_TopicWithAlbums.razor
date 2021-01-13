@@ -1,18 +1,21 @@
 ﻿<div class="albums">
-    <h2 class="title title--main">
-        @Title
-    </h2>
-    @if (!String.IsNullOrWhiteSpace(Subtitle))
+   @if (!String.IsNullOrWhiteSpace(Title))
+    {
+        <h2 class="title title--main">
+            @Title
+        </h2>
+    }
+   @if (!String.IsNullOrWhiteSpace(Subtitle))
     {
         <h4 class="title title--second">
             @Subtitle
         </h4>
     }
     <div class="album-list">
-       <_AlbumItem></_AlbumItem>
+        <_AlbumItem></_AlbumItem>
         <div class="album">
             <a href="#">
-                <img src="/images/debug/album-example1.png" alt="" class='album__img'>
+                <img src="/test/example/album-example1.png" alt="" class='album__img'>
             </a>
             <button class="album__play-button"></button>
             <div class="album__text">
@@ -33,7 +36,7 @@
         </div>
         <div class="album">
             <a href="#">
-                <img src="/images/debug/album-example2.png" alt="" class='album__img'>
+                <img src="/test/example/album-example2.png" alt="" class='album__img'>
             </a>
             <button class="album__play-button"></button>
             <div class="album__text">
@@ -54,7 +57,7 @@
         </div>
         <div class="album">
             <a href="#">
-                <img src="/images/debug/album-example3.png" alt="" class='album__img'>
+                <img src="/test/example/album-example3.png" alt="" class='album__img'>
             </a>
             <button class="album__play-button"></button>
             <div class="album__text">
@@ -75,7 +78,7 @@
         </div>
         <div class="album">
             <a href="#">
-                <img src="/images/debug/album-example4.png" alt="" class='album__img'>
+                <img src="/test/example/album-example4.png" alt="" class='album__img'>
             </a>
             <button class="album__play-button"></button>
             <div class="album__text">
@@ -96,7 +99,7 @@
         </div>
         <div class="album album-last">
             <a href="#">
-                <img src="/images/debug/album-example5.png" alt="" class='album__img'>
+                <img src="/test/example/album-example5.png" alt="" class='album__img'>
             </a>
             <button class="album__play-button"></button>
             <div class="album__text">
