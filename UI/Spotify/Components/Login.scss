@@ -1,0 +1,44 @@
+.login {
+	&-header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&__container {
+			margin: 0;
+			width: 80%;
+			display: flex;
+	    	align-items: center;
+			justify-content: space-between;
+			padding: 25px 0;
+		}
+
+		&__buttons {
+			margin: 0;
+			display: flex;
+			align-items: center;
+			flex-direction: row !important;
+
+			li {
+				list-style: none;
+				margin-right: 20px;
+				a {
+					color: white;
+					font-size: 25px;
+					font-family: 'SF Pro Rounded';
+					font-weight: 800;
+				}
+			}
+		}
+	}
+
+	&__h1, &__h4, &__p, &__label {
+		font-family: 'SF Pro Rounded';
+		font-weight: 800;
+		color: white;
+	}
+
+	&__hr {
+		color: white;
+	}
+}

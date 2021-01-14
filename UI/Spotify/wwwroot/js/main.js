@@ -1,5 +1,5 @@
 function ProfileShow(){
-	$("#profile").css('display','block');
+	$("#profile").css('display','flex');
 }
 
 function RegShow(){
