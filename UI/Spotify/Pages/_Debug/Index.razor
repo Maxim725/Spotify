@@ -1,6 +1,6 @@
 @using Spotify.Pages.Components
 @page "/debug"
-
+@inject NavigationManager NavigationManager
 <AuthorizeView>
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
@@ -28,3 +28,12 @@
         <_RedirectToLogin Login="/Identity/Account/Login"></_RedirectToLogin>
     </NotAuthorized>
 </AuthorizeView>
+
+
+@code {
+    public object Redirect()
+    {
+        NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        return new object();
+    }
+} 
