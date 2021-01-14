@@ -37,7 +37,7 @@ namespace Spotify
             services.AddDbContext<SpotifyDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<SpotifyDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
