@@ -1,15 +1,30 @@
 @using Spotify.Pages.Components 
 @page "/debug/search"
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
 
-<_Sidebar></_Sidebar>
-<div class="container">
-    <header class="header">
-        <input type="text" class="search" placeholder="Поиск">
-        <_Profile></_Profile>
-    </header>
-        <main class="main">
-            <_Search></_Search>
-        </main>
-</div>
-<_Footer></_Footer>
-<_UserProfile></_UserProfile>
+            <_Sidebar></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile></_Profile>
+                </header>
+                <main class="main">
+                    <_Search></_Search>
+                </main>
+            </div>
+            <_Footer></_Footer>
+            <_UserProfile></_UserProfile>
+
+        }
+        else
+        {
+            <_RedirectToLogin></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
