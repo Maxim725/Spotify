@@ -1,37 +1,51 @@
 ﻿@using Spotify.Pages.Components  
 @page "/debug/artist"
 
-<_Sidebar></_Sidebar>
-<div class="container">
-    <header class="header">
-        <input type="text" class="search" placeholder="Поиск">
-        <_Profile></_Profile>
-    </header>
-    <main class="main">
-        <div class="artist">
-            <div class="artist__main">
-                <img class="artist__main-img" src="/images/debug/boka1.jpg" alt="">
-                <div class="artist__main-right">
-                    <h1>
-                        Бока
-                    </h1>
-                    <div class="artist__buttons">
-                        <button>
-                            <img src="/images/icons/play_button.svg" alt="">
-                        </button>
-                        <button>
-                            <img src="/images/icons/filled_heart.svg" alt="">
-                        </button>
-                        <button>
-                            <img src="/images/icons/more.svg" alt="">
-                        </button>
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
+            <_Sidebar></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile></_Profile>
+                </header>
+                <main class="main">
+                    <div class="artist">
+                        <div class="artist__main">
+                            <img class="artist__main-img" src="/images/debug/boka1.jpg" alt="">
+                            <div class="artist__main-right">
+                                <h1>
+                                    Бока
+                                </h1>
+                                <div class="artist__buttons">
+                                    <button>
+                                        <img src="/images/icons/play_button.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/images/icons/filled_heart.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/images/icons/more.svg" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <_TopicWithTracks Title="Популярные треки" ArtistId="1"></_TopicWithTracks>
+                        <_TopicWithAlbums Title="Последние релизы"></_TopicWithAlbums>
                     </div>
-                </div>
+                </main>
             </div>
-            <_TopicWithTracks Title="Популярные треки" ArtistId="1"></_TopicWithTracks>
-            <_TopicWithAlbums Title="Последние релизы"></_TopicWithAlbums>
-        </div>
-    </main>
-</div>
-<_Footer></_Footer>
-<_UserProfile></_UserProfile>
+            <_Footer></_Footer>
+            <_UserProfile></_UserProfile>
+        }
+        else
+        {
+            <_RedirectToLogin></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
