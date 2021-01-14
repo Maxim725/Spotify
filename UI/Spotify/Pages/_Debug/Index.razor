@@ -1,25 +1,30 @@
 @using Spotify.Pages.Components
 @page "/debug"
-@inject NavigationManager NavigationManager 
 
-<_Sidebar></_Sidebar>
-<div class="container">
-    <header class="header">
-        <input type="text" class="search" placeholder="Поиск">
-        <_Profile></_Profile>
-    </header>
-    <main class="main">
-        <_TopicWithAlbums Title="Недавно добавленные"></_TopicWithAlbums>
-        <_TopicWithAlbums Title="Лучшие треки" Subtitle="Подборки хитов по исполнителям"></_TopicWithAlbums>
-    </main>
-</div>
-<_Footer></_Footer>
-<_UserProfile></_UserProfile>
-
-@code {
-    public object Redirect()
-    {
-        NavigationManager.NavigateTo("/Identity/Account/Login", true);
-        return null;
-    }
-}
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
+            <_Sidebar></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile></_Profile>
+                </header>
+                <main class="main">
+                    <_TopicWithAlbums Title="Недавно добавленные"></_TopicWithAlbums>
+                    <_TopicWithAlbums Title="Лучшие треки" Subtitle="Подборки хитов по исполнителям"></_TopicWithAlbums>
+                </main>
+            </div>
+            <_Footer></_Footer>
+            <_UserProfile></_UserProfile>
+        }
+        else
+        {
+            <_RedirectToLogin Login="/Identity/Account/Login"></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin Login="/Identity/Account/Login"></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
