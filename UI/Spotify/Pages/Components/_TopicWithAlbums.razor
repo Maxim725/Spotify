@@ -1,0 +1,37 @@
+﻿@if (SetAlbums is not null && SetAlbums.Count() > 0)
+{
+    <div class="albums">
+        @if (!String.IsNullOrWhiteSpace(Title))
+        {
+            <h2 class="title title--main">
+                @Title
+            </h2>
+        }
+        @if (!String.IsNullOrWhiteSpace(Subtitle))
+        {
+            <h4 class="title title--second">
+                @Subtitle
+            </h4>
+        }
+        <div class="album-list">
+            @foreach (int albumId in SetAlbums)
+            {
+                <_AlbumItem AlbumId="@albumId"></_AlbumItem>
+            }
+            <button class="album-list__next-button">
+                􀆉
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Subtitle { get; set; } = "";
+
+    [Parameter]
+    public IEnumerable<int> SetAlbums { get; set; }
+}

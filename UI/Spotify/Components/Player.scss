@@ -1,0 +1,330 @@
+﻿.player {
+    color: $color--white;
+    text-align: center;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+    &__track-cover {
+        box-shadow: 1px 1px 6px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+
+    &__track-creds {
+        flex-direction: column;
+        margin-left: 15px;
+        display: flex;
+        text-align: left;
+    }
+
+    &__track-artist {
+        font-family: SF Pro Text;
+        font-size: 20px;
+        color: $color--spun-rearl;
+    }
+
+    &__track-title {
+        font-family: SF Pro Text;
+        font-size: 20px;
+        color: $color--white;
+    }
+
+    &__left-side {
+        margin-left: 25px;
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+    }
+
+    &__center-side {
+        &-up {
+            vertical-align: middle;
+            margin-bottom: 3px;
+        }
+
+        &-bottom {
+        }
+    }
+
+    &__volume {
+        img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        input {
+            vertical-align: middle;
+            overflow: hidden;
+            width: 110px;
+            height: 4px;
+            border-radius: 10px;
+            -webkit-appearance: none;
+            background-color: $color--shark;
+
+            &::-webkit-slider-runnable-track {
+                height: 10px;
+                -webkit-appearance: none;
+                color: $color-mountain-meadow;
+                margin-top: -1px;
+            }
+
+            &::-webkit-slider-thumb {
+                width: 10px;
+                -webkit-appearance: none;
+                height: 10px;
+                cursor: pointer;
+                background: $color--spun-rearl;
+                box-shadow: -80px 0 0 80px $color--spun-rearl;
+                border-radius: 10px;
+            }
+
+            &::-moz-range-progress {
+                background-color: $color--spun-rearl;
+            }
+
+            &::-moz-range-track {
+                background-color: $color--shark;
+            }
+
+            &::-ms-fill-lower {
+                background-color: $color--spun-rearl;
+            }
+
+            &::-ms-fill-upper {
+                background-color: $color--shark;
+            }
+        }
+    }
+
+    &__right-side {
+        margin-right: 35px;
+    }
+
+    &__track-progress {
+        vertical-align: middle;
+        overflow: hidden;
+        width: 530px;
+        height: 4px;
+        border-radius: 10px;
+        -webkit-appearance: none;
+        background-color: $color--shark;
+
+        &::-webkit-slider-runnable-track {
+            height: 10px;
+            -webkit-appearance: none;
+            color: $color--spun-rearl;
+            margin-top: -1px;
+        }
+
+        &::-webkit-slider-thumb {
+            width: 10px;
+            -webkit-appearance: none;
+            height: 10px;
+            cursor: pointer;
+            background: $color--spun-rearl;
+            box-shadow: -80px 0 0 80px $color--spun-rearl;
+            border-radius: 10px;
+        }
+
+        &::-moz-range-progress {
+            background-color: $color--spun-rearl;
+        }
+
+        &::-moz-range-track {
+            background-color: $color--shark;
+        }
+
+        &::-ms-fill-lower {
+            background-color: $color--spun-rearl;
+        }
+
+        &::-ms-fill-upper {
+            background-color: $color--shark;
+        }
+    }
+
+    &__time-passed, &__time-left {
+        font-family: SF Pro Text;
+        font-size: 12px;
+        color: $color--spun-rearl;
+    }
+
+    &__time-passed {
+        margin-right: 4px;
+    }
+
+    &__time-left {
+        margin-left: 4px;
+    }
+
+    &__play-button {
+        vertical-align: middle;
+        margin: 0 7px;
+
+        &:first-child {
+            margin-right: 90px;
+        }
+
+        &:last-child {
+            margin-left: 90px;
+        }
+    }
+
+    &__control-button {
+        vertical-align: middle;
+        margin: 0 7px;
+
+        &:first-child {
+            margin-right: 90px;
+        }
+
+        &:last-child {
+            margin-left: 90px;
+        }
+    }
+}
+
+@media(max-width: 1366px) {
+    .player {
+        &__track-creds {
+            margin-left: 12px;
+        }
+
+        &__left-side img {
+            width: 50px;
+            height: 50px;
+        }
+
+        &__center-side {
+            &-up {
+                margin-bottom: 0;
+            }
+        }
+
+        &__track-artist, &__track-title {
+            font-size: 15px;
+        }
+
+        &__volume {
+            img {
+                margin-right: 5px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        &__track-progress {
+            width: 500px;
+            height: 3px;
+        }
+
+        &__time-passed, &__time-left {
+            font-size: 10px;
+        }
+
+        &__time-passed {
+            margin-right: 3px;
+        }
+
+        &__time-left {
+            margin-left: 3px;
+        }
+
+        &__control-button {
+            vertical-align: middle;
+            margin: 0 7px;
+
+            &:first-child {
+                margin-right: 70px;
+            }
+
+            &:last-child {
+                margin-left: 70px;
+            }
+
+            img {
+                width: 80%;
+            }
+        }
+    }
+}
+
+@media(max-width: 1024px) {
+    .player {
+        &__track-creds {
+            margin-left: 12px;
+        }
+
+        &__left-side img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        &__center-side {
+            &-up {
+                margin-bottom: 0;
+            }
+        }
+
+        &__track-artist, &__track-title {
+            font-size: 13px;
+        }
+
+        &__volume {
+            input {
+                width: 90px;
+                height: 3px;
+            }
+
+            img {
+                margin-right: 5px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        &__track-progress {
+            width: 400px;
+            height: 2px;
+        }
+
+        &__time-passed, &__time-left {
+            font-size: 10px;
+        }
+
+        &__time-passed {
+            margin-right: 3px;
+        }
+
+        &__time-left {
+            margin-left: 3px;
+        }
+
+        &__control-button {
+            vertical-align: middle;
+            margin: 0 7px;
+
+            &:first-child {
+                margin-right: 55px;
+            }
+
+            &:last-child {
+                margin-left: 55px;
+            }
+
+            img {
+                width: 65%;
+            }
+        }
+    }
+}

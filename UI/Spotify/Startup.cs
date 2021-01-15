@@ -17,6 +17,7 @@ using Spotify.Areas.Identity;
 using Spotify.Data;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
+using Spotify.Services;
 
 namespace Spotify
 {
@@ -36,7 +37,7 @@ namespace Spotify
             services.AddDbContext<SpotifyDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<SpotifyDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
@@ -44,10 +45,13 @@ namespace Spotify
             {
                 pipeline.AddScssBundle("/css/site.css", "/Components/main.scss").UseContentRoot();
             });
+            services.AddSingleton<IFileStorage<int>, FileStorageBase>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<User>>();
             services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<SearchService>();
+            services.AddScoped<SelectionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

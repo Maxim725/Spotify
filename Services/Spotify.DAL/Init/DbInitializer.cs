@@ -92,8 +92,7 @@ namespace Spotify.DAL.Init
                     Subscriptions = new List<UserSubscription>(),
                     LikedAlbums = new List<UserLikedAlbum>(),
                     Playlists = new List<UserPlaylist>()
-                },
-
+                }
             };
 
             context.Users.AddRange(users);
@@ -504,8 +503,8 @@ namespace Spotify.DAL.Init
                 
             };
 
-            context.Tracks.AddRange(tracks);
-            context.SaveChanges();
+            // context.Tracks.AddRange(tracks);
+            // context.SaveChanges();
 
             var userLikedTrack = new UserLikedTrack[]
             {
@@ -683,10 +682,10 @@ namespace Spotify.DAL.Init
                 }
             };
 
-            context.UserLikedTrack.AddRange(userLikedTrack);
-            context.TrackAuthor.AddRange(trackAuthor);
-            context.AlbumAuthor.AddRange(albumAuthor);
-            context.SaveChanges();
+            // context.UserLikedTrack.AddRange(userLikedTrack);
+            // context.TrackAuthor.AddRange(trackAuthor);
+            // context.AlbumAuthor.AddRange(albumAuthor);
+            // context.SaveChanges();
         }
     }
 }

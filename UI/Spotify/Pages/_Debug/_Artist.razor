@@ -1,0 +1,85 @@
+﻿@inject SelectionService SelectionService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@page "/debug/artist/{ArtistId:int}"
+
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
+            <_Sidebar UserId="@UserId"></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile UserId="@UserId"></_Profile>
+                </header>
+                <main class="main">
+                    <div class="artist">
+                        <div class="artist__main">
+                            <img class="artist__main-img" src="/images/debug/boka1.jpg" alt="">
+                            <div class="artist__main-right">
+                                <h1>
+                                    Бока
+                                </h1>
+                                <div class="artist__buttons">
+                                    <button>
+                                        <img src="/images/icons/play_button.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/images/icons/filled_heart.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/images/icons/more.svg" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <_TopicWithTracks Title="Популярные треки" ArtistId="ArtistId"></_TopicWithTracks>
+                        <_TopicWithAlbums Title="Последние релизы" SetAlbums="@PopularAlbumsByArtist()"></_TopicWithAlbums>
+                    </div>
+                </main>
+            </div>
+            <_Footer></_Footer>
+            <_UserProfile UserId="@UserId"></_UserProfile>
+        }
+        else
+        {
+            <_RedirectToLogin Login="/Identity/Account/Login"></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private int UserId { get; set; }
+    private Author Author { get; set; }
+
+    [Parameter]
+    public int ArtistId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Author = SelectionService.GetAuthorById(ArtistId);
+
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+
+
+    }
+
+    private IEnumerable<int> PopularAlbumsByArtist()
+    {
+        return SelectionService.GetPopularAuthorAlbumsById(ArtistId);
+    }
+
+} 

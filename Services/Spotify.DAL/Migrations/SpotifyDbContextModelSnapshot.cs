@@ -534,6 +534,9 @@ namespace Spotify.DAL.Migrations
                     b.Property<uint>("Duration")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Path")
+                        .HasColumnType("TEXT");
+
                     b.Property<ulong>("Plays")
                         .HasColumnType("INTEGER");
 

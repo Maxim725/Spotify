@@ -26,8 +26,10 @@ namespace Spotify
 				try
 				{
 					var context = services.GetRequiredService<SpotifyDbContext>();
+					var storage = services.GetRequiredService<IFileStorage<int>>();
 					context.Database.EnsureCreated();
 					DbInitializer.Initialize(context);
+					storage.Init(context);
 				}
 				catch (Exception ex)
 				{

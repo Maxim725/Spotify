@@ -1,0 +1,171 @@
+﻿@inject SelectionService SelectionService
+
+@if (!String.IsNullOrWhiteSpace(Title))
+{
+    <h2>
+        @Title 
+    </h2>
+}
+<div class="artist__tracks">
+    <div class="artist__tracks-container">
+        @if (Tracks.Length != 0)
+        {
+            int k = 0;
+            for (int i = 0; i < ColumnCount; i++)
+            {
+                <div class="artist__tracks-column">
+                    @for (int j = 0; j < AmountTrackInColumn; j++)
+                    {
+
+                        <div class="artist__track">
+                            <div class="artist__track-left">
+                                <button>
+                                    <img src="/images/debug/boka2.jpg" alt="">
+                                </button>
+                            </div>
+                            <div class="artist__track-creds">
+                                <span class="artist__track-name">
+                                    @Tracks[k].Title
+                                </span>
+                                <span class="artist__track-album">
+                                    @Tracks[k].Title · @Tracks[k].CreatedOn.Year
+                                </span>
+                            </div>
+                            <button></button>
+                        </div>
+                        k++;
+                        if (k == Tracks.Length || k == 9)
+                            break;
+                    } 
+                </div>
+                if (k == Tracks.Length || k == 9)
+                {
+                    k = 0;
+                    break;
+                }
+            }
+        }
+        @*<div class="artist__tracks-column">
+            <div class="artist__track">
+                <div class="artist__track-left">
+                    <button>
+                        <img src="/images/debug/boka2.jpg" alt="">
+                    </button>
+                </div>
+                <div class="artist__track-creds">
+                    <span class="artist__track-name">
+                        Доля воровская
+                    </span>
+                    <span class="artist__track-album">
+                        Доля воровская · 2018
+                    </span>
+                </div>
+                <button></button>
+            </div>
+            <div class="artist__track">
+                <div class="artist__track-left">
+                    <button>
+                        <img src="/images/debug/boka2.jpg" alt="">
+                    </button>
+                </div>
+                <div class="artist__track-creds">
+                    <span class="artist__track-name">
+                        Доля воровская
+                    </span>
+                    <span class="artist__track-album">
+                        Доля воровская · 2018
+                    </span>
+                </div>
+                <button></button>
+            </div>
+            <div class="artist__track">
+                <div class="artist__track-left">
+                    <button>
+                        <img src="/images/debug/boka2.jpg" alt="">
+                    </button>
+                </div>
+                <div class="artist__track-creds">
+                    <span class="artist__track-name">
+                        Доля воровская
+                    </span>
+                    <span class="artist__track-album">
+                        Доля воровская · 2018
+                    </span>
+                </div>
+                <button></button>
+            </div>
+        </div>
+        <div class="artist__tracks-column">
+            <div class="artist__track">
+                <div class="artist__track-left">
+                    <button>
+                        <img src="/images/debug/boka2.jpg" alt="">
+                    </button>
+                </div>
+                <div class="artist__track-creds">
+                    <span class="artist__track-name">
+                        Доля воровская
+                    </span>
+                    <span class="artist__track-album">
+                        Доля воровская · 2018
+                    </span>
+                </div>
+                <button></button>
+            </div>
+            <div class="artist__track">
+                <div class="artist__track-left">
+                    <button>
+                        <img src="/images/debug/boka2.jpg" alt="">
+                    </button>
+                </div>
+                <div class="artist__track-creds">
+                    <span class="artist__track-name">
+                        Доля воровская
+                    </span>
+                    <span class="artist__track-album">
+                        Доля воровская · 2018
+                    </span>
+                </div>
+                <button></button>
+            </div>
+            <div class="artist__track">
+                <div class="artist__track-left">
+                    <button>
+                        <img src="/images/debug/boka2.jpg" alt="">
+                    </button>
+                </div>
+                <div class="artist__track-creds">
+                    <span class="artist__track-name">
+                        Доля воровская
+                    </span>
+                    <span class="artist__track-album">
+                        Доля воровская · 2018
+                    </span>
+                </div>
+                <button></button>
+            </div>
+        </div>
+        <button class="album-list__next-button">
+            􀆉
+        </button>*@
+    </div>
+</div>
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public int ArtistId { get; set; }
+
+    private int ColumnCount { get; set; } = 3;
+
+    public int AmountTrackInColumn { get; set; } = 3;
+
+    private Track[] Tracks { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Tracks = SelectionService.GetPopularTracksByArtist(ArtistId).ToArray();
+    }
+
+}

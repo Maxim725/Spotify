@@ -1,0 +1,110 @@
+﻿.profile-menu {
+    margin-right: 90px;
+    display: flex;
+    align-items: center;
+
+    &__img {
+        width: 66px;
+        height: 66px;
+        border-radius: 50%;
+        background-image: url('../example/1.jpg');
+        background-size: cover;
+        border: 0;
+        position: relative;
+
+        &:hover {
+            box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
+            transition: .6s;
+        }
+
+        &:focus {
+            .profile-menu__list {
+                display: block;
+            }
+        }
+    }
+
+    &__list {
+        position: absolute;
+        left: -110px;
+        top: 60px;
+        display: none;
+        z-index: 1;
+    }
+
+    &__item {
+        width: 132px;
+        height: 29px;
+        background: $color--ship-gray;
+        font-family: SF Pro Rounded;
+        font-weight: bold;
+        font-size: 18px;
+        list-style-type: none;
+        text-align: center;
+
+        &:hover {
+            background: #38383B;
+        }
+
+        &:active {
+            background: #252527;
+        }
+
+        &:first-child {
+            border-radius: 20px 20px 0px 0px;
+            border-bottom: 1px solid $color--shark;
+        }
+
+        &:last-child {
+            border-radius: 0px 0px 20px 20px;
+        }
+
+        a {
+            vertical-align: middle;
+            color: $color--white;
+        }
+    }
+
+    &__text {
+        margin-right: 30px;
+        font-family: 'SF Pro Rounded';
+        font-weight: bold;
+        font-size: 24px;
+        color: $color--light-gray;
+    }
+}
+
+@media(max-width: 1366px) {
+    .profile-menu {
+        margin-right: 65px;
+
+        &__img {
+            width: 55px;
+            height: 55px;
+        }
+
+        &__list {
+            left: -90px;
+            top: 50px;
+        }
+
+        &__item {
+            width: 100px;
+            height: 25px;
+            font-size: 16px;
+
+            &:first-child {
+                border-radius: 15px 15px 0px 0px;
+            }
+
+            &:last-child {
+                border-radius: 0px 0px 15px 15px;
+            }
+        }
+
+        &__text {
+            margin-right: 30px;
+            font-size: 18px;
+        }
+    }
+}

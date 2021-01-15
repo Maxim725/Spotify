@@ -1,5 +1,24 @@
-﻿h1.header--test {
-    color: #ff0000;
+﻿@import 'Colors.scss';
+@import 'Fonts.scss';
+@import 'Headers.scss';
+@import 'Layout.scss';
+@import 'Nav.scss';
+@import 'Menu.scss';
+@import 'Search.scss';
+@import 'Logo.scss';
+@import 'Player.scss';
+@import 'Album.scss';
+@import 'Playlist.scss';
+@import 'Profile.scss';
+@import 'Artist.scss';
+@import 'Login.scss';
+
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
 }
 
-@import "Default.scss";
+a {
+    text-decoration: none;
+}

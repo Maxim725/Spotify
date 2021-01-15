@@ -1,0 +1,45 @@
+﻿@inject SelectionService SelectionService 
+
+<div class="album-view__tracks">
+    @foreach (Track track in Tracks)
+    {
+        <div class="album-view__track">
+            <div class="album-view__track-left">
+                <button></button>
+                <div class="album-view__track-creds">
+                    <span class="album-view__track-name">
+                        @track.Title
+                    </span>
+                    <span class="album-view__track-artist">
+                        <a href="">
+                            @try
+                            {
+                                @track.Authors.First().Author.Name
+                            }
+                            catch(Exception e)
+                            {
+                                <span>Travis Scott</span>
+                            }
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="album-view__track-right">
+                <button></button>
+                <span>
+                    @track.Duration
+                </span>
+            </div>
+        </div>
+    }
+</div>
+@code {
+    [Parameter]
+    public int AlbumId { get; set; }
+
+    private IEnumerable<Track> Tracks { get; set; }
+    protected override void OnInitialized()
+    {
+        Tracks = SelectionService.GetTracks(AlbumId);
+    }
+}

@@ -1,0 +1,39 @@
+﻿@inject SelectionService SelectionService 
+
+<div class="playlists">
+    @if (Playlists is not null && Playlists.Count() > 0)
+    {
+        foreach (Playlist pl in Playlists)
+        {
+            <div class="playlist">
+                <a href="#">
+                    <img src="/test/example/example-playlist.png">
+                    <span class="playlist__text">
+                        @pl.Title
+                    </span>
+                </a>
+            </div>
+        }
+    }
+
+    <div class="playlist">
+        <a href="#">
+            <img src="/images/icons/addplaylist.svg">
+            <span class="playlist__text">
+                Создать плейлист
+            </span>
+        </a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int UserId { get; set; }
+
+    public IEnumerable<Playlist> Playlists { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Playlists = SelectionService.GetPlaylistsIdByUserId(UserId);
+    }
+}

@@ -1,0 +1,62 @@
+﻿
+@inject SelectionService SelectionService
+@if (Album is not null)
+{
+    <div class="album">
+        <a href="/debug/album">
+            <img src="/test/example/album-example.png" alt="" class='album__img'>
+        </a>
+        <button class="album__play-button"></button>
+        <div class="album__text">
+            <span class="album__name">
+                <a href="/debug/album">
+                    @Album.Title
+                </a>
+            </span>
+            <span class="album__artist">
+                <a href="#">
+                    <!-- КОСТЫЛЬ, когда данные будут, убрать!!!! -->
+                    @try
+                    {
+                        @Album.Authors[0].Author.Name
+                    }
+                    catch(Exception e)
+                    {
+                    <span>TellyGrave</span>
+                    }
+                </a>
+            </span>
+            <span class="album__info">
+                Последний релиз · @TypeAlbums
+            </span>
+        </div>
+    </div>
+}
+@code {
+    [Parameter]
+    public int AlbumId { get; set; }
+
+    private Album Album { get; set; }
+    private string TypeAlbums { get; set; }
+
+    protected override void OnInitialized()
+    {
+        int CountTracks;
+
+        Album = SelectionService.GetAlbumById(AlbumId);
+        CountTracks = Album.Tracks.Count();
+
+        if(CountTracks > 1)
+        {
+            TypeAlbums = "Альбом";
+        }
+        else if(CountTracks == 1)
+        {
+            TypeAlbums = "Сингл";
+        }
+        else
+        {
+            throw new Exception("В альбоме 0 треков, беда!!");
+        }
+    }
+}
