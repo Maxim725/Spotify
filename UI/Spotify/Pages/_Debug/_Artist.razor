@@ -1,15 +1,17 @@
-﻿@using Spotify.Pages.Components  
-@page "/debug/artist"
+﻿@inject SelectionService SelectionService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@page "/debug/artist/{ArtistId:int}"
 
 <AuthorizeView>
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar></_Sidebar>
+            <_Sidebar UserId="@UserId"></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
-                    <_Profile></_Profile>
+                    <_Profile UserId="@UserId"></_Profile>
                 </header>
                 <main class="main">
                     <div class="artist">
@@ -32,20 +34,52 @@
                                 </div>
                             </div>
                         </div>
-                        <_TopicWithTracks Title="Популярные треки" ArtistId="1"></_TopicWithTracks>
-                        <_TopicWithAlbums Title="Последние релизы"></_TopicWithAlbums>
+                        <_TopicWithTracks Title="Популярные треки" ArtistId="ArtistId"></_TopicWithTracks>
+                        <_TopicWithAlbums Title="Последние релизы" SetAlbums="@PopularAlbumsByArtist()"></_TopicWithAlbums>
                     </div>
                 </main>
             </div>
             <_Footer></_Footer>
-            <_UserProfile></_UserProfile>
+            <_UserProfile UserId="@UserId"></_UserProfile>
         }
         else
         {
-            <_RedirectToLogin></_RedirectToLogin>
+            <_RedirectToLogin Login="/Identity/Account/Login"></_RedirectToLogin>
         }
     </Authorized>
     <NotAuthorized>
         <_RedirectToLogin></_RedirectToLogin>
     </NotAuthorized>
 </AuthorizeView>
+
+@code {
+    private int UserId { get; set; }
+    private Author Author { get; set; }
+
+    [Parameter]
+    public int ArtistId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Author = SelectionService.GetAuthorById(ArtistId);
+
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+
+
+    }
+
+    private IEnumerable<int> PopularAlbumsByArtist()
+    {
+        return SelectionService.GetPopularAuthorAlbumsById(ArtistId);
+    }
+
+} 

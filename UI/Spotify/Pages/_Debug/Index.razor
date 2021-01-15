@@ -1,23 +1,26 @@
-@using Spotify.Pages.Components
-@page "/debug"
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
+@inject SelectionService SelectionService 
+
+@page "/debug"
+
 <AuthorizeView>
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar></_Sidebar>
+            <_Sidebar UserId="@ID"></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
-                    <_Profile></_Profile>
+                    <_Profile UserId="@ID"></_Profile>
                 </header>
                 <main class="main">
-                    <_TopicWithAlbums Title="Недавно добавленные"></_TopicWithAlbums>
-                    <_TopicWithAlbums Title="Лучшие треки" Subtitle="Подборки хитов по исполнителям"></_TopicWithAlbums>
+                    <_TopicWithAlbums Title="Недавно добавленные" SetAlbums="@AlbumsId()"></_TopicWithAlbums>
+                    <_TopicWithAlbums Title="Лучшие альбомы" Subtitle="Подборки хитов по исполнителям" SetAlbums="@PopularAlbums()"></_TopicWithAlbums>
                 </main>
             </div>
             <_Footer></_Footer>
-            <_UserProfile></_UserProfile>
+            <_UserProfile UserId="@ID"></_UserProfile>
         }
         else
         {
@@ -31,9 +34,29 @@
 
 
 @code {
-    public object Redirect()
+    private int ID { get; set; }
+
+    protected override void OnInitialized()
     {
-        NavigationManager.NavigateTo("/Identity/Account/Login", true);
-        return new object();
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            ID = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+    }
+
+    private IEnumerable<int> AlbumsId()
+    {
+        return SelectionService.GetAlbumsIdByUserId(ID);
+    }
+
+    private IEnumerable<int> PopularAlbums()
+    {
+        return SelectionService.GetPopularAlbumsId();
     }
 } 

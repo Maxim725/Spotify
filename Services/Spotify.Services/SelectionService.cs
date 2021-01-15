@@ -65,6 +65,36 @@ namespace Spotify.Services
                 return playlists;
             }
         }
+
+        public IEnumerable<Playlist> GetPlaylistsIdByUserId(int userId)
+        {
+            IEnumerable<Playlist> playlists = _db.UserPlaylist.Include(x => x.Playlist).Where(x => x.UserId.Equals(userId)).Select(x => x.Playlist);
+
+            return playlists;
+        }
+
+        public IEnumerable<int> GetAlbumsIdByUserId(int userId)
+        {
+            IEnumerable<int> albums = _db.UserLikedAlbum.Where(x => x.UserId.Equals(userId)).Select(x => x.AlbumId);
+
+            return albums;
+        }
+        public IEnumerable<int> GetPopularAlbumsId()
+        {
+            var popularAlbumsId = _db.Albums.Select(x => new { Id =x.AlbumId, Plays = x.Plays}).ToList();
+
+            return popularAlbumsId.OrderBy(x => x.Plays).Select(x => x.Id).Take(12);
+        }
+        public Album GetAlbumById(int albumId)
+        {
+            Album album = _db.Albums.Include(x => x.Tracks).Include(x => x.Authors).ThenInclude(x => x.Author).FirstOrDefault(x => x.AlbumId.Equals(albumId));
+
+            return album;
+        }
+
+        
+
+
         public Author GetAuthorById(int id)
         {
             Author author = _db.Authors
@@ -73,6 +103,32 @@ namespace Spotify.Services
                                .FirstOrDefault(x => x.AuthorId.Equals(id));
 
             return author;
+        }
+
+        public IEnumerable<int> GetPopularAuthorAlbumsById(int authorId)
+        {
+            return _db.AlbumAuthor.Where(x => x.AuthorId.Equals(authorId)).Select(x => x.AlbumId);
+        }
+        public IEnumerable<Track> GetTracks(int albumId)
+        {
+            return _db.AlbumTrack.Where(x => x.AlbumId.Equals(albumId)).Include(x => x.Track).Select(x => x.Track);
+        }
+        public IEnumerable<Track> GetPopularTracksByArtist(int authorId)
+        {
+            HashSet<Track> set = new HashSet<Track>();
+            
+            var groupTracks = _db.AlbumAuthor.Where(x => x.AuthorId.Equals(authorId)).Include(x => x.Album).ThenInclude(x => x.Tracks).ThenInclude(x => x.Track).Select( x=> x.Album.Tracks);
+            
+            foreach(var g in groupTracks)
+            {
+                foreach(var i in g)
+                {
+                    if(!set.Contains(i.Track))
+                        set.Add(i.Track);
+                }
+            }
+
+            return set;
         }
         public Playlist GetPlaylistById(int id)
         {
@@ -195,6 +251,12 @@ namespace Spotify.Services
             return result;
         }
 
+        // Ненужные методы (удалить)
+        public IEnumerable<Album> GetAlbumsByUserId(int userId)
+        {
+            IEnumerable<Album> albums = _db.UserLikedAlbum.Include(x => x.Album).Where(x => x.UserId.Equals(userId)).Select(x => x.Album);
 
+            return albums;
+        }
     }
 }

@@ -1,5 +1,7 @@
-﻿@using Spotify.Pages.Components
-@page "/debug/album"
+﻿@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject SelectionService SelectionService
+@page "/debug/album/{AlbumId:int}"
 
 <AuthorizeView>
     <Authorized>
@@ -32,8 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <_TopicWithTracks Title="Популярные треки" ArtistId="1"></_TopicWithTracks>
-                        <_TopicWithAlbums Title="Последние релизы"></_TopicWithAlbums>
+                        <_AlbumTracks AlbumId="@AlbumId"></_AlbumTracks>
                     </div>
                 </main>
             </div>
@@ -50,3 +51,26 @@
         <_RedirectToLogin></_RedirectToLogin>
     </NotAuthorized>
 </AuthorizeView>
+
+@code {
+    private int UserId { get; set; }
+
+    [Parameter]
+    public int AlbumId { get; set; }
+    protected override void OnInitialized()
+    {
+        
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+    }
+
+
+} 

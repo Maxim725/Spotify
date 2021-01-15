@@ -1,22 +1,25 @@
-@using Spotify.Pages.Components 
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject SelectionService SelectionService
+
 @page "/debug/search"
 <AuthorizeView>
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
 
-            <_Sidebar></_Sidebar>
+            <_Sidebar UserId="@UserId"></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
-                    <_Profile></_Profile>
+                    <_Profile UserId="@UserId"></_Profile>
                 </header>
                 <main class="main">
                     <_Search></_Search>
                 </main>
             </div>
             <_Footer></_Footer>
-            <_UserProfile></_UserProfile>
+            <_UserProfile UserId="@UserId"></_UserProfile>
 
         }
         else
@@ -28,3 +31,23 @@
         <_RedirectToLogin></_RedirectToLogin>
     </NotAuthorized>
 </AuthorizeView>
+
+
+@code {
+    private int UserId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+    }
+
+} 
