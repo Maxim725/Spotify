@@ -10,13 +10,15 @@
                 </a>
             </li>
             <li class="profile-menu__item">
-                <a href="#">
-                    Выйти
-                </a>
+
             </li>
         </ul>
     </button>
+    <form method="post" action="/Identity/Account/LogOut">
+        <button type="submit" class="nav-link btn btn-link">Выйти</button>
+    </form>
 </div>
 @code {
-
+    [Parameter]
+    public int UserId { get; set; }
 }
