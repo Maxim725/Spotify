@@ -40,13 +40,98 @@
 		}
 	}
 
-	&__h1, &__h4, &__p, &__label {
+	&__input {
+		background: $color--jumbo-dark !important;
+		border: 0;
+		border-radius: 10px;
+		font-family: 'SF Pro Text';
+		font-size: 17px;
+		line-height: 24px;
+		color: $color--white !important;
+		padding: 0;
+		padding-left: 13px;
+	}
+}
+
+main.pb-3 {
+	h1, h2, h3, h4, h5, h6, p, label {
 		font-family: 'SF Pro Rounded';
 		font-weight: 800;
 		color: white;
 	}
 
-	&__hr {
+	hr {
 		color: white;
 	}
+
+	input {
+		background: $color--jumbo-dark !important;
+		border: 0;
+		border-radius: 10px;
+		font-family: 'SF Pro Text';
+		font-size: 17px;
+		line-height: 24px;
+		color: $color--white !important;
+		padding: 0;
+		padding-left: 13px;
+	}
+
+	a.nav-link.active {
+		color: white !important;
+		background-color: $color--purple;
+	}
+
+	a.btn-primary {
+		color: white !important;
+		background-color: $color--purple;
+		border-color: $color--purple;
+	}
+	
+	a.btn-secondary {
+		color: white !important;
+	}
+
+	a {
+		color: $color--purple !important;
+	}
+
+	button.btn-primary {
+		background-color: $color--purple;
+		border-color: $color--purple;
+	}
 }
+
+@media(max-width: 1680px) {
+	.login-header__buttons {
+		li {
+			a, form button {
+				font-size: 22px;
+			}
+		}
+	}
+}
+
+
+
+@media(max-width: 1366px) {
+	.login-header__buttons {
+		li {
+			a, form button {
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+
+
+@media(max-width: 1024px) {
+	.login-header__buttons {
+		li {
+			a, form button {
+				font-size: 15px;
+			}
+		}
+	}
+}
+
