@@ -1,258 +1,45 @@
-﻿<div class="album-view__tracks">
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="">
-                        Travis Scott
-                    </a>
+﻿@inject SelectionService SelectionService 
+
+<div class="album-view__tracks">
+    @foreach (Track track in Tracks)
+    {
+        <div class="album-view__track">
+            <div class="album-view__track-left">
+                <button></button>
+                <div class="album-view__track-creds">
+                    <span class="album-view__track-name">
+                        @track.Title
+                    </span>
+                    <span class="album-view__track-artist">
+                        <a href="">
+                            @try
+                            {
+                                @track.Authors.First().Author.Name
+                            }
+                            catch(Exception e)
+                            {
+                                <span>Travis Scott</span>
+                            }
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="album-view__track-right">
+                <button></button>
+                <span>
+                    @track.Duration
                 </span>
             </div>
         </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    CAROUSEL
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                3:00
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    SICKO MODE
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                5:12
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    R.I.P. SCREW
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                3:05
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STOP TRYING TO BE GOD
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                5:38
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    NO BYSTANDERS
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                3:12
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
-    <div class="album-view__track">
-        <div class="album-view__track-left">
-            <button></button>
-            <div class="album-view__track-creds">
-                <span class="album-view__track-name">
-                    STARGAZING
-                </span>
-                <span class="album-view__track-artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-            </div>
-        </div>
-        <div class="album-view__track-right">
-            <button></button>
-            <span>
-                4:30
-            </span>
-        </div>
-    </div>
+    }
 </div>
 @code {
     [Parameter]
     public int AlbumId { get; set; }
+
+    private IEnumerable<Track> Tracks { get; set; }
+    protected override void OnInitialized()
+    {
+        Tracks = SelectionService.GetTracks(AlbumId);
+    }
 }

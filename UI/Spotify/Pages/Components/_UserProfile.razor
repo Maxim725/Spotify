@@ -13,8 +13,11 @@
         </div>
         <button class="profile__superbutton">Сменить пароль</button>
         <hr>
-        <_ListPlaylists></_ListPlaylists>
+        <_ListPlaylists UserId="@UserId"></_ListPlaylists>
     </div>
-</div> {
+</div>
 
+@code {
+    [Parameter]
+    public int UserId { get; set; }
 }

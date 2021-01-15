@@ -1,128 +1,29 @@
-﻿<div class="albums">
-   @if (!String.IsNullOrWhiteSpace(Title))
-    {
-        <h2 class="title title--main">
-            @Title
-        </h2>
-    }
-   @if (!String.IsNullOrWhiteSpace(Subtitle))
-    {
-        <h4 class="title title--second">
-            @Subtitle
-        </h4>
-    }
-    <div class="album-list">
-        <_AlbumItem></_AlbumItem>
-        <div class="album">
-            <a href="#">
-                <img src="/test/example/album-example1.png" alt="" class='album__img'>
-            </a>
-            <button class="album__play-button"></button>
-            <div class="album__text">
-                <span class="album__name">
-                    <a href="#">
-                        FRANCHISE
-                    </a>
-                </span>
-                <span class="album__artist">
-                    <a href="#">
-                        Travis Scott
-                    </a>
-                </span>
-                <span class="album__info">
-                    Последний релиз · Сингл
-                </span>
-            </div>
+﻿@if (SetAlbums is not null && SetAlbums.Count() > 0)
+{
+    <div class="albums">
+        @if (!String.IsNullOrWhiteSpace(Title))
+        {
+            <h2 class="title title--main">
+                @Title
+            </h2>
+        }
+        @if (!String.IsNullOrWhiteSpace(Subtitle))
+        {
+            <h4 class="title title--second">
+                @Subtitle
+            </h4>
+        }
+        <div class="album-list">
+            @foreach (int albumId in SetAlbums)
+            {
+                <_AlbumItem AlbumId="@albumId"></_AlbumItem>
+            }
+            <button class="album-list__next-button">
+                􀆉
+            </button>
         </div>
-        <div class="album">
-            <a href="#">
-                <img src="/test/example/album-example2.png" alt="" class='album__img'>
-            </a>
-            <button class="album__play-button"></button>
-            <div class="album__text">
-                <span class="album__name">
-                    <a href="#">
-                        Было или нет?
-                    </a>
-                </span>
-                <span class="album__artist">
-                    <a href="#">
-                        SALUKI
-                    </a>
-                </span>
-                <span class="album__info">
-                    Последний релиз · Сингл
-                </span>
-            </div>
-        </div>
-        <div class="album">
-            <a href="#">
-                <img src="/test/example/album-example3.png" alt="" class='album__img'>
-            </a>
-            <button class="album__play-button"></button>
-            <div class="album__text">
-                <span class="album__name">
-                    <a href="#">
-                        OLD BLOOD
-                    </a>
-                </span>
-                <span class="album__artist">
-                    <a href="#">
-                        Boulevard Depo
-                    </a>
-                </span>
-                <span class="album__info">
-                    Последний релиз · Альбом
-                </span>
-            </div>
-        </div>
-        <div class="album">
-            <a href="#">
-                <img src="/test/example/album-example4.png" alt="" class='album__img'>
-            </a>
-            <button class="album__play-button"></button>
-            <div class="album__text">
-                <span class="album__name">
-                    <a href="#">
-                        Lamborghini
-                    </a>
-                </span>
-                <span class="album__artist">
-                    <a href="#">
-                        Элджей
-                    </a>
-                </span>
-                <span class="album__info">
-                    Последний релиз · Сингл
-                </span>
-            </div>
-        </div>
-        <div class="album album-last">
-            <a href="#">
-                <img src="/test/example/album-example5.png" alt="" class='album__img'>
-            </a>
-            <button class="album__play-button"></button>
-            <div class="album__text">
-                <span class="album__name">
-                    <a href="#">
-                        SAVAGE MODE II
-                    </a>
-                </span>
-                <span class="album__artist">
-                    <a href="#">
-                        21 Savage
-                    </a>
-                </span>
-                <span class="album__info">
-                    Последний релиз · Альбом
-                </span>
-            </div>
-        </div>
-        <button class="album-list__next-button">
-            􀆉
-        </button>
     </div>
-</div>
+}
 
 @code {
     [Parameter]
@@ -130,4 +31,7 @@
 
     [Parameter]
     public string Subtitle { get; set; } = "";
+
+    [Parameter]
+    public IEnumerable<int> SetAlbums { get; set; }
 }

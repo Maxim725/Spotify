@@ -35,9 +35,11 @@
         </nav>
     </div>
     <hr class='sidenav__hr'>
-    <_ListPlaylists></_ListPlaylists>
+    <_ListPlaylists UserId="@UserId"></_ListPlaylists>
 </div>
 
 @code {
+    [Parameter]
+    public int UserId { get; set; }
 
 }
