@@ -99,6 +99,18 @@ main.pb-3 {
 		background-color: $color--purple;
 		border-color: $color--purple;
 	}
+
+	span.input-group-text.text-success.font-weight-bold{
+		background-color: $color--jumbo-dark !important;
+		border: none;
+		color: $color--purple !important;
+	}
+
+	div.alert.alert-warning {
+		color: white !important;
+		background-color: $color--tuna !important;
+		border-color: $color--tuna !important;
+	}	
 }
 
 @media(max-width: 1680px) {

@@ -1,34 +1,53 @@
-function ProfileShow(){
-	$("#profile").css('display','flex');
-}
+let position = {};
+$( ".album-list" ).each(function( index ) {
+	position[`${this.id}`] = 0;
+});
+const albumsToShow = screen.width > 1024 ? 6 : 5;
+const albumsToScroll = screen.width > 1024 ? 3 : 2;
 
-function RegShow(){
-	$("#profile-reg").css('display','flex');
-}
+const setPosition = (id) => {
+	$(`#${id}.album-list`).css({
+		transform: `translateX(${position[`${id}`]}px)`
+	});
+};
 
-function ProfileHide(){
-    $("#profile").css('display','none');
-}
+const checkButtons = (id) => {
+	const album = $(`#${id}.album`);
+	const albumsCount = album.length;
+	const albumWidth = album.width() + parseInt(album.css("margin-right"));
+	const btnPrev = $(`#${id}.album-list__prev-button`);
+	const btnNext = $(`#${id}.album-list__next-button`);
 
-$(document).mouseup(function (e){
-	var profile_back = $("#profile");
-	var profile_window = $(".profile__window");
+	if (position[`${id}`] <= -(albumsCount - albumsToShow) * albumWidth) 
+		btnNext.hide()
+	else btnNext.show()
 	
-	if (!profile_window.is(e.target) && profile_window.has(e.target).length === 0){
-		profile_back.css('display','none');
-	}
-});
+	if (position[`${id}`] === 0) 
+		btnPrev.hide()
+	else btnPrev.show()
+};
 
-$(document).mouseup(function (e){
-	var reg_back = $("#profile-reg");
-	var reg_window = $(".profile-reg__window");
+function btnNextTap(id){
+	const album = $(`#${id}.album`);
+	const albumsCount = album.length;
+	const albumWidth = album.width() + parseInt(album.css("margin-right"));
+	const movePosition = albumsToScroll * albumWidth;
 
-	if (!reg_window.is(e.target) && reg_window.has(e.target).length === 0){
-		reg_back.css('display','none');
-	}
-});
+	const albumsLeft = albumsCount - (Math.abs(position[`${id}`]) + albumsToShow * albumWidth) / albumWidth;
+	position[`${id}`] -= albumsLeft >= albumsToScroll ?  movePosition : albumsLeft * albumWidth;
 
-$(document).ready(function(){
-    // ProfileHide();
-});
+	setPosition(id);
+	checkButtons(id)
+}
 
+function btnPrevTap(id){
+	const album = $('.album');
+	const albumWidth = album.width() + parseInt(album.css("margin-right"));
+	const movePosition = albumsToScroll * albumWidth;
+
+	const albumsLeft = Math.abs(position[`${id}`]) / albumWidth;
+	position[`${id}`] += albumsLeft >= albumsToScroll ?  movePosition : albumsLeft * albumWidth;
+
+	setPosition(id);
+	checkButtons(id)
+}

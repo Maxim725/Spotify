@@ -13,15 +13,20 @@
                 @Subtitle
             </h4>
         }
-        <div class="album-list">
-            @foreach (int albumId in SetAlbums)
-            {
-                <_AlbumItem AlbumId="@albumId"></_AlbumItem>
-            }
-            <button class="album-list__next-button">
-                􀆉
-            </button>
-        </div>
+		<div class="album-list__with-buttons">
+			<button class="album-list__prev-button" onclick="btnPrevTap(this.id)" style="display: none;" id='@ScrollerId'>
+	                􀆉
+	        </button>
+	        <div class="album-list" id='@ScrollerId'>
+	            @foreach (int albumId in SetAlbums)
+	            {
+	                <_AlbumItem AlbumId="@albumId" ScrollerId='@ScrollerId'></_AlbumItem>
+	            }
+	        </div>
+			<button class="album-list__next-button" onclick="btnNextTap(this.id)" id='@ScrollerId'>
+	                􀆉
+	        </button>
+		</div>
     </div>
 }
 
@@ -31,6 +36,9 @@
 
     [Parameter]
     public string Subtitle { get; set; } = "";
+
+	[Parameter]
+    public int ScrollerId { get; set; }
 
     [Parameter]
     public IEnumerable<int> SetAlbums { get; set; }
