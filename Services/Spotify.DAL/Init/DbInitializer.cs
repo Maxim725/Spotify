@@ -233,6 +233,44 @@ namespace Spotify.DAL.Init
             context.Authors.AddRange(authors);
             context.SaveChanges();
 
+
+            var playlists = new Playlist[]
+            {
+                new Playlist{
+                    CreatedOn = DateTime.Now,
+                    CreatedById = 1,
+                    UpdatedOn = DateTime.Now,
+                    PublishedOn = DateTime.Now,
+                    Title = "Melanholy",
+                    Description = "When you need to some chill",
+                    Plays = 2312,
+                    Tracks = new List<PlaylistTrack>()
+                },
+                new Playlist{
+                    CreatedOn = DateTime.Now,
+                    CreatedById = 2,
+                    UpdatedOn = DateTime.Now,
+                    PublishedOn = DateTime.Now,
+                    Title = "Party Hard",
+                    Description = "For the late night with friends",
+                    Plays = 2312,
+                    Tracks = new List<PlaylistTrack>()
+                },
+                new Playlist{
+                    CreatedOn = DateTime.Now,
+                    CreatedById = 3,
+                    UpdatedOn = DateTime.Now,
+                    PublishedOn = DateTime.Now,
+                    Title = "Workout",
+                    Description = "Go to the gym and turn it on",
+                    Plays = 2312,
+                    Tracks = new List<PlaylistTrack>()
+                }
+            };
+
+            context.Playlists.AddRange(playlists);
+            context.SaveChanges();
+
             var albums = new Album[]
             {
                 new Album {
@@ -503,8 +541,156 @@ namespace Spotify.DAL.Init
                 
             };
 
-            // context.Tracks.AddRange(tracks);
-            // context.SaveChanges();
+            context.Tracks.AddRange(tracks);
+            context.SaveChanges();
+
+
+            var genres = new Genre[]
+            {
+             new Genre{
+                 Description = "Рок",
+                 Plays = 54543
+             },
+             new Genre{
+                 Description = "Хип-хоп",
+                 Plays = 323131
+             },
+             new Genre{
+                 Description = "Джаз",
+                 Plays = 545435
+             },
+             new Genre{
+                 Description = "Поп-музыка",
+                 Plays = 323123
+             },
+             new Genre{
+                 Description = "Блюз",
+                 Plays = 534534
+             },
+             new Genre{
+                 Description = "Электронная музыка",
+                 Plays = 342324
+             },
+             new Genre{
+                 Description = "Шансон",
+                 Plays = 43433
+             }
+            };
+
+            context.Genres.AddRange(genres);
+            context.SaveChanges();
+
+            var trackGenre = new TrackGenre[]
+            {
+                new TrackGenre {
+                    TrackId = 1,
+                    GenreId = 1
+                },
+                new TrackGenre {
+                    TrackId = 2,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 3,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 4,
+                    GenreId = 3
+                },
+                new TrackGenre {
+                    TrackId = 5,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 6,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 7,
+                    GenreId = 4
+                },
+                new TrackGenre {
+                    TrackId = 8,
+                    GenreId = 1
+                },
+                new TrackGenre {
+                    TrackId = 9,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 10,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 11,
+                    GenreId = 2
+                },
+                new TrackGenre {
+                    TrackId = 12,
+                    GenreId = 6
+                },
+                new TrackGenre {
+                    TrackId = 13,
+                    GenreId = 7
+                }
+            };
+
+            var albumTrack = new AlbumTrack[]
+            {
+                new AlbumTrack {
+                    AlbumId = 1,
+                    TrackId = 1
+                },
+                new AlbumTrack {
+                    AlbumId = 7,
+                    TrackId = 2
+                },
+                new AlbumTrack {
+                    AlbumId = 2,
+                    TrackId = 3
+                },
+                new AlbumTrack {
+                    AlbumId = 12,
+                    TrackId = 4
+                },
+                new AlbumTrack {
+                    AlbumId = 13,
+                    TrackId = 5
+                },
+                new AlbumTrack {
+                    AlbumId = 10,
+                    TrackId = 6
+                },
+                new AlbumTrack {
+                    AlbumId = 9,
+                    TrackId = 7
+                },
+                new AlbumTrack {
+                    AlbumId = 5,
+                    TrackId = 8
+                },
+                new AlbumTrack {
+                    AlbumId = 4,
+                    TrackId = 9
+                },
+                new AlbumTrack {
+                    AlbumId = 14,
+                    TrackId = 10
+                },
+                new AlbumTrack {
+                    AlbumId = 6,
+                    TrackId = 11
+                },
+                new AlbumTrack {
+                    AlbumId = 11,
+                    TrackId = 12
+                },
+                new AlbumTrack {
+                    AlbumId = 13,
+                    TrackId = 13
+                }
+            };
 
             var userLikedTrack = new UserLikedTrack[]
             {
@@ -622,6 +808,54 @@ namespace Spotify.DAL.Init
                 }
             };
 
+            var playlistTrack = new PlaylistTrack[]
+            {
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 1
+                },
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 2
+                },
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 3
+                },
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 4
+                },
+                new PlaylistTrack{
+                    PlaylistId = 2,
+                    TrackId = 5
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 6
+                },
+                new PlaylistTrack{
+                    PlaylistId = 2,
+                    TrackId = 7
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 9
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 10
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 11
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 12
+                },
+            };
+
             var albumAuthor = new AlbumAuthor[]
             {
                 new AlbumAuthor {
@@ -682,10 +916,13 @@ namespace Spotify.DAL.Init
                 }
             };
 
-            // context.UserLikedTrack.AddRange(userLikedTrack);
-            // context.TrackAuthor.AddRange(trackAuthor);
-            // context.AlbumAuthor.AddRange(albumAuthor);
-            // context.SaveChanges();
+            context.PlaylistTrack.AddRange(playlistTrack);
+            context.TrackGenre.AddRange(trackGenre);
+            context.AlbumTrack.AddRange(albumTrack);
+            context.UserLikedTrack.AddRange(userLikedTrack);
+            context.TrackAuthor.AddRange(trackAuthor);
+            context.AlbumAuthor.AddRange(albumAuthor);
+            context.SaveChanges();
         }
     }
 }
