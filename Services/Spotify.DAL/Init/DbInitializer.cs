@@ -682,10 +682,10 @@ namespace Spotify.DAL.Init
                 }
             };
 
-            // context.UserLikedTrack.AddRange(userLikedTrack);
-            // context.TrackAuthor.AddRange(trackAuthor);
-            // context.AlbumAuthor.AddRange(albumAuthor);
-            // context.SaveChanges();
+            context.UserLikedTrack.AddRange(userLikedTrack);
+            context.TrackAuthor.AddRange(trackAuthor);
+            context.AlbumAuthor.AddRange(albumAuthor);
+            context.SaveChanges();
         }
     }
 }

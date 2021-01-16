@@ -3,7 +3,7 @@
 @if (Album is not null)
 {
     <div class="album">
-        <a href="/debug/album">
+        <a href="/debug/album/@AlbumId ">
             <img src="/test/example/album-example.png" alt="" class='album__img'>
         </a>
         <button class="album__play-button"></button>
@@ -14,7 +14,7 @@
                 </a>
             </span>
             <span class="album__artist">
-                <a href="#">
+                <a href="/debug/Album/@AlbumId">
                     <!-- КОСТЫЛЬ, когда данные будут, убрать!!!! -->
                     @try
                     {
@@ -56,7 +56,8 @@
         }
         else
         {
-            throw new Exception("В альбоме 0 треков, беда!!");
+            TypeAlbums = "Сингл";
+            //throw new Exception("В альбоме 0 треков, беда!!");
         }
     }
 }
