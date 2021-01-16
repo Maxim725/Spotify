@@ -92,8 +92,7 @@ namespace Spotify.DAL.Init
                     Subscriptions = new List<UserSubscription>(),
                     LikedAlbums = new List<UserLikedAlbum>(),
                     Playlists = new List<UserPlaylist>()
-                },
-
+                }
             };
 
             context.Users.AddRange(users);
