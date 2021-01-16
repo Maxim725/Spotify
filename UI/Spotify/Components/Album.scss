@@ -1,9 +1,10 @@
 .album-list {
-	width: 100%;
+	width: auto;
 	margin-top: 20px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	transition: 1s;
+	// justify-content: space-between;
 
 	&__next-button {
 		font-family: 'SF Pro Text';
@@ -12,7 +13,25 @@
 		color: $color--light;
 		transform: rotate(-180deg);
 		padding: 0;
-		margin-left: 5px;
+		position: absolute;
+		right: 5px;
+	}
+
+	&__prev-button {
+		font-family: 'SF Pro Text';
+		font-weight: thin;
+		font-size: 36px;
+		color: $color--light;
+		padding: 0;
+		position: absolute;
+		left: 22.5%;
+	}
+	
+	&__with-buttons {
+		display: flex;
+   		align-items: center;
+		overflow: hidden;
+		margin-right: 25px;
 	}
 }
 
@@ -22,7 +41,7 @@
 	height: 310px;
 	background: rgba(28, 28, 30, 0.8);
 	border-radius: 20px;
-	margin-right: 7px;
+	margin-right: 19px;
 
 	&:hover {
 		background: $color--tuna;
@@ -44,9 +63,9 @@
 		}
 	}
 
-	&:last-of-type {
-		margin: 0;
-	}
+	// &:last-of-type {
+	// 	margin-right: 25px;
+	// }
 
 	&__text {
 		display: flex;
@@ -69,7 +88,7 @@
 		font-size: 24px;
 		color: $color--light-gray;
 
-		// width: 80%;
+		width: 85%;
 		overflow: hidden;
 		display: inline-block;
 		text-overflow: ellipsis;
@@ -93,13 +112,13 @@
 		height: 40px;
 		border-radius: 50%;
 		opacity: 0%;
-		background-image: url('../svg/play_button.svg');
+		background-image: url('/images/icons/play_button.svg');
 		background-size: cover;
 	
-		&:focus {
-			background-image: url('../svg/stop_button.svg');
-			background-size: cover;
-		}
+		// &:focus {
+		// 	background-image: url('/images/icons/stop_button.svg');
+		// 	background-size: cover;
+		// }
 	}
 }
 
@@ -294,16 +313,24 @@
 	.album-list {
 		margin-top: 15px;
 
-		&__next-button {
+		&__with-buttons {
+			margin-right: 20px;
+		}
+
+		&__next-button, &__prev-button {
 			font-size: 32px;
+		}
+
+		&__prev-button {
+			left: 21.2%;
 		}
 	}
 
 	.album {
 		width: 200px;
 		height: 280px;
-		// margin-right: 12px;
 		border-radius: 18px;
+		margin-right: 12px;
 
 		&__img {
 			width: 164px;
@@ -409,8 +436,18 @@
 }
 
 @media(max-width: 1366px) {
-	.album-list__next-button {
-		font-size: 26px;
+	.album-list {
+		&__with-buttons {
+			margin-right: 15px;
+		}
+
+		&__next-button, &__prev-button {
+			font-size: 26px;
+		}
+
+		&__prev-button {
+			left: 20.7%;
+		}
 	}
 
 	.album {
@@ -418,6 +455,7 @@
 		height: 227px;
 		// margin-right: 9px;
 		border-radius: 15px;
+		margin-right: 12px;
 
 		// &:last-of-type {
 		// 	margin-right: 6px;
@@ -446,9 +484,9 @@
 			height: 30px;
 		}
 		
-		// &:last-of-type {
-		// 	display: none;
-		// }
+		&:last-of-type {
+			margin-right: 20px;
+		}
 
 		// &:nth-last-of-type(-n+2) {
 		// 	margin: 0;
@@ -540,8 +578,18 @@
 }
 
 @media(max-width: 1024px) {
-	.album-list__next-button {
-		font-size: 22px;
+	.album-list {
+		&__with-buttons {
+			margin-right: 12px;
+		}
+
+		&__next-button, &__prev-button {
+			font-size: 22px;
+		}
+
+		&__prev-button {
+			left: 20.7%;
+		}
 	}
 
 	.album {
@@ -549,6 +597,7 @@
 		height: 210px;
 		// margin-right: 7px;
 		border-radius: 15px;
+		margin-right: 5px;
 
 		&__img {
 			width: 122px;
@@ -574,12 +623,7 @@
 		}
 		
 		&:last-of-type {
-			margin: 0;
-			display: none;
-		}
-
-		&:nth-last-of-type(-n+2) {
-			margin: 0;
+			margin-right: 25px;
 		}
 	}
 
