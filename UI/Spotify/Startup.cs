@@ -19,6 +19,7 @@ using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
 using Spotify.Services;
 using Spotify.DAL.Init;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Spotify
 {
@@ -71,6 +72,7 @@ namespace Spotify
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
             });
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

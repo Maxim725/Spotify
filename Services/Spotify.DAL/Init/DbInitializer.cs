@@ -808,6 +808,54 @@ namespace Spotify.DAL.Init
                 }
             };
 
+            var playlistTrack = new PlaylistTrack[]
+            {
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 1
+                },
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 2
+                },
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 3
+                },
+                new PlaylistTrack{
+                    PlaylistId = 1,
+                    TrackId = 4
+                },
+                new PlaylistTrack{
+                    PlaylistId = 2,
+                    TrackId = 5
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 6
+                },
+                new PlaylistTrack{
+                    PlaylistId = 2,
+                    TrackId = 7
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 9
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 10
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 11
+                },
+                new PlaylistTrack{
+                    PlaylistId = 3,
+                    TrackId = 12
+                },
+            };
+
             var albumAuthor = new AlbumAuthor[]
             {
                 new AlbumAuthor {
@@ -868,10 +916,14 @@ namespace Spotify.DAL.Init
                 }
             };
 
+            context.PlaylistTrack.AddRange(playlistTrack);
+            context.TrackGenre.AddRange(trackGenre);
+            context.AlbumTrack.AddRange(albumTrack);
             context.UserLikedTrack.AddRange(userLikedTrack);
             context.TrackAuthor.AddRange(trackAuthor);
             context.AlbumAuthor.AddRange(albumAuthor);
             context.SaveChanges();
+
         }
 
         public static void GetCustomUser(UserManager<User> _userManager, SignInManager<User> _signInManager, SpotifyDbContext _context)

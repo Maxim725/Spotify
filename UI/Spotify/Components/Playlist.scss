@@ -1,4 +1,10 @@
-﻿.playlist {
+﻿.playlists {
+	height: 535px;
+	overflow: auto;
+	margin-bottom: 90px;
+}
+
+.playlist {
     margin-left: 18px;
     margin: auto;
     display: flex;
@@ -33,6 +39,10 @@
 }
 
 @media(max-width: 1680px) {
+	.playlists {
+		height: 555px;
+	}
+
     .playlist {
         img {
             width: 45px;
@@ -46,6 +56,11 @@
 }
 
 @media(max-width: 1366px) {
+	.playlists {
+		height: 340px;
+		margin-bottom: 70px;
+	}
+
     .playlist {
         img {
             width: 40px;
@@ -59,7 +74,12 @@
     }
 }
 
-@media(max-width: 1366px) {
+@media(max-width: 1024px) {
+	.playlists {
+   		height: 420px;
+		margin-bottom: 60px;
+	}
+
     .playlist {
         img {
             width: 35px;

@@ -2,21 +2,9 @@
     <a href="#" class="profile-menu__text">
         @@figmamusic
     </a>
-    <button class="profile-menu__img">
-        <ul class="profile-menu__list">
-            <li class="profile-menu__item">
-                <a href="javascript:ProfileShow()">
-                    Аккаунт
-                </a>
-            </li>
-            <li class="profile-menu__item">
-
-            </li>
-        </ul>
-    </button>
-    <form method="post" action="/Identity/Account/LogOut">
-        <button type="submit" class="nav-link btn btn-link">Выйти</button>
-    </form>
+	<a href="/Identity/Account/Manage">
+ 		<img class="profile-menu__img" src="/images/icons/user_profile.svg">
+ 	</a>
 </div>
 @code {
     [Parameter]

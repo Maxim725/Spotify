@@ -7,7 +7,9 @@ namespace Spotify.DAL
 {
     public enum FileStorageFileType {
         Track,
-        Avatar
+        Avatar,
+        AlbumCover,
+        AuthorAvatar
     }
 
 
@@ -15,7 +17,7 @@ namespace Spotify.DAL
     {
         void Init(SpotifyDbContext context);
 
-        string StoreFile(FileStorageFileType ftype, T fid, byte[] fileData);
+        string StoreFile(FileStorageFileType ftype, T fid, byte[] fileData, string fmime);
 
         byte[] GetFileById(FileStorageFileType ftype, T fid);
 

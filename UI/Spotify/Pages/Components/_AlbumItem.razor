@@ -2,8 +2,8 @@
 @inject SelectionService SelectionService
 @if (Album is not null)
 {
-    <div class="album">
-        <a href="/debug/album/@AlbumId ">
+    <div class="album" id="@ScrollerId">
+        <a href="/debug/album">
             <img src="/test/example/album-example.png" alt="" class='album__img'>
         </a>
         <button class="album__play-button"></button>
@@ -35,6 +35,9 @@
 @code {
     [Parameter]
     public int AlbumId { get; set; }
+
+	[Parameter]
+    public int ScrollerId { get; set; }
 
     private Album Album { get; set; }
     private string TypeAlbums { get; set; }
