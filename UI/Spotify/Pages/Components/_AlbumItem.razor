@@ -1,20 +1,20 @@
-﻿
-@inject SelectionService SelectionService
+﻿@inject SelectionService SelectionService
+
 @if (Album is not null)
 {
     <div class="album" id="@ScrollerId">
-        <a href="/debug/album">
-            <img src="/test/example/album-example.png" alt="" class='album__img'>
+        <a href="/debug/album/@Album.AlbumId">
+            <img src="@Album.Cover" alt="" class='album__img'>
         </a>
         <button class="album__play-button"></button>
         <div class="album__text">
             <span class="album__name">
-                <a href="/debug/album">
+                <a href="/debug/album/@Album.AlbumId">
                     @Album.Title
                 </a>
             </span>
             <span class="album__artist">
-                <a href="/debug/Album/@AlbumId">
+                <a href="/debug/Artist/@Album.Authors[0].AuthorId">
                     <!-- КОСТЫЛЬ, когда данные будут, убрать!!!! -->
                     @try
                     {

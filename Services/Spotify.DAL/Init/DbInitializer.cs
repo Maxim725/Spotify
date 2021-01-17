@@ -7,6 +7,7 @@ using Spotify.Domain.Entities.Identity;
 using Spotify.Domain.Entities.Intermediate;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -282,7 +283,7 @@ namespace Spotify.DAL.Init
                     CreatedById = 1,
                     Title = "Мизантропия",
                     Plays = 0,
-                    Cover = "Spotify/Author/Северный_Флот/Albums/Мизантропия/Cover.jpg"
+                    Cover = "/data/album-cover/1"
                 },
                 new Album {
                     CreatedOn = DateTime.Now,
@@ -924,6 +925,7 @@ namespace Spotify.DAL.Init
             context.AlbumAuthor.AddRange(albumAuthor);
             context.SaveChanges();
 
+           
         }
 
         public static void GetCustomUser(UserManager<User> _userManager, SignInManager<User> _signInManager, SpotifyDbContext _context)
@@ -984,6 +986,20 @@ namespace Spotify.DAL.Init
 
             _context.UserPlaylist.AddRange(testUserPlaylists);
             _context.SaveChanges();
+        }
+
+        public static void WriteFiles(IFileStorage<int> fb)
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, "Author\\11\\11.jpg");
+
+            fb.StoreFile(FileStorageFileType.AlbumCover, 1, File.ReadAllBytes(path), "img/jpeg");
+
+            //TODO
+
+            // 1) Северный флот не 1-й id
+            // 2) Почмотреть как заполняются все альбомы + треки + User
+            // 3) Синхронизировать id сущностей и файлов..
+
         }
     }
 }

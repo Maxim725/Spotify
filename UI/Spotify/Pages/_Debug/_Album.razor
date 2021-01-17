@@ -1,6 +1,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
+
 @page "/debug/album/{AlbumId:int}"
 
 <AuthorizeView>
@@ -14,22 +15,27 @@
                     <_Profile UserId="@UserId"></_Profile>
                 </header>
                 <main class="main">
-                    <div class="artist">
-                        <div class="artist__main">
-                            <img class="artist__main-img" src="/images/debug/boka1.jpg" alt="">
-                            <div class="artist__main-right">
+                    <div class="album-view">
+                        <div class="album-view__main">
+                            <div class="album-view__img">
+                                <img class="album-view__img" src="@Album.Cover" alt="">
+                            </div>
+                            <div class="album-view__right">
                                 <h1>
-                                    @GetNameArtist()
+                                    @Album.Title
                                 </h1>
-                                <div class="artist__buttons">
+                                <h2>
+                                    Travis Scott&nbsp;·&nbsp;2018
+                                </h2>
+                                <div class="album-view__buttons">
                                     <button>
-                                        <img src="/images/icons/play_button.svg" alt="">
+                                        <img src="svg/play_button.svg" alt="">
                                     </button>
                                     <button>
-                                        <img src="/images/icons/filled_heart.svg" alt="">
+                                        <img src="svg/star.svg" alt="">
                                     </button>
                                     <button>
-                                        <img src="/images/icons/more.svg" alt="">
+                                        <img src="svg/more.svg" alt="">
                                     </button>
                                 </div>
                             </div>
@@ -52,6 +58,7 @@
 
 @code {
     private int UserId { get; set; }
+    private Album Album { get; set; }
 
     [Parameter]
     public int AlbumId { get; set; }
@@ -63,6 +70,7 @@
             var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
 
             UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+            Album = SelectionService.GetAlbumById(AlbumId);
         }
         else
         {
@@ -72,8 +80,7 @@
 
     private string GetNameArtist()
     {
-        //var res = SelectionService.GetAlbumById(AlbumId)?.Authors?.First()?.Author?.Name ?? "";'
-        var res = "";
+        var res = Album.Title;
         return res == "" ? "Unknown" : res;
     }
 

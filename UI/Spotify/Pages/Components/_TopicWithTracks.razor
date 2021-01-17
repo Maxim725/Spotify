@@ -20,7 +20,14 @@
                         <div class="artist__track">
                             <div class="artist__track-left">
                                 <button>
-                                    <img src="/images/debug/boka2.jpg" alt="">
+                                    @if (string.IsNullOrWhiteSpace(Cover[k]))
+                                    {
+                                        <img src="/data/album-cover/0" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Cover" alt="">
+                                    }
                                 </button>
                             </div>
                             <div class="artist__track-creds">
@@ -45,109 +52,6 @@
                 }
             }
         }
-        @*<div class="artist__tracks-column">
-            <div class="artist__track">
-                <div class="artist__track-left">
-                    <button>
-                        <img src="/images/debug/boka2.jpg" alt="">
-                    </button>
-                </div>
-                <div class="artist__track-creds">
-                    <span class="artist__track-name">
-                        Доля воровская
-                    </span>
-                    <span class="artist__track-album">
-                        Доля воровская · 2018
-                    </span>
-                </div>
-                <button></button>
-            </div>
-            <div class="artist__track">
-                <div class="artist__track-left">
-                    <button>
-                        <img src="/images/debug/boka2.jpg" alt="">
-                    </button>
-                </div>
-                <div class="artist__track-creds">
-                    <span class="artist__track-name">
-                        Доля воровская
-                    </span>
-                    <span class="artist__track-album">
-                        Доля воровская · 2018
-                    </span>
-                </div>
-                <button></button>
-            </div>
-            <div class="artist__track">
-                <div class="artist__track-left">
-                    <button>
-                        <img src="/images/debug/boka2.jpg" alt="">
-                    </button>
-                </div>
-                <div class="artist__track-creds">
-                    <span class="artist__track-name">
-                        Доля воровская
-                    </span>
-                    <span class="artist__track-album">
-                        Доля воровская · 2018
-                    </span>
-                </div>
-                <button></button>
-            </div>
-        </div>
-        <div class="artist__tracks-column">
-            <div class="artist__track">
-                <div class="artist__track-left">
-                    <button>
-                        <img src="/images/debug/boka2.jpg" alt="">
-                    </button>
-                </div>
-                <div class="artist__track-creds">
-                    <span class="artist__track-name">
-                        Доля воровская
-                    </span>
-                    <span class="artist__track-album">
-                        Доля воровская · 2018
-                    </span>
-                </div>
-                <button></button>
-            </div>
-            <div class="artist__track">
-                <div class="artist__track-left">
-                    <button>
-                        <img src="/images/debug/boka2.jpg" alt="">
-                    </button>
-                </div>
-                <div class="artist__track-creds">
-                    <span class="artist__track-name">
-                        Доля воровская
-                    </span>
-                    <span class="artist__track-album">
-                        Доля воровская · 2018
-                    </span>
-                </div>
-                <button></button>
-            </div>
-            <div class="artist__track">
-                <div class="artist__track-left">
-                    <button>
-                        <img src="/images/debug/boka2.jpg" alt="">
-                    </button>
-                </div>
-                <div class="artist__track-creds">
-                    <span class="artist__track-name">
-                        Доля воровская
-                    </span>
-                    <span class="artist__track-album">
-                        Доля воровская · 2018
-                    </span>
-                </div>
-                <button></button>
-            </div>
-        </div>
-        <button class="album-list__next-button">
-            􀆉
-        </button>*@
     </div>
 </div>
 @code {
@@ -155,17 +59,25 @@
     public string Title { get; set; }
 
     [Parameter]
-    public int ArtistId { get; set; }
+    public int? ArtistId { get; set; }
+
+    private string[] Cover { get; set; } = new string[9];
+    
+    [Parameter]
+    public Track[] Tracks { get; set; }
 
     private int ColumnCount { get; set; } = 3;
 
-    public int AmountTrackInColumn { get; set; } = 3;
+    private int AmountTrackInColumn { get; set; } = 3;
 
-    private Track[] Tracks { get; set; }
 
     protected override void OnInitialized()
     {
-        Tracks = SelectionService.GetPopularTracksByArtist(ArtistId).ToArray();
+        
+        if(ArtistId.HasValue)
+        {
+            Tracks = SelectionService.GetPopularTracksByArtist(ArtistId.Value).ToArray();
+        }
     }
 
 }
