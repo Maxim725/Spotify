@@ -583,336 +583,336 @@ namespace Spotify.DAL.Init
             var trackGenre = new TrackGenre[]
             {
                 new TrackGenre {
-                    TrackId = 1,
-                    GenreId = 1
+                    Track = tracks[0],
+                    Genre = genres[0]
                 },
                 new TrackGenre {
-                    TrackId = 2,
-                    GenreId = 2
+                    Track = tracks[1],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 3,
-                    GenreId = 2
+                    Track = tracks[2],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 4,
-                    GenreId = 3
+                    Track = tracks[3],
+                    Genre = genres[2]
                 },
                 new TrackGenre {
-                    TrackId = 5,
-                    GenreId = 2
+                    Track = tracks[4],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 6,
-                    GenreId = 2
+                    Track = tracks[5],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 7,
-                    GenreId = 4
+                    Track = tracks[6],
+                    Genre = genres[3]
                 },
                 new TrackGenre {
-                    TrackId = 8,
-                    GenreId = 1
+                    Track = tracks[7],
+                    Genre = genres[0]
                 },
                 new TrackGenre {
-                    TrackId = 9,
-                    GenreId = 2
+                    Track = tracks[8],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 10,
-                    GenreId = 2
+                    Track = tracks[9],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 11,
-                    GenreId = 2
+                    Track = tracks[10],
+                    Genre = genres[1]
                 },
                 new TrackGenre {
-                    TrackId = 12,
-                    GenreId = 6
+                    Track = tracks[11],
+                    Genre = genres[5]
                 },
                 new TrackGenre {
-                    TrackId = 13,
-                    GenreId = 7
+                    Track = tracks[12],
+                    Genre = genres[6]
                 }
             };
 
             var albumTrack = new AlbumTrack[]
             {
                 new AlbumTrack {
-                    AlbumId = 1,
-                    TrackId = 1
+                    Album = albums[0],
+                    Track = tracks[0]
                 },
                 new AlbumTrack {
-                    AlbumId = 7,
-                    TrackId = 2
+                    Album = albums[6],
+                    Track = tracks[1]
                 },
                 new AlbumTrack {
-                    AlbumId = 2,
-                    TrackId = 3
+                    Album = albums[1],
+                    Track = tracks[2]
                 },
                 new AlbumTrack {
-                    AlbumId = 12,
-                    TrackId = 4
+                    Album = albums[11],
+                    Track = tracks[3]
                 },
                 new AlbumTrack {
-                    AlbumId = 13,
-                    TrackId = 5
+                    Album = albums[12],
+                    Track = tracks[4]
                 },
                 new AlbumTrack {
-                    AlbumId = 10,
-                    TrackId = 6
+                    Album = albums[9],
+                    Track = tracks[5]
                 },
                 new AlbumTrack {
-                    AlbumId = 9,
-                    TrackId = 7
+                    Album = albums[8],
+                    Track = tracks[6]
                 },
                 new AlbumTrack {
-                    AlbumId = 5,
-                    TrackId = 8
+                    Album = albums[4],
+                    Track = tracks[7]
                 },
                 new AlbumTrack {
-                    AlbumId = 4,
-                    TrackId = 9
+                    Album = albums[3],
+                    Track = tracks[8]
                 },
                 new AlbumTrack {
-                    AlbumId = 14,
-                    TrackId = 10
+                    Album = albums[13],
+                    Track = tracks[9]
                 },
                 new AlbumTrack {
-                    AlbumId = 6,
-                    TrackId = 11
+                    Album = albums[5],
+                    Track = tracks[10]
                 },
                 new AlbumTrack {
-                    AlbumId = 11,
-                    TrackId = 12
+                    Album = albums[10],
+                    Track = tracks[11]
                 },
                 new AlbumTrack {
-                    AlbumId = 13,
-                    TrackId = 13
+                    Album = albums[12],
+                    Track = tracks[12]
                 }
             };
 
             var userLikedTrack = new UserLikedTrack[]
             {
                 new UserLikedTrack {
-                    UserId = 1,
-                    TrackId = 1
+                    User = users[0],
+                    Track = tracks[0]
                 },
                 new UserLikedTrack {
-                    UserId = 2,
-                    TrackId = 3
+                    User = users[1],
+                    Track = tracks[2]
                 },
                 new UserLikedTrack {
-                    UserId = 2,
-                    TrackId = 13
+                    User = users[1],
+                    Track = tracks[12]
                 },
                 new UserLikedTrack {
-                    UserId = 2,
-                    TrackId = 5
+                    User = users[1],
+                    Track = tracks[4]
                 },
                 new UserLikedTrack {
-                    UserId = 2,
-                    TrackId = 2
+                    User = users[1],
+                    Track = tracks[1]
                 },
                 new UserLikedTrack {
-                    UserId = 3,
-                    TrackId = 5
+                    User = users[2],
+                    Track = tracks[4]
                 },
                 new UserLikedTrack {
-                    UserId = 3,
-                    TrackId = 6
+                    User = users[2],
+                    Track = tracks[5]
                 },
                 new UserLikedTrack {
-                    UserId = 4,
-                    TrackId = 12
+                    User = users[3],
+                    Track = tracks[11]
                 },
                 new UserLikedTrack {
-                    UserId = 5,
-                    TrackId = 8
+                    User = users[4],
+                    Track = tracks[7]
                 },
                 new UserLikedTrack {
-                    UserId = 5,
-                    TrackId = 9
+                    User = users[4],
+                    Track = tracks[8]
                 },
                 new UserLikedTrack {
-                    UserId = 5,
-                    TrackId = 10
+                    User = users[4],
+                    Track = tracks[9]
                 },
                 new UserLikedTrack {
-                    UserId = 6,
-                    TrackId = 4
+                    User = users[5],
+                    Track = tracks[3]
                 },
                 new UserLikedTrack {
-                    UserId = 6,
-                    TrackId = 1
+                    User = users[5],
+                    Track = tracks[0]
                 },
                 new UserLikedTrack {
-                    UserId = 7,
-                    TrackId = 11
+                    User = users[6],
+                    Track = tracks[10]
                 }
             };
 
             var trackAuthor = new TrackAuthor[]
             {
                 new TrackAuthor {
-                    AuthorId = 1,
-                    TrackId = 1
+                    Author = authors[0],
+                    Track = tracks[0]
                 },
                 new TrackAuthor {
-                    AuthorId = 12,
-                    TrackId = 2
+                    Author = authors[11],
+                    Track = tracks[1]
                 },
                 new TrackAuthor {
-                    AuthorId = 6,
-                    TrackId = 3
+                    Author = authors[5],
+                    Track = tracks[2]
                 },
                 new TrackAuthor {
-                    AuthorId = 8,
-                    TrackId = 4
+                    Author = authors[7],
+                    Track = tracks[3]
                 },
                 new TrackAuthor {
-                    AuthorId = 4,
-                    TrackId = 5
+                    Author = authors[3],
+                    Track = tracks[4]
                 },
                 new TrackAuthor {
-                    AuthorId = 5,
-                    TrackId = 6
+                    Author = authors[4],
+                    Track = tracks[5]
                 },
                 new TrackAuthor {
-                    AuthorId = 7,
-                    TrackId = 7
+                    Author = authors[6],
+                    Track = tracks[6]
                 },
                 new TrackAuthor {
-                    AuthorId = 9,
-                    TrackId = 8
+                    Author = authors[8],
+                    Track = tracks[7]
                 },
                 new TrackAuthor {
-                    AuthorId = 3,
-                    TrackId = 9
+                    Author = authors[1],
+                    Track = tracks[8]
                 },
                 new TrackAuthor {
-                    AuthorId = 15,
-                    TrackId = 10
+                    Author = authors[14],
+                    Track = tracks[9]
                 },
                 new TrackAuthor {
-                    AuthorId = 3,
-                    TrackId = 11
+                    Author = authors[2],
+                    Track = tracks[10]
                 },
                 new TrackAuthor {
-                    AuthorId = 11,
-                    TrackId = 12
+                    Author = authors[10],
+                    Track = tracks[11]
                 },
                 new TrackAuthor {
-                    AuthorId = 4,
-                    TrackId = 13
+                    Author = authors[3],
+                    Track = tracks[12]
                 }
             };
 
             var playlistTrack = new PlaylistTrack[]
             {
                 new PlaylistTrack{
-                    PlaylistId = 1,
-                    TrackId = 1
+                    Playlist = playlists[0],
+                    Track = tracks[0]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 1,
-                    TrackId = 2
+                    Playlist = playlists[0],
+                    Track = tracks[1]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 1,
-                    TrackId = 3
+                    Playlist = playlists[0],
+                    Track = tracks[2]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 1,
-                    TrackId = 4
+                    Playlist = playlists[0],
+                    Track = tracks[3]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 2,
-                    TrackId = 5
+                    Playlist = playlists[1],
+                    Track = tracks[4]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 3,
-                    TrackId = 6
+                    Playlist = playlists[2],
+                    Track = tracks[5]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 2,
-                    TrackId = 7
+                    Playlist = playlists[1],
+                    Track = tracks[6]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 3,
-                    TrackId = 9
+                    Playlist = playlists[2],
+                    Track = tracks[8]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 3,
-                    TrackId = 10
+                    Playlist = playlists[2],
+                    Track = tracks[9]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 3,
-                    TrackId = 11
+                    Playlist = playlists[2],
+                    Track = tracks[10]
                 },
                 new PlaylistTrack{
-                    PlaylistId = 3,
-                    TrackId = 12
+                    Playlist = playlists[2],
+                    Track = tracks[11]
                 },
             };
 
             var albumAuthor = new AlbumAuthor[]
             {
                 new AlbumAuthor {
-                    AuthorId = 1,
-                    AlbumId = 1
+                    Author = authors [0],
+                    Album = albums [0]
                 },
                 new AlbumAuthor {
-                    AuthorId = 2,
-                    AlbumId = 4
+                    Author = authors [1],
+                    Album = albums [3]
                 },
                 new AlbumAuthor {
-                    AuthorId = 3,
-                    AlbumId = 6
+                    Author = authors [2],
+                    Album = albums [5]
                 },
                 new AlbumAuthor {
-                    AuthorId = 4,
-                    AlbumId = 13
+                    Author = authors [3],
+                    Album = albums [12]
                 },
                 new AlbumAuthor {
-                    AuthorId = 5,
-                    AlbumId = 10
+                    Author = authors [4],
+                    Album = albums [9]
                 },
                 new AlbumAuthor {
-                    AuthorId = 6,
-                    AlbumId = 2
+                    Author = authors [5],
+                    Album = albums [1]
                 },
                 new AlbumAuthor {
-                    AuthorId = 7,
-                    AlbumId = 9
+                    Author = authors [6],
+                    Album = albums [8]
                 },
                 new AlbumAuthor {
-                    AuthorId = 8,
-                    AlbumId = 12
+                    Author = authors [7],
+                    Album = albums [11]
                 },
                 new AlbumAuthor {
-                    AuthorId = 9,
-                    AlbumId = 5
+                    Author = authors [8],
+                    Album = albums [4]
                 },
                 new AlbumAuthor {
-                    AuthorId = 10,
-                    AlbumId = 11
+                    Author = authors [9],
+                    Album = albums [10]
                 },
                 new AlbumAuthor {
-                    AuthorId = 12,
-                    AlbumId = 7
+                    Author = authors [11],
+                    Album = albums [6]
                 },
                 new AlbumAuthor {
-                    AuthorId = 13,
-                    AlbumId = 8
+                    Author = authors [12],
+                    Album = albums [7]
                 },
                 new AlbumAuthor {
-                    AuthorId = 14,
-                    AlbumId = 3
+                    Author = authors [13],
+                    Album = albums [2]
                 },
                 new AlbumAuthor {
-                    AuthorId = 15,
-                    AlbumId = 14
+                    Author = authors [14],
+                    Album = albums [13]
                 }
             };
 
