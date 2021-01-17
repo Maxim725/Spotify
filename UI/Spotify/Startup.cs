@@ -18,6 +18,7 @@ using Spotify.Data;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
 using Spotify.Services;
+using Spotify.DAL.Init;
 
 namespace Spotify
 {
@@ -52,11 +53,14 @@ namespace Spotify
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SearchService>();
             services.AddScoped<SelectionService>();
+
+            services.AddTransient<DbInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DbInitializer init)
         {
+            init.GetCustomUser();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
