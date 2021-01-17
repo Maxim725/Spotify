@@ -1,14 +1,30 @@
-﻿<div class="search-content">
+﻿@inject SearchService SearchService
+
+<div class="search-content">
     <div class="search__layout">
        <_TopicWithArtist Title="Артисты"></_TopicWithArtist>
     </div>
     <div class="artist">
-        <_TopicWithTracks Title="Tреки">
+        <_TopicWithTracks Title="Tреки" Tracks="@Tracks">
         </_TopicWithTracks>
         
         <_TopicWithAlbums Title="Альбомы"></_TopicWithAlbums>
     </div>
 </div>
 @code {
+    [Parameter]
+    public string SearchString { get; set; }
+
+    private Track[] Tracks { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Tracks = SearchService.SearchTrack(SearchString).ToArray();
+    }
+
+    protected override bool ShouldRender()
+    {
+        return true;
+    }
 
 }

@@ -124,6 +124,15 @@ namespace Spotify.DAL
             context.AlbumTrack.Add(testTrackAlbum);
             context.SaveChanges();
 
+            AlbumAuthor albumAuthor = new AlbumAuthor
+            {
+                AlbumId = testAlbum.AlbumId,
+                AuthorId = testAuthor.AuthorId
+            };
+
+            context.AlbumAuthor.Add(albumAuthor);
+            context.SaveChanges();
+
             return testTrack;
         }
 

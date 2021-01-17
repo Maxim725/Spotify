@@ -35,6 +35,7 @@ namespace Spotify
 					DbInitializer.Initialize(context);
 					DbInitializer.GetCustomUser(userManager, signInManager, context);
 					storage.Init(context);
+					DbInitializer.WriteFiles(storage);
 				}
 				catch (Exception ex)
 				{
