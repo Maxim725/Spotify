@@ -86,7 +86,7 @@ namespace Spotify.DAL
                 CreatedById = 1,
                 Title = "Awkward Mystery",
                 Plays = 0,
-                Cover = "/data/album-cover/0"
+                Cover = "/data/album-cover/14"
             };
 
             context.Albums.Add(testAlbum);
