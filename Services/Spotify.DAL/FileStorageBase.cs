@@ -46,8 +46,16 @@ namespace Spotify.DAL
 
                 if (testTrack == null)
                 {
-                    string trackPath = StoreFile(FileStorageFileType.Track, context.Tracks.Count() + 1, trackData);
+                    string trackPath = StoreFile(FileStorageFileType.Track, context.Tracks.Count() + 1, trackData, "audio/mpeg");
                     testTrack = AddTestTrackToDb(context, trackPath);
+
+                    string deafultAvatarPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/DefaultAvatar.svg");
+                    byte[] avatarData = File.ReadAllBytes(deafultAvatarPath);
+                    string avatarPath = StoreFile(FileStorageFileType.Avatar, 1, avatarData, "image/svg+xml");
+
+                    string deafultAlbumCoverkPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/DefaultAlbumCover.png");
+                    byte[] albumCoverData = File.ReadAllBytes(deafultAlbumCoverkPath);
+                    string albumCoverPath = StoreFile(FileStorageFileType.AlbumCover, context.Albums.Count(), albumCoverData, "image/png");
                 }
             }
         }
@@ -106,6 +114,15 @@ namespace Spotify.DAL
             context.TrackAuthor.Add(testTrackAuthor);
             context.SaveChanges();
 
+            AlbumTrack testTrackAlbum = new AlbumTrack
+            {
+                TrackId = testTrack.TrackId,
+                AlbumId = testAlbum.AlbumId
+            };
+
+            context.AlbumTrack.Add(testTrackAlbum);
+            context.SaveChanges();
+
             return testTrack;
         }
 
@@ -114,10 +131,14 @@ namespace Spotify.DAL
             throw new NotImplementedException();
         }
 
-        public string StoreFile(FileStorageFileType ftype, int fid, byte[] fileData)
+        public string StoreFile(FileStorageFileType ftype, int fid, byte[] fileData, string fmime)
         {
             string filePath = Path.Combine(defaultDataFolderPath, ftype.ToString(), GenerateStringById(fid));
-            File.WriteAllBytes(filePath, fileData);
+            List<byte> mimeArr = Encoding.ASCII.GetBytes(fmime).ToList();
+            byte bytesForMime = Convert.ToByte(mimeArr.Count);
+            mimeArr.Insert(0, bytesForMime);
+            mimeArr.AddRange(fileData);
+            File.WriteAllBytes(filePath, mimeArr.ToArray());
 
             return filePath;
         }

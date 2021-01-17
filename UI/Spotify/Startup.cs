@@ -18,6 +18,7 @@ using Spotify.Data;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
 using Spotify.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Spotify
 {
@@ -52,6 +53,7 @@ namespace Spotify
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SearchService>();
             services.AddScoped<SelectionService>();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
