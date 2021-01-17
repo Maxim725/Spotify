@@ -1,23 +1,23 @@
 ﻿@inject NavigationManager NavigationManager
-<div>
-    @Redirect()
-</div>
-
-@code {
+@code {   
+    
     [Parameter]
     public string Login { get; set; } = "/Identity/Account/Login";
+    
+    protected override void OnInitialized()
+    {
+        Redirect();
+    }
 
-    public object Redirect()
+    public void Redirect()
     {
         try
         {
             NavigationManager.NavigateTo(Login, true);
-            return null;
         }
         catch(Exception e)
         {
             NavigationManager.NavigateTo(Login, true);
-            return null;
         }
     }
 }
