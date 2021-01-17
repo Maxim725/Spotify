@@ -8,7 +8,8 @@ namespace Spotify.DAL
     public enum FileStorageFileType {
         Track,
         Avatar,
-        AlbumCover
+        AlbumCover,
+        AuthorAvatar
     }
 
 

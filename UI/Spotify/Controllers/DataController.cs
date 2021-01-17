@@ -76,6 +76,12 @@ namespace Spotify.Controllers
             return DefaultFileGetter(FileStorageFileType.Avatar, "avatar", id);
         }
 
+        [HttpGet, Route("author-avatar/{id}")]
+        public IActionResult AuthorAvatar(int id)
+        {
+            return DefaultFileGetter(FileStorageFileType.AuthorAvatar, "avatar", id);
+        }
+
         [HttpGet, Route("album-cover/{id}")]
         public IActionResult AlbumCover(int id)
         {

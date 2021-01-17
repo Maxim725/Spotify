@@ -51,11 +51,12 @@ namespace Spotify.DAL
 
                     string deafultAvatarPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/DefaultAvatar.svg");
                     byte[] avatarData = File.ReadAllBytes(deafultAvatarPath);
-                    string avatarPath = StoreFile(FileStorageFileType.Avatar, 1, avatarData, "image/svg+xml");
+                    string avatarPath = StoreFile(FileStorageFileType.Avatar, 0, avatarData, "image/svg+xml");
+                    string avatarAuthorPath = StoreFile(FileStorageFileType.AuthorAvatar, 0, avatarData, "image/svg+xml");
 
                     string deafultAlbumCoverkPath = Path.Combine(Directory.GetCurrentDirectory(), "InitialData/DefaultAlbumCover.png");
                     byte[] albumCoverData = File.ReadAllBytes(deafultAlbumCoverkPath);
-                    string albumCoverPath = StoreFile(FileStorageFileType.AlbumCover, context.Albums.Count(), albumCoverData, "image/png");
+                    string albumCoverPath = StoreFile(FileStorageFileType.AlbumCover, 0, albumCoverData, "image/png");
                 }
             }
         }
@@ -69,7 +70,7 @@ namespace Spotify.DAL
                 Name = "Ionics",
                 Description = "",
                 Plays = 0,
-                Avatar = ""
+                Avatar = "/data/author-avatar/0"
             };
 
             context.Authors.Add(testAuthor);
@@ -85,7 +86,7 @@ namespace Spotify.DAL
                 CreatedById = 1,
                 Title = "Awkward Mystery",
                 Plays = 0,
-                Cover = ""
+                Cover = "/data/album-cover/0"
             };
 
             context.Albums.Add(testAlbum);
