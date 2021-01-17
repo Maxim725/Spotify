@@ -1,4 +1,4 @@
-﻿@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
 @page "/debug/album/{AlbumId:int}"
@@ -7,11 +7,11 @@
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar></_Sidebar>
+            <_Sidebar UserId="@UserId"></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
-                    <_Profile></_Profile>
+                    <_Profile UserId="@UserId"></_Profile>
                 </header>
                 <main class="main">
                     <div class="artist">
@@ -19,7 +19,7 @@
                             <img class="artist__main-img" src="/images/debug/boka1.jpg" alt="">
                             <div class="artist__main-right">
                                 <h1>
-                                    Бока
+                                    @GetNameArtist()
                                 </h1>
                                 <div class="artist__buttons">
                                     <button>
@@ -57,7 +57,7 @@
     public int AlbumId { get; set; }
     protected override void OnInitialized()
     {
-        
+
         if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
         {
             var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
@@ -68,6 +68,13 @@
         {
             NavigationManager.NavigateTo("/Identity/Account/Login", true);
         }
+    }
+
+    private string GetNameArtist()
+    {
+        //var res = SelectionService.GetAlbumById(AlbumId)?.Authors?.First()?.Author?.Name ?? "";'
+        var res = "";
+        return res == "" ? "Unknown" : res;
     }
 
 

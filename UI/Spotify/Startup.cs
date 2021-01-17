@@ -18,6 +18,7 @@ using Spotify.Data;
 using Spotify.DAL;
 using Spotify.Domain.Entities.Identity;
 using Spotify.Services;
+using Spotify.DAL.Init;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Spotify
@@ -53,6 +54,24 @@ namespace Spotify
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SearchService>();
             services.AddScoped<SelectionService>();
+
+            services.Configure<IdentityOptions>(opt =>
+            {
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredUniqueChars = 3;
+
+                opt.User.RequireUniqueEmail = true;
+                opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+
+                opt.Lockout.AllowedForNewUsers = true;
+                opt.Lockout.MaxFailedAccessAttempts = 10;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 

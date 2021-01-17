@@ -14,7 +14,7 @@
                 </a>
             </span>
             <span class="album__artist">
-                <a href="#">
+                <a href="/debug/Album/@AlbumId">
                     <!-- КОСТЫЛЬ, когда данные будут, убрать!!!! -->
                     @try
                     {
@@ -59,7 +59,8 @@
         }
         else
         {
-            @* throw new Exception("В альбоме 0 треков, беда!!"); *@
+            TypeAlbums = "Сингл";
+            //throw new Exception("В альбоме 0 треков, беда!!");
         }
     }
 }

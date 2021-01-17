@@ -83,7 +83,7 @@ namespace Spotify.Services
         {
             var popularAlbumsId = _db.Albums.Select(x => new { Id =x.AlbumId, Plays = x.Plays}).ToList();
 
-            return popularAlbumsId.OrderBy(x => x.Plays).Select(x => x.Id).Take(12);
+            return popularAlbumsId.OrderBy(x => x.Plays).Select(x => x.Id).Take(12).ToHashSet();
         }
         public Album GetAlbumById(int albumId)
         {
@@ -111,7 +111,7 @@ namespace Spotify.Services
         }
         public IEnumerable<Track> GetTracks(int albumId)
         {
-            return _db.AlbumTrack.Where(x => x.AlbumId.Equals(albumId)).Include(x => x.Track).Select(x => x.Track);
+            return _db.AlbumTrack.Where(x => x.AlbumId.Equals(albumId)).Include(x => x.Track).ThenInclude(x => x.Authors).ThenInclude(x => x.Author).Select(x => x.Track);
         }
         public IEnumerable<Track> GetPopularTracksByArtist(int authorId)
         {

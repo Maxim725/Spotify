@@ -1,10 +1,12 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Spotify.DAL;
 using Spotify.DAL.Init;
+using Spotify.Domain.Entities.Identity;
 
 namespace Spotify
 {
@@ -27,8 +29,11 @@ namespace Spotify
 				{
 					var context = services.GetRequiredService<SpotifyDbContext>();
 					var storage = services.GetRequiredService<IFileStorage<int>>();
+					var userManager = services.GetRequiredService<UserManager<User>>();
+					var signInManager = services.GetRequiredService<SignInManager<User>>();
 					context.Database.EnsureCreated();
 					DbInitializer.Initialize(context);
+					DbInitializer.GetCustomUser(userManager, signInManager, context);
 					storage.Init(context);
 				}
 				catch (Exception ex)

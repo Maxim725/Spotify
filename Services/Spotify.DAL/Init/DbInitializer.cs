@@ -254,7 +254,7 @@ namespace Spotify.DAL.Init
                     Title = "Party Hard",
                     Description = "For the late night with friends",
                     Plays = 2312,
-                    Tracks = new List<PlaylistTrack>()
+                    Tracks = new List<PlaylistTrack>(),
                 },
                 new Playlist{
                     CreatedOn = DateTime.Now,
@@ -264,7 +264,7 @@ namespace Spotify.DAL.Init
                     Title = "Workout",
                     Description = "Go to the gym and turn it on",
                     Plays = 2312,
-                    Tracks = new List<PlaylistTrack>()
+                    Tracks = new List<PlaylistTrack>(),
                 }
             };
 
@@ -923,6 +923,67 @@ namespace Spotify.DAL.Init
             context.TrackAuthor.AddRange(trackAuthor);
             context.AlbumAuthor.AddRange(albumAuthor);
             context.SaveChanges();
+
+        }
+
+        public static void GetCustomUser(UserManager<User> _userManager, SignInManager<User> _signInManager, SpotifyDbContext _context)
+        {
+            if (_context.Users.FirstOrDefault(x => x.UserName.Equals("Test_User")) != null)
+                return;
+
+            var user = new User
+            {
+                UserName = "Test_User",
+                Email = "testuser@rambler.com",
+                CreatedOn = new DateTime(2020, 02, 20),
+                UpdatedOn = DateTime.Now,
+                Avatar = "Spotify/User/Test_User.jpg",
+                LikedAuthors = new List<UserLikedAuthor>(),
+                LikedTracks = new List<UserLikedTrack>(),
+                Subscriptions = new List<UserSubscription>(),
+                LikedAlbums = new List<UserLikedAlbum>(),
+                Playlists = new List<UserPlaylist>()
+            };
+            string passw = "qweqwe";
+
+            var result = _userManager.CreateAsync(user, passw).Result;
+            if (!result.Succeeded)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach(var err in result.Errors)
+                {
+                    sb.Append(err.Description);
+                    sb.Append(" ");
+                }
+
+                throw new Exception(sb.ToString());
+            }
+
+            int userId = int.Parse(_signInManager.UserManager.GetUserIdAsync(user).Result);
+
+            var testUserPlaylists = new UserPlaylist[]
+            {
+                new UserPlaylist
+                {
+                    UserId = userId,
+                    PlaylistId = 1
+                },
+
+                new UserPlaylist
+                {
+                    UserId = userId,
+                    PlaylistId = 2
+                },
+
+                new UserPlaylist
+                {
+                    UserId = userId,
+                    PlaylistId = 3
+                }
+            };
+
+            _context.UserPlaylist.AddRange(testUserPlaylists);
+            _context.SaveChanges();
         }
     }
 }
