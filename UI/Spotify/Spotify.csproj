@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,10 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="InitialData\DefaultAlbumCover.png" />
+    <None Remove="InitialData\DefaultAvatar.svg" />
     <None Remove="InitialData\Ionics - Awkward Mystery.mp3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="InitialData\DefaultAlbumCover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InitialData\DefaultAvatar.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="InitialData\Ionics - Awkward Mystery.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
