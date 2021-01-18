@@ -17,8 +17,9 @@
                 <div class="artist__tracks-column">
                     @for (int j = 0; j < AmountTrackInColumn; j++)
                     {
-
-                        <div class="artist__track" @onclick="@(() => {PlayTrack(Tracks[i]);})">
+						int o = k;
+						Album album = SelectionService.GetAlbumByTrackId(Tracks[k].TrackId);
+                        <div class="artist__track" @onclick="@(() => {PlayTrack(Tracks[o]);})">
                             <div class="artist__track-left">
                                 <button>
                                     @if (string.IsNullOrWhiteSpace(Cover[k]))
@@ -36,7 +37,7 @@
                                     @Tracks[k].Title
                                 </span>
                                 <span class="artist__track-album">
-                                    @Tracks[k].Title · @Tracks[k].CreatedOn.Year
+                                    @album.Title · @Tracks[k].CreatedOn.Year
                                 </span>
                             </div>
                             <button></button>
@@ -88,10 +89,16 @@
 				title = track.Title,
 				cover = album.Cover,
 				album = "/debug/album/" + album.AlbumId,
+<<<<<<< HEAD
+				url = "/data/track/" + track.TrackId,
+				artist = album.Authors[0].Author.Name,
+				artistUrl = "/debug/artist/" + album.Authors[0].AuthorId
+=======
 				url = "/data/track/" + track.TrackId
 		}, new {
 				name = album.Authors[0].Author.Name,
 				url = "/debug/artist/" + album.Authors[0].AuthorId
+>>>>>>> e23a19539d4ff6660b29cefc41c0ea1ca46a08c3
 		});
 	}
 
