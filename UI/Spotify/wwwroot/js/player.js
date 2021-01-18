@@ -38,10 +38,6 @@ class Player {
 			if (!this.progressElement || !document.body.contains(this.progressElement)) {
 				this.trySync();
 			}
-
-			setInterval(() => {
-				updateProgress();
-			}, 100);
 		}
 	}
 
