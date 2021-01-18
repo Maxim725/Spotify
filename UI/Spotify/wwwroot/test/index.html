@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -10,10 +10,10 @@
 		{
 			console.log(val)
 			if (val > 20) {
-				document.querySelector(".player__volume img")[0].src="svg/high_volume.svg";
+				document.querySelector(".player__volume img")[0].src="/images/icons/high_volume.svg";
 			}
 			else {
-				document.querySelector(".player__volume img")[0].src="svg/low_volume.svg";
+                document.querySelector(".player__volume img")[0].src ="/images/icons/low_volume.svg";
 			}
 			
 		}
@@ -24,14 +24,14 @@
 	<div class="sidenav">
 		<div class="logo">
 			<a href="#">
-				<img src="svg/logo-with-text.svg" alt="">
+				<img src="/images/icons/logo-with-text.svg" alt="">
 			</a>
 		</div>
 		<div class="nav-bar">
 			<nav class="nav">
 				<div class="nav-item nav-item--selected">
 					<a href="#" class='nav-a'>
-						<img src="svg/house.svg" alt="" class="nav-a__img">
+						<img src="/images/icons/house.svg" alt="" class="nav-a__img">
 						<span class="nav-a__text">
 							Главная
 						</span>
@@ -40,7 +40,7 @@
 
 				<div class="nav-item">
 					<a href="#" class='nav-a'>
-						<img src="svg/heart.svg" alt="" class="nav-a__img">
+						<img src="/images/icons/heart.svg" alt="" class="nav-a__img">
 						<span class="nav-a__text">
 							Для вас
 						</span>
@@ -49,7 +49,7 @@
 
 				<div class="nav-item">
 					<a href="#" class='nav-a'>
-						<img src="svg/list.svg" alt="" class="nav-a__img">
+						<img src="/images/icons/list.svg" alt="" class="nav-a__img">
 						<span class="nav-a__text">
 							Медиатека
 						</span>
@@ -70,7 +70,7 @@
 
 			<div class="playlist">
 				<a href="#">
-					<img src="svg/addplaylist.svg">
+					<img src="/images/icons/addplaylist.svg">
 					<span class="playlist__text">
 						Создать плейлист
 					</span>
@@ -397,19 +397,19 @@
 			<div class="player__center-side">
 				<div class="player__center-side-up">
 					<button class="player__control-button">
-						<img src="svg/repeat.svg" alt="" class="">
+						<img src="/images/icons/repeat.svg" alt="" class="">
 					</button>
 					<button class="player__control-button">
-						<img src="svg/previous_track.svg" alt="">
+						<img src="/images/icons/previous_track.svg" alt="">
 					</button>
 					<button class="player__control-button">
-						<img src="svg/footer_play.svg" alt="">
+						<img src="/images/icons/footer_play.svg" alt="">
 					</button>
 					<button class="player__control-button">
-						<img src="svg/next_track.svg" alt="">
+						<img src="/images/icons/next_track.svg" alt="">
 					</button>
 					<button class="player__control-button">
-						<img src="svg/shuffle.svg" alt="">
+						<img src="/images/icons/shuffle.svg" alt="">
 					</button>
 				</div>
 				<div class="player__center-side-bottom">
@@ -424,7 +424,7 @@
 			</div>
 			<div class="player__right-side">
 				<div class="player__volume">
-					<img src="svg/low_volume.svg">
+					<img src="/images/icons/low_volume.svg">
 					<input type="range" min="0" max="100" step="1" value="0" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
 				</div>
 			</div>

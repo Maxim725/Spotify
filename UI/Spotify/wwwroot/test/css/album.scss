@@ -25,7 +25,7 @@
 	&:hover {
 		background: $color--tuna;
 		transition: .6s;
-	
+
 		.album__img {
 			box-shadow: 1px 0px 12px 6px rgba(0, 0, 0, 0.35);
 			transition: .9s;
@@ -66,7 +66,6 @@
 		font-weight: bold;
 		font-size: 24px;
 		color: $color--light-gray;
-
 		// width: 80%;
 		overflow: hidden;
 		display: inline-block;
@@ -91,11 +90,11 @@
 		height: 40px;
 		border-radius: 50%;
 		opacity: 0%;
-		background-image: url('../svg/play_button.svg');
+		background-image: url('/images/icons/play_button.svg');
 		background-size: cover;
-	
+
 		&:focus {
-			background-image: url('../svg/stop_button.svg');
+			background-image: url('/images/icons/stop_button.svg');
 			background-size: cover;
 		}
 	}

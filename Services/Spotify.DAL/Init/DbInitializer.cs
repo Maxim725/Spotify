@@ -139,7 +139,7 @@ namespace Spotify.DAL.Init
 						  Name = "Gorillaz",
 						  Description = "Gorillaz это вам не обезьянки. Экспериментальный фанк рок с мультяшками!",
 						  Plays = 43432,
-						  Avatar = "/data/author-album/10"
+						  Avatar = "/data/author-avatar/10"
 					 },
 					 new Author {
 						  CreatedOn = new DateTime(2020, 3, 19),
@@ -147,7 +147,7 @@ namespace Spotify.DAL.Init
 						  Name = "Drake",
 						  Description = "Drake - главный живой хитмейкер всго мира.",
 						  Plays = 656,
-						  Avatar = "/data/author-album/2"
+						  Avatar = "/data/author-avatar/2"
 					 },
 					 new Author {
 						  CreatedOn = new DateTime(2017, 5, 24),
