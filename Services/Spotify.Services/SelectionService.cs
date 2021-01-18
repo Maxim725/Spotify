@@ -87,7 +87,7 @@ namespace Spotify.Services
         }
         public Album GetAlbumById(int albumId)
         {
-            Album album = _db.Albums.Include(x => x.Tracks).Include(x => x.Authors).ThenInclude(x => x.Author).FirstOrDefault(x => x.AlbumId.Equals(albumId));
+            Album album = _db.Albums.Include(x => x.Tracks).ThenInclude(x => x.Track).Include(x => x.Authors).ThenInclude(x => x.Author).FirstOrDefault(x => x.AlbumId.Equals(albumId));
 
             return album;
         }

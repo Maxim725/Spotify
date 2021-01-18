@@ -51,3 +51,6 @@ function btnPrevTap(id){
 	setPosition(id);
 	checkButtons(id)
 }
+
+import * as Player from '/js/player.js';
+
