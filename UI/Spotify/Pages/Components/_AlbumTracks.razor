@@ -1,11 +1,12 @@
 ﻿@inject SelectionService SelectionService 
+@inject IJSRuntime js
 
 <div class="album-view__tracks">
     @foreach (Track track in Tracks)
     {
         <div class="album-view__track">
             <div class="album-view__track-left">
-                <button></button>
+                <button @onclick="@(() => { PlayTrack(track); })"></button>
                 <div class="album-view__track-creds">
                     <span class="album-view__track-name">
                         @track.Title
@@ -37,9 +38,24 @@
     [Parameter]
     public int AlbumId { get; set; }
 
+	[Parameter]
+	public Album Album { get; set; }
+
     private IEnumerable<Track> Tracks { get; set; }
     protected override void OnInitialized()
     {
         Tracks = SelectionService.GetTracks(AlbumId);
     }
+
+	protected void PlayTrack(Track track) {
+		js.InvokeVoidAsync("player.play", new {
+				title = track.Title,
+				cover = Album.Cover,
+				album = "/debug/album/" + Album.AlbumId,
+				url = "/data/track/" + track.TrackId
+		}, new {
+				name = Album.Authors[0].Author.Name,
+				url = "/debug/artist/" + Album.Authors[0].AuthorId
+		});
+	}
 }
