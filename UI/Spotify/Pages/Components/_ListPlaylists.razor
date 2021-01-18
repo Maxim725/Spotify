@@ -1,12 +1,12 @@
-﻿@inject SelectionService SelectionService 
-
+﻿@inject SelectionService SelectionService
+@using System.Threading;
 <div class="playlists">
     @if (Playlists is not null && Playlists.Count() > 0)
     {
         foreach (Playlist pl in Playlists)
         {
             <div class="playlist">
-                <a href="#">
+                <a href="/debug/playlist/@pl.PlaylistId">
                     <img src="/data/album-cover/0">
                     <span class="playlist__text">
                         @pl.Title
@@ -27,13 +27,14 @@
 </div>
 
 @code {
-    [Parameter]
-    public int UserId { get; set; }
+        [Parameter]
+        public int UserId { get; set; }
 
     public IEnumerable<Playlist> Playlists { get; set; }
 
     protected override void OnInitialized()
     {
         Playlists = SelectionService.GetPlaylistsIdByUserId(UserId);
+
     }
 }

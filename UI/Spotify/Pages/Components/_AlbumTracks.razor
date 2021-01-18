@@ -36,7 +36,10 @@
 </div>
 @code {
     [Parameter]
-    public int AlbumId { get; set; }
+    public int? AlbumId { get; set; }
+
+    [Parameter]
+    public int? PlaylistId { get; set; }
 
 	[Parameter]
 	public Album Album { get; set; }
@@ -44,7 +47,15 @@
     private IEnumerable<Track> Tracks { get; set; }
     protected override void OnInitialized()
     {
-        Tracks = SelectionService.GetTracks(AlbumId);
+        if (PlaylistId.HasValue)
+        {
+            Tracks = SelectionService.GetTracksByPlaylistId(PlaylistId.Value);
+        }
+
+        if (AlbumId.HasValue)
+        {
+            Tracks = SelectionService.GetTracks(AlbumId.Value);
+        }
     }
 
 	protected void PlayTrack(Track track) {
