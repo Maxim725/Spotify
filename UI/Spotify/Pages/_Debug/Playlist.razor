@@ -10,7 +10,7 @@
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar UserId="@UserId"></_Sidebar>
+            <_Sidebar UserId="@UserId" SelectedItem=-1></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
@@ -33,7 +33,7 @@
 									</button>
 	                            </div>
 	                        </div>
-							<hr>
+							<hr/>
 	                        <div class="album-view__tracks">
 							    @foreach (UserLikedTrack track in Tracks)
 							    {
