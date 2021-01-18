@@ -1,0 +1,91 @@
+@using Spotify.Domain.Entities.Intermediate
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject SelectionService SelectionService
+
+@page "/debug/for-you"
+
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
+            <_Sidebar UserId="@UserId"></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile UserId="@UserId"></_Profile>
+                </header>
+                <main class="main">
+                    <div class="album-view">
+                        <div class="album-view__tracks">
+                            @foreach (AlbumTrack pair in data)
+                             {
+                                <div class="album-view__track">
+                                    <div class="album-view__track-left">
+                                        <img class="album__img" src="@pair.Album.Cover">
+                                        <div class="album-view__track-creds">
+                                            <span class="album-view__track-name">
+                                                @pair.Track.Title
+                                            </span>
+                                            <span class="album-view__track-artist">
+                                                <a href="/debug/Artist/@pair.Track.Authors.First().AuthorId">
+                                                    @try
+                                                    {
+                                                        @pair.Track.Authors.First().Author.Name
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+                                                        <span>Travis Scott</span>
+                                                    }
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="album-view__track-right">
+                                        <button></button>
+                                        <span>
+                                            @pair.Track.Duration
+                                        </span>
+                                    </div>
+                                </div>
+                             }
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <_Footer></_Footer>
+        }
+        else
+        {
+            <_RedirectToLogin></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private int UserId { get; set; }
+    private IEnumerable<AlbumTrack> data { get; set; }
+
+    protected override void OnInitialized()
+    {
+
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+
+            var likedTraskId = SelectionService.GetUserLikedTracks(UserId).Select(x => x.TrackId);
+            data = SelectionService.Recommendation(likedTraskId);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+    }
+
+
+} 

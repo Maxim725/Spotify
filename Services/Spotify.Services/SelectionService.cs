@@ -161,7 +161,7 @@ namespace Spotify.Services
 
 
         // систему рекомендаций сюда дописать
-        public IEnumerable<Track> Recommendation(IEnumerable<int> tracksId)
+        public IEnumerable<AlbumTrack> Recommendation(IEnumerable<int> tracksId)
         {
             //// Брать срез максимум из 50-ти треков
             //List<int> sliceTracksId = new List<int>();
@@ -232,7 +232,7 @@ namespace Spotify.Services
             }
             else if(countTracks == 0)
             {
-                return new List<Track>();
+                return new List<AlbumTrack>();
             }
             else if(countTracks == 1)
             {
@@ -246,7 +246,8 @@ namespace Spotify.Services
                     randId[i] = value;
                 }
             }
-            var result = _db.Tracks.Where(x => randId.Contains(x.TrackId));
+            var result = _db.AlbumTrack.Include(x => x.Track).ThenInclude(x => x.Authors).ThenInclude(x => x.Author).Include(x => x.Album);
+			// .Include(x => x.Authors).ThenInclude(x => x.Author).Where(x => randId.Contains(x.TrackId));
 
             return result;
         }
