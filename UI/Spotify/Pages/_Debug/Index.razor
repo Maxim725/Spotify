@@ -12,7 +12,7 @@
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
-                    <_Profile UserId="@ID"></_Profile>
+                    <_Profile UserId="@ID" UserName="@context.User.Identity.Name"></_Profile>
                 </header>
                 <main class="main">
                     <_TopicWithAlbums Title="Недавно добавленные" SetAlbums="@albumsId" ScrollerId=1></_TopicWithAlbums>
