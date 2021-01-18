@@ -110,9 +110,11 @@
     }
 
     &__track-progress {
+        $trackWidth: 530px;
+
         vertical-align: middle;
         overflow: hidden;
-        width: 530px;
+        width: $trackWidth;
         height: 4px;
         border-radius: 10px;
         -webkit-appearance: none;
@@ -131,7 +133,7 @@
             height: 10px;
             cursor: pointer;
             background: $color--spun-rearl;
-            box-shadow: -80px 0 0 80px $color--spun-rearl;
+            box-shadow: -$trackWidth 0 0 $trackWidth $color--spun-rearl;
             border-radius: 10px;
         }
 

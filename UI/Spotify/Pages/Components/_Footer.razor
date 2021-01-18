@@ -21,7 +21,7 @@
                 <button class="player__control-button">
                     <img src="/images/icons/previous_track.svg" alt="">
                 </button>
-                <button class="player__control-button">
+                <button class="player__control-button player__play-button" onclick="player._bindPlay();">
                     <img src="/images/icons/footer_play.svg" alt="">
                 </button>
                 <button class="player__control-button">
@@ -35,7 +35,7 @@
                 <span class="player__time-passed">
                     0:02
                 </span>
-                <input class="player__track-progress" type="range" min="0" max="100" step="1" value="0">
+                <input class="player__track-progress" type="range" min="0" max="100" step="0.1" value="0" oninput="player._bindProgress()">
                 <span class="player__time-left">
                     3:20
                 </span>
@@ -44,7 +44,7 @@
         <div class="player__right-side">
             <div class="player__volume">
                 <img src="/images/icons/low_volume.svg">
-                <input type="range" min="0" max="100" step="1" value="0" oninput="" onchange="">
+                <input type="range" min="0" max="100" step="1" value="50"  onchange="player._bindVolume();">
             </div>
         </div>
     </div>

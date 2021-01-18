@@ -58,7 +58,11 @@ namespace Spotify.Controllers
         {
             Tuple<string, byte[]> fileData = GetFileById(type, id);
             if (fileData != null)
-                return File(fileData.Item2, fileData.Item1, fname + MimeToExt(fileData.Item1));
+            {
+                var res = File(fileData.Item2, fileData.Item1, fname + MimeToExt(fileData.Item1));
+                res.EnableRangeProcessing = true;
+                return res;
+            }
             else
                 Response.StatusCode = 404;
             return new EmptyResult();

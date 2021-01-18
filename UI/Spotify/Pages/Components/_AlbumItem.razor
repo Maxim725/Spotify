@@ -1,4 +1,5 @@
 ﻿@inject SelectionService SelectionService
+@inject IJSRuntime js
 
 @if (Album is not null)
 {
@@ -6,7 +7,9 @@
         <a href="/debug/album/@Album.AlbumId">
             <img src="@Album.Cover" alt="" class='album__img'>
         </a>
-        <button class="album__play-button"></button>
+		@if (Album.Tracks.Count > 0 && Album.Tracks[0].Track is not null) {
+			<button class="album__play-button" @onclick="PlayAlbum"></button>
+		}
         <div class="album__text">
             <span class="album__name">
                 <a href="/debug/album/@Album.AlbumId">
@@ -59,4 +62,16 @@
             //throw new Exception("В альбоме 0 треков, беда!!");
         }
     }
+
+	protected void PlayAlbum() {
+		js.InvokeVoidAsync("player.play", new {
+			title = Album.Tracks[0].Track.Title,
+			cover = Album.Cover,
+			album = "/debug/album/" + Album.AlbumId,
+			url = "/data/track/" + Album.Tracks[0].TrackId
+		}, new {
+			name = Album.Authors[0].Author.Name,
+			url = "/debug/artist/" + Album.Authors[0].AuthorId
+		});
+	}
 }
