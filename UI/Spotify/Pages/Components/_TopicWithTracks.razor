@@ -1,4 +1,5 @@
 ﻿@inject SelectionService SelectionService
+@inject IJSRuntime js
 
 @if (!String.IsNullOrWhiteSpace(Title))
 {
@@ -17,7 +18,7 @@
                     @for (int j = 0; j < AmountTrackInColumn; j++)
                     {
 
-                        <div class="artist__track">
+                        <div class="artist__track" @onclick="@(() => {PlayTrack(Tracks[i]);})">
                             <div class="artist__track-left">
                                 <button>
                                     @if (string.IsNullOrWhiteSpace(Cover[k]))
@@ -79,5 +80,19 @@
             Tracks = SelectionService.GetPopularTracksByArtist(ArtistId.Value).ToArray();
         }
     }
+
+	protected void PlayTrack(Track track) {
+		Album album = SelectionService.GetAlbumByTrackId(track.TrackId);
+
+		js.InvokeVoidAsync("player.play", new {
+				title = track.Title,
+				cover = album.Cover,
+				album = "/debug/album/" + album.AlbumId,
+				url = "/data/track/" + track.TrackId
+		}, new {
+				name = album.Authors[0].Author.Name,
+				url = "/debug/artist/" + album.Authors[0].AuthorId
+		});
+	}
 
 }

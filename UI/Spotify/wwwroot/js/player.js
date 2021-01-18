@@ -31,8 +31,8 @@ class Player {
 				&& this.timeStampLeft
 				&& this.timeStampRight) {
 					this.progressElement.value = (this.player.currentTime / this.player.duration) * 100;
-					this.timeStampLeft.innerText = this.secsToStamp(this.player.currentTime);
-					this.timeStampRight.innerText = this.secsToStamp(this.player.duration);
+					this.timeStampLeft.innerText = this.secsToStamp(this.player.currentTime? this.player.currentTime : 0);
+					this.timeStampRight.innerText = this.secsToStamp(this.player.duration? this.player.duration : 0);
 			}
 
 			if (!this.progressElement || !document.body.contains(this.progressElement)) {
@@ -60,6 +60,9 @@ class Player {
 		if ($playButtonImage) {
 			this.isPaused? $playButtonImage.src = '/images/icons/footer_play.svg' : $playButtonImage.src = '/images/icons/footer_pause.svg'
 		}
+
+		if (this.progressElement) this.progressElement.value = (this.player.currentTime / this.player.duration) * 100;
+		if (this.timeStampLeft) this.timeStampLeft.innerText = this.secsToStamp(this.player.currentTime? this.player.currentTime : 0);
 	}
 
 	/**
