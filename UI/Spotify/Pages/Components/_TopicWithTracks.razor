@@ -89,9 +89,16 @@
 				title = track.Title,
 				cover = album.Cover,
 				album = "/debug/album/" + album.AlbumId,
+<<<<<<< HEAD
 				url = "/data/track/" + track.TrackId,
 				artist = album.Authors[0].Author.Name,
 				artistUrl = "/debug/artist/" + album.Authors[0].AuthorId
+=======
+				url = "/data/track/" + track.TrackId
+		}, new {
+				name = album.Authors[0].Author.Name,
+				url = "/debug/artist/" + album.Authors[0].AuthorId
+>>>>>>> e23a19539d4ff6660b29cefc41c0ea1ca46a08c3
 		});
 	}
 

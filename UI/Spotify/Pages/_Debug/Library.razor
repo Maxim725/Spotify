@@ -2,15 +2,14 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
-@inject IJSRuntime js
 
-@page "/debug/for-you"
+@page "/debug/library"
 
 <AuthorizeView>
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar UserId="@UserId" SelectedItem=1></_Sidebar>
+            <_Sidebar UserId="@UserId" SelectedItem=2></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
@@ -19,22 +18,22 @@
                 <main class="main">
                     <div class="album-view">
                         <div class="album-view__tracks">
-                            @for (int i = 0; i < data.Length - 1; i++)
-                             {
-								int k = i;
-								AlbumTrack pair = data[i];
-                                <div class="album-view__track" @onclick="@(() => {PlayTrack(k); SetQueue(k);})">
+                            @* @foreach (UserLikedTrack track in Tracks) *@
+							@for (int i = 0; i < Tracks.Count(); i++)
+                            {
+                                <div class="album-view__track">
                                     <div class="album-view__track-left">
-                                        <img class="album__img" src="@pair.Album.Cover">
+                                        <img class="album__img" src="@pair[i].Track.Album.Cover">
                                         <div class="album-view__track-creds">
                                             <span class="album-view__track-name">
-                                                @pair.Track.Title
+                                                @Tracks[i].Track.Title
                                             </span>
                                             <span class="album-view__track-artist">
-                                                <a href="/debug/Artist/@pair.Track.Authors.First().AuthorId">
+                                                <a href="/debug/Artist/@pair[i].Track.Authors.First().AuthorId">
+                                                @* <a href="/debug/"> *@
                                                     @try
                                                     {
-                                                        @pair.Track.Authors.First().Author.Name
+                                                        @pair[i].Track.Authors.First().Author.Name
                                                     }
                                                     catch (Exception e)
                                                     {
@@ -47,11 +46,11 @@
                                     <div class="album-view__track-right">
                                         <button></button>
                                         <span>
-                                            @pair.Track.Duration
+                                            @Tracks[i].Track.Duration
                                         </span>
                                     </div>
                                 </div>
-                             }
+                            }
                         </div>
                     </div>
                 </main>
@@ -70,51 +69,25 @@
 
 @code {
     private int UserId { get; set; }
-    private AlbumTrack[] data { get; set; }
 
-    protected override void OnInitialized()
-    {
+	private UserLikedTrack[] Tracks { get; set; }
 
-        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+	private AlbumTrack[] pair { get; set; }
+
+	protected override void OnInitialized()
+	{
+		if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
         {
             var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
 
             UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
 
-            var likedTraskId = SelectionService.GetUserLikedTracks(UserId).Select(x => x.TrackId);
-            data = SelectionService.Recommendation(likedTraskId).ToArray();
+            Tracks = SelectionService.GetUserLikedTracks(UserId).ToArray();
+			pair = SelectionService.GetAlbumTrack(Tracks.Select(x => x.TrackId)).ToArray();
         }
         else
         {
             NavigationManager.NavigateTo("/Identity/Account/Login", true);
         }
-    }
-    protected void PlayTrack(int i) {
-        js.InvokeVoidAsync("player.play", new {
-            title = data[i].Track.Title,
-            cover = data[i].Album.Cover,
-            album = "/debug/album/" + data[i].Album.AlbumId,
-            url = "/data/track/" + data[i].Track.TrackId,
-            artist = data[i].Album.Authors[0].Author.Name,
-            artistUrl = "/debug/artist/" + data[i].Album.Authors[0].AuthorId
-        });
-    }
-
-    protected void SetQueue(int i) {
-        js.InvokeVoidAsync("player.clearQueue", i);
-
-        for (int j = 0; j < data.Length; j++) {
-
-            js.InvokeVoidAsync("player.addQueue", new {
-                title = data[j].Track.Title,
-                cover = data[j].Album.Cover,
-                album = "/debug/album/" + data[j].Album.AlbumId,
-                url = "/data/track/" + data[j].Track.TrackId,
-                artist = data[j].Album.Authors[0].Author.Name,
-                artistUrl = "/debug/artist/" + data[j].Album.Authors[0].AuthorId
-            });
-        }
-
-        js.InvokeVoidAsync("player.setQueue", i);
-    }
+	}
 } 
