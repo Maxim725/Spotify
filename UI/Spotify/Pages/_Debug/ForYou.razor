@@ -1,3 +1,4 @@
+@using Spotify.Domain.Entities.Intermediate
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
@@ -17,20 +18,20 @@
                 <main class="main">
                     <div class="album-view">
                         <div class="album-view__tracks">
-                            @foreach (Track track in Tracks)
+                            @foreach (AlbumTrack pair in data)
                              {
                                 <div class="album-view__track">
                                     <div class="album-view__track-left">
-                                        <img class="album__img" src="@track.Album.Cover">
+                                        <img class="album__img" src="@pair.Album.Cover">
                                         <div class="album-view__track-creds">
                                             <span class="album-view__track-name">
-                                                @track.Title
+                                                @pair.Track.Title
                                             </span>
                                             <span class="album-view__track-artist">
-                                                <a href="/debug/Artist/@track.Authors.First().AuthorId">
+                                                <a href="/debug/Artist/@pair.Track.Authors.First().AuthorId">
                                                     @try
                                                     {
-                                                        @track.Authors.First().Author.Name
+                                                        @pair.Track.Authors.First().Author.Name
                                                     }
                                                     catch (Exception e)
                                                     {
@@ -43,7 +44,7 @@
                                     <div class="album-view__track-right">
                                         <button></button>
                                         <span>
-                                            @track.Duration
+                                            @pair.Track.Duration
                                         </span>
                                     </div>
                                 </div>
@@ -66,7 +67,7 @@
 
 @code {
     private int UserId { get; set; }
-    private IEnumerable<Track> Tracks { get; set; }
+    private IEnumerable<AlbumTrack> data { get; set; }
 
     protected override void OnInitialized()
     {
@@ -78,7 +79,7 @@
             UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
 
             var likedTraskId = SelectionService.GetUserLikedTracks(UserId).Select(x => x.TrackId);
-            Tracks = SelectionService.Recommendation(likedTraskId);
+            data = SelectionService.Recommendation(likedTraskId);
         }
         else
         {
