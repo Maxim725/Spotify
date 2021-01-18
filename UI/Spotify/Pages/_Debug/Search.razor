@@ -14,7 +14,7 @@
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск" @bind-value="@SearchString">
-                    <_Profile UserId="@UserId"></_Profile>
+                    <_Profile UserId="@UserId" UserName="@context.User.Identity.Name"></_Profile>
                 </header>
                 <main class="main">
                     <_Search @bind-SearchString="SearchString"></_Search>

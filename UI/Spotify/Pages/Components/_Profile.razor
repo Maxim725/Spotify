@@ -1,6 +1,6 @@
 ﻿<div class="profile-menu">
     <a href="/Identity/Account/Manage" class="profile-menu__text">
-        @@figmamusic
+        @UserName
     </a>
 	<a href="/Identity/Account/Manage">
  		<img class="profile-menu__img" src="/images/icons/user_profile.svg">
@@ -9,4 +9,7 @@
 @code {
     [Parameter]
     public int UserId { get; set; }
+
+	[Parameter]
+    public string UserName { get; set; }
 }
