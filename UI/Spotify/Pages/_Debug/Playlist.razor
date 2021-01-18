@@ -17,58 +17,70 @@
                     <_Profile UserId="@UserId" UserName="@context.User.Identity.Name"></_Profile>
                 </header>
                 <main class="main">
-					<form action="POST" method="POST">
+					<form action="/playlist/add" method="POST">
 	                    <div class="playlist-view">
 	                        <div class="playlist-view__main">
 								<button>
 									<img class="playlist-view__main-img" src="/images/icons/newplaylist.svg" alt="">
 								</button>
 	                            <div class="playlist-view__main-right">
-	                                <input type="text" placeholder="Введите название плейлиста">
+	                                <input type="text" name="Title" placeholder="Введите название плейлиста">
 									<h2>
 										@context.User.Identity.Name
 									</h2>
 									<button type="submit" class="playlist-view__main-save">
 										Сохранить
 									</button>
+                                    <span>
+                                        <span>
+                                            <span>
+                                                <input type="text" name="Userid"value="@UserId" style="display: none">
+                                            </span>
+                                        </span>
+                                    </span>
 	                            </div>
 	                        </div>
 							<hr>
-	                        <div class="album-view__tracks">
-							    @foreach (UserLikedTrack track in Tracks)
-							    {
-							        <div class="album-view__track">
-							            <div class="album-view__track-left">
-							                @* <button></button> *@
-							                <div class="playlist-view__track-creds">
-							                    <span class="album-view__track-name">
-							                        @track.Track.Title
-							                    </span>
-							                    <span class="album-view__track-artist">
-							                        <a href="/debug">
-							                        @* <a href="/debug/Artist/@track.Track.Authors.First().AuthorId"> *@
-							                            @try
-							                            {
-							                                @track.Track.Authors.First().Author.Name
-							                            }
-							                            catch(Exception e)
-							                            {
-							                                <span>Travis Scott</span>
-							                            }
-							                        </a>
-							                    </span>
-							                </div>
-							            </div>
-							            <div class="album-view__track-right">
-							                <input type="checkbox" class="playlist-view__checkbox" id="@track.TrackId" name="@track.TrackId" value="@track.TrackId">
-											<label for="@track.TrackId" class="playlist-view__label"></label>
-							                <span>
-							                    @track.Track.Duration
-							                </span>
-							            </div>
-							        </div>
-							    }
-							</div>
+                            <div class="album-view__tracks">
+                                @{
+                                    int i = 0;
+
+                                    foreach (UserLikedTrack track in Tracks)
+                                    {
+                                    <div class="album-view__track">
+                                        <div class="album-view__track-left">
+                                            @* <button></button> *@
+                                            <div class="playlist-view__track-creds">
+                                                <span class="album-view__track-name">
+                                                    @track.Track.Title
+                                                </span>
+                                                <span class="album-view__track-artist">
+                                                    <a href="/debug">
+                                                        @* <a href="/debug/Artist/@track.Track.Authors.First().AuthorId"> *@
+                                                        @try
+                                                        {
+                                                            @track.Track.Authors.First().Author.Name
+                                                        }
+                                                        catch (Exception e)
+                                                        {
+                                                            <span>Travis Scott</span>
+                                                        }
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="album-view__track-right">
+                                            <input type="checkbox" class="playlist-view__checkbox" id="@track.TrackId" name="TracksId"  value="@track.TrackId">
+                                            <label for="@track.TrackId" name="TracksId[@i]" class="playlist-view__label"></label>
+                                            <span>
+                                                @track.Track.Duration
+                                            </span>
+                                        </div>
+                                    </div>
+                                        i++;
+                                    }
+                                }
+                            </div>
 	                    </div>
 					</form>
                 </main>
