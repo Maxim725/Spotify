@@ -246,7 +246,7 @@ namespace Spotify.Services
                     randId[i] = value;
                 }
             }
-            var result = _db.Tracks.Where(x => randId.Contains(x.TrackId));
+            var result = _db.Tracks.Include(x => x.Album).Include(x => x.Authors).ThenInclude(x => x.Author).Where(x => randId.Contains(x.TrackId));
 
             return result;
         }

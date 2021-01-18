@@ -1,0 +1,90 @@
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject SelectionService SelectionService
+
+@page "/debug/for-you"
+
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
+            <_Sidebar UserId="@UserId"></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile UserId="@UserId"></_Profile>
+                </header>
+                <main class="main">
+                    <div class="album-view">
+                        <div class="album-view__tracks">
+                            @foreach (Track track in Tracks)
+                             {
+                                <div class="album-view__track">
+                                    <div class="album-view__track-left">
+                                        <img class="album__img" src="@track.Album.Cover">
+                                        <div class="album-view__track-creds">
+                                            <span class="album-view__track-name">
+                                                @track.Title
+                                            </span>
+                                            <span class="album-view__track-artist">
+                                                <a href="/debug/Artist/@track.Authors.First().AuthorId">
+                                                    @try
+                                                    {
+                                                        @track.Authors.First().Author.Name
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+                                                        <span>Travis Scott</span>
+                                                    }
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="album-view__track-right">
+                                        <button></button>
+                                        <span>
+                                            @track.Duration
+                                        </span>
+                                    </div>
+                                </div>
+                             }
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <_Footer></_Footer>
+        }
+        else
+        {
+            <_RedirectToLogin></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private int UserId { get; set; }
+    private IEnumerable<Track> Tracks { get; set; }
+
+    protected override void OnInitialized()
+    {
+
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+
+            var likedTraskId = SelectionService.GetUserLikedTracks(UserId).Select(x => x.TrackId);
+            Tracks = SelectionService.Recommendation(likedTraskId);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+    }
+
+
+} 
