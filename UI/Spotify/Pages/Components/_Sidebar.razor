@@ -6,32 +6,71 @@
     </div>
     <div class="nav-bar">
         <nav class="nav">
-            <div class="nav-item nav-item--selected">
-                <a href="/debug" class='nav-a'>
-                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Главная
-                    </span>
-                </a>
-            </div>
+			@if (SelectedItem == 0)
+			{
+				<div class="nav-item nav-item--selected">
+					<a href="/debug" class='nav-a'>
+	                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
+	                    <span class="nav-a__text">
+	                        Главная
+	                    </span>
+              		</a>
+            	</div>
+			}
+			else {
+				<div class="nav-item">
+	                <a href="/debug" class='nav-a'>
+	                    <img src="/images/icons/house.svg" alt="" class="nav-a__img">
+	                    <span class="nav-a__text">
+	                        Главная
+	                    </span>
+	                </a>
+	            </div>
+			}
 
-            <div class="nav-item">
-                <a href="/debug/for-you" class='nav-a'>
-                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Для вас
-                    </span>
-                </a>
-            </div>
+			@if (SelectedItem == 1)
+			{
+	            <div class="nav-item nav-item--selected">
+	                <a href="/debug/for-you" class='nav-a'>
+	                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
+	                    <span class="nav-a__text">
+	                        Для вас
+	                    </span>
+	                </a>
+	            </div>
+			}
+			else {
+	            <div class="nav-item">
+	                <a href="/debug/for-you" class='nav-a'>
+	                    <img src="/images/icons/heart.svg" alt="" class="nav-a__img">
+	                    <span class="nav-a__text">
+	                        Для вас
+	                    </span>
+	                </a>
+	            </div>
+			}
 
-            <div class="nav-item">
-                <a href="/debug" class='nav-a'>
-                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
-                    <span class="nav-a__text">
-                        Медиатека
-                    </span>
-                </a>
-            </div>
+			@if (SelectedItem == 2)
+			{
+	            <div class="nav-item nav-item--selected">
+	                <a href="/debug/library" class='nav-a'>
+	                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
+	                    <span class="nav-a__text">
+	                        Медиатека
+	                    </span>
+	                </a>
+	            </div>
+			}
+			else {
+	            <div class="nav-item">
+	                <a href="/debug/library" class='nav-a'>
+	                    <img src="/images/icons/list.svg" alt="" class="nav-a__img">
+	                    <span class="nav-a__text">
+	                        Медиатека
+	                    </span>
+	                </a>
+	            </div>
+			}
         </nav>
     </div>
     <hr class='sidenav__hr'>
@@ -42,5 +81,6 @@
     [Parameter]
     public int UserId { get; set; }
     
-
+    [Parameter]
+    public int SelectedItem { get; set; }
 }

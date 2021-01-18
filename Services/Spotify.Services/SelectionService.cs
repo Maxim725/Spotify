@@ -138,6 +138,15 @@ namespace Spotify.Services
                                    .FirstOrDefault(x => x.PlaylistId.Equals(id));
             return playlist;
         }
+
+        public IEnumerable<AlbumTrack> GetAlbumTracksByPlaylistId(int playlistId)
+        {
+            IEnumerable<int> tracksId = _db.PlaylistTrack.Where(x => x.PlaylistId.Equals(playlistId)).Select(x => x.TrackId);
+
+            IEnumerable<AlbumTrack> AlbumTrack = _db.AlbumTrack.Include(x => x.Album).Include(x => x.Track).Where(x => tracksId.Contains(x.TrackId));
+
+            return AlbumTrack;
+        }
         public Track GetTrackById(int id)
         {
             Track track = _db.Tracks

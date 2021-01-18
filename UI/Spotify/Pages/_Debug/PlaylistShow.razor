@@ -1,35 +1,30 @@
+@* @using Spotify.Domain.Entities.Intermediate 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
 
-@page "/debug/album/{AlbumId:int}"
+@page "/debug/playlist/{PlaylistId:int}"
 
 <AuthorizeView>
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar UserId="@UserId" SelectedItem=-1></_Sidebar>
+            <_Sidebar UserId="@UserId"></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
-                    <_Profile UserId="@UserId" UserName="@context.User.Identity.Name"></_Profile>
+                    <_Profile UserId="@UserId"></_Profile>
                 </header>
                 <main class="main">
                     <div class="album-view">
                         <div class="album-view__main">
                             <div class="album-view__img">
-                                <img class="album-view__img" src="@Album.Cover" alt="">
+                                <img class="album-view__img" src="@AlbumTracks.First().Album.Cover" alt="">
                             </div>
                             <div class="album-view__right">
                                 <h1>
-                                    @Album.Title
+                                    @Playlist.Title
                                 </h1>
-								<div class="artist-container">
-									<img class="artist-image" src="@Album.Authors[0].Author.Avatar">
-									<h2>
-										<a href="/debug/Artist/@Album.Authors[0].AuthorId">@Album.Authors[0].Author.Name</a>&nbsp;·&nbsp;2021
-									</h2>
-								</div>
                                 <div class="album-view__buttons">
                                     <button>
                                         <img src="/images/icons/play_button.svg" alt="">
@@ -43,8 +38,8 @@
                                 </div>
                             </div>
                         </div>
-						<hr>
-                        <_AlbumTracks AlbumId="@AlbumId"></_AlbumTracks>
+                        <hr>
+                        <_AlbumTracks AlbumId="@PlaylistId"></_AlbumTracks>
                     </div>
                 </main>
             </div>
@@ -62,10 +57,12 @@
 
 @code {
     private int UserId { get; set; }
-    private Album Album { get; set; }
+    private Playlist Playlist { get; set; }
+    private IEnumerable<AlbumTrack> AlbumTracks { get; set; }
 
     [Parameter]
-    public int AlbumId { get; set; }
+    public int PlaylistId { get; set; }
+
     protected override void OnInitialized()
     {
 
@@ -74,7 +71,8 @@
             var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
 
             UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
-            Album = SelectionService.GetAlbumById(AlbumId);
+            Playlist = SelectionService.GetPlaylistById(PlaylistId);
+            AlbumTracks = SelectionService.GetAlbumTracksByPlaylistId(PlaylistId);
         }
         else
         {
@@ -82,11 +80,5 @@
         }
     }
 
-    private string GetNameArtist()
-    {
-        var res = Album.Title;
-        return res == "" ? "Unknown" : res;
-    }
 
-
-} 
+}  *@
