@@ -1,0 +1,84 @@
+@using Spotify.Domain.Entities.Intermediate 
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject SelectionService SelectionService
+
+@page "/debug/playlist/{PlaylistId:int}"
+
+<AuthorizeView>
+    <Authorized>
+        @if (context.User.Identity.IsAuthenticated)
+        {
+            <_Sidebar UserId="@UserId"></_Sidebar>
+            <div class="container">
+                <header class="header">
+                    <input type="text" class="search" placeholder="Поиск">
+                    <_Profile UserId="@UserId"></_Profile>
+                </header>
+                <main class="main">
+                    <div class="album-view">
+                        <div class="album-view__main">
+                            <div class="album-view__img">
+                                <img class="album-view__img" src="@AlbumTracks.First().Album.Cover" alt="">
+                            </div>
+                            <div class="album-view__right">
+                                <h1>
+                                    @Playlist.Title
+                                </h1>
+                                <div class="album-view__buttons">
+                                    <button>
+                                        <img src="/images/icons/play_button.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/images/icons/star.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/images/icons/more.svg" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <_AlbumTracks AlbumId="@PlaylistId"></_AlbumTracks>
+                    </div>
+                </main>
+            </div>
+            <_Footer></_Footer>
+        }
+        else
+        {
+            <_RedirectToLogin></_RedirectToLogin>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <_RedirectToLogin></_RedirectToLogin>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private int UserId { get; set; }
+    private Playlist Playlist { get; set; }
+    private IEnumerable<AlbumTrack> AlbumTracks { get; set; }
+
+    [Parameter]
+    public int PlaylistId { get; set; }
+
+    protected override void OnInitialized()
+    {
+
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+        {
+            var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
+
+            UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
+            Playlist = SelectionService.GetPlaylistById(PlaylistId);
+            AlbumTracks = SelectionService.GetAlbumTracksByPlaylistId(PlaylistId);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
+    }
+
+
+} 
