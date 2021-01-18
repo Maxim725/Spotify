@@ -2,6 +2,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
+@inject IJSRuntime js
 
 @page "/debug/library"
 
@@ -19,37 +20,38 @@
                     <div class="album-view">
                         <div class="album-view__tracks">
                             @* @foreach (UserLikedTrack track in Tracks) *@
-							@for (int i = 0; i < Tracks.Count(); i++)
+                            @for (int i = 0; i < Tracks.Count(); i++)
                             {
-                                <div class="album-view__track">
-                                    <div class="album-view__track-left">
-                                        <img class="album__img" src="@pair[i].Track.Album.Cover">
-                                        <div class="album-view__track-creds">
-                                            <span class="album-view__track-name">
-                                                @Tracks[i].Track.Title
-                                            </span>
-                                            <span class="album-view__track-artist">
-                                                <a href="/debug/Artist/@pair[i].Track.Authors.First().AuthorId">
+                                int k = i;
+                                <div class="album-view__track" @onclick="@(() => {PlayTrack(k); SetQueue(k);})">
+                                <div class="album-view__track-left">
+                                    <img class="album__img" src="@pair[i].Track.Album.Cover">
+                                    <div class="album-view__track-creds">
+                                        <span class="album-view__track-name">
+                                            @Tracks[i].Track.Title
+                                        </span>
+                                        <span class="album-view__track-artist">
+                                            <a href="/debug/Artist/@pair[i].Track.Authors.First().AuthorId">
                                                 @* <a href="/debug/"> *@
-                                                    @try
-                                                    {
-                                                        @pair[i].Track.Authors.First().Author.Name
-                                                    }
-                                                    catch (Exception e)
-                                                    {
-                                                        <span>Travis Scott</span>
-                                                    }
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="album-view__track-right">
-                                        <button></button>
-                                        <span>
-                                            @Tracks[i].Track.Duration
+                                                @try
+                                                {
+                                                    @pair[i].Track.Authors.First().Author.Name
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                    <span>Travis Scott</span>
+                                                }
+                                            </a>
                                         </span>
                                     </div>
                                 </div>
+                                <div class="album-view__track-right">
+                                    <button></button>
+                                    <span>
+                                        @Tracks[i].Track.Duration
+                                    </span>
+                                </div>
+                            </div>
                             }
                         </div>
                     </div>
@@ -70,24 +72,58 @@
 @code {
     private int UserId { get; set; }
 
-	private UserLikedTrack[] Tracks { get; set; }
+    private UserLikedTrack[] Tracks { get; set; }
 
-	private AlbumTrack[] pair { get; set; }
+    private AlbumTrack[] pair { get; set; }
 
-	protected override void OnInitialized()
-	{
-		if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
+    protected override void OnInitialized()
+    {
+        if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated)
         {
             var claims = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Claims;
 
             UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
 
             Tracks = SelectionService.GetUserLikedTracks(UserId).ToArray();
-			pair = SelectionService.GetAlbumTrack(Tracks.Select(x => x.TrackId)).ToArray();
+            pair = SelectionService.GetAlbumTrack(Tracks.Select(x => x.TrackId)).ToArray();
         }
         else
         {
             NavigationManager.NavigateTo("/Identity/Account/Login", true);
         }
-	}
+    }
+
+    protected void PlayTrack(int i)
+    {
+        js.InvokeVoidAsync("player.play", new
+        {
+            title = pair[i].Track.Title,
+            cover = pair[i].Album.Cover,
+            album = "/debug/album/" + pair[i].Album.AlbumId,
+            url = "/data/track/" + pair[i].Track.TrackId,
+            artist = pair[i].Album.Authors[0].Author.Name,
+            artistUrl = "/debug/artist/" + pair[i].Album.Authors[0].AuthorId
+        });
+    }
+
+    protected void SetQueue(int i)
+    {
+        js.InvokeVoidAsync("player.clearQueue", i);
+
+        for (int j = 0; j < pair.Length; j++)
+        {
+
+            js.InvokeVoidAsync("player.addQueue", new
+            {
+                title = pair[j].Track.Title,
+                cover = pair[j].Album.Cover,
+                album = "/debug/album/" + pair[j].Album.AlbumId,
+                url = "/data/track/" + pair[j].Track.TrackId,
+                artist = pair[j].Album.Authors[0].Author.Name,
+                artistUrl = "/debug/artist/" + pair[j].Album.Authors[0].AuthorId
+            });
+        }
+
+        js.InvokeVoidAsync("player.setQueue", i);
+    }
 } 
