@@ -1,3 +1,15 @@
+class QueueTrack {
+	constructor () {
+		this.id = 0;
+		this.title = '';
+		this.cover = '';
+		this.album = '';
+		this.url = '';
+		this.artist = '';
+		this.artistUrl = '';
+	}
+}
+
 class Player {
 	constructor () {
 		this.isPaused = true;
@@ -14,6 +26,9 @@ class Player {
 				url: "#"
 			}
 		}
+
+		this.queue = [];
+		this.queuePosition = 0;
 
 		this.player = document.createElement('audio');
 
@@ -45,6 +60,18 @@ class Player {
 		this.bindVolume();
 	}
 
+	clearQueue() {
+		this.queue = [];
+	}
+
+	setQueue(i) {
+		this.queuePosition = i;
+	}
+
+	addQueue(i) {
+		this.queue.push(i);
+	}
+
 	trySync() {
 		this.bindProgress();
 		this.updateTrack();
@@ -67,17 +94,16 @@ class Player {
 
 	/**
 	 * Update track in player.
-	 * @param {{title: string, cover: string, album: string, url: string}} track track.
-	 * @param {{name: string, url: string}} artist track artist.
+	 * @param {QueueTrack} track track.
 	 */
-	play(track, artist) {
+	play(track) {
 		this.current.title = track.title;
 		this.current.url = track.url;
 		this.current.album = track.album;
 		this.current.cover = track.cover;
-		this.current.artist.name = artist.name;
-		this.current.artist.url = artist.url;
-
+		this.current.artist.name = track.artist;
+		this.current.artist.url = track.artistUrl;
+		
 		this.player.volume = this.volume;
 		this.player.src = track.url;
 		this.player.play();
@@ -85,13 +111,19 @@ class Player {
 
 		this.player.onloadedmetadata = () => {
 			let $trackTimeStamp = document.querySelector('.player__time-left');
+
 			if ($trackTimeStamp) {
 				$trackTimeStamp.innerText = this.secsToStamp(this.player.duration);
 			}
 		}
 
 		this.player.onended = () => {
-			this.isPaused = true;
+			if (this.queuePosition < this.queue.length) {
+				this.play(this.queue[++this.queuePosition])
+			} else {
+				this.isPaused = true;
+				this.trySync();
+			}
 		}
 
 		this.trySync();
@@ -167,6 +199,18 @@ class Player {
 			this.isPaused? this.player.pause() : this.player.play();
 
 			this.isPaused? $playButtonImage.src = '/images/icons/footer_play.svg' : $playButtonImage.src = '/images/icons/footer_pause.svg'
+		}
+	}
+	
+	_goNext() {
+		if (this.queuePosition < this.queue.length) {
+			this.play(this.queue[++this.queuePosition]);
+		}
+	}
+
+	_goPrevious() {
+		if (this.queuePosition > 0) {
+			this.play(this.queue[--this.queuePosition]);
 		}
 	}
 }

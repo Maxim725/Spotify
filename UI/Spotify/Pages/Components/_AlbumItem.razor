@@ -68,10 +68,26 @@
 			title = Album.Tracks[0].Track.Title,
 			cover = Album.Cover,
 			album = "/debug/album/" + Album.AlbumId,
-			url = "/data/track/" + Album.Tracks[0].TrackId
-		}, new {
-			name = Album.Authors[0].Author.Name,
-			url = "/debug/artist/" + Album.Authors[0].AuthorId
+			url = "/data/track/" + Album.Tracks[0].TrackId,
+			artist = Album.Authors[0].Author.Name,
+			artistUrl = "/debug/artist/" + Album.Authors[0].AuthorId
 		});
+
+		js.InvokeVoidAsync("player.clearQueue");
+
+        for (int j = 1; j < Album.Tracks.Count(); j++) {
+			var album = SelectionService.GetAlbumByTrackId(Album.Tracks[j].TrackId);
+
+            js.InvokeVoidAsync("player.addQueue", new {
+                title = Album.Tracks[j].Track.Title,
+                cover = album.Cover,
+                album = "/debug/album/" + album.AlbumId,
+                url = "/data/track/" + Album.Tracks[j].TrackId,
+                artist = album.Authors[0].Author.Name,
+                artistUrl = "/debug/artist/" + album.Authors[0].AuthorId
+            });
+        }
+
+        js.InvokeVoidAsync("player.setQueue", 0);
 	}
 }

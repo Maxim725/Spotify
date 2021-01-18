@@ -2,6 +2,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject SelectionService SelectionService
+@inject IJSRuntime js
 
 @page "/debug/for-you"
 
@@ -18,9 +19,11 @@
                 <main class="main">
                     <div class="album-view">
                         <div class="album-view__tracks">
-                            @foreach (AlbumTrack pair in data)
+                            @for (int i = 0; i < data.Length - 1; i++)
                              {
-                                <div class="album-view__track">
+								int k = i;
+								AlbumTrack pair = data[i];
+                                <div class="album-view__track" @onclick="@(() => {PlayTrack(k); SetQueue(k);})">
                                     <div class="album-view__track-left">
                                         <img class="album__img" src="@pair.Album.Cover">
                                         <div class="album-view__track-creds">
@@ -67,7 +70,7 @@
 
 @code {
     private int UserId { get; set; }
-    private IEnumerable<AlbumTrack> data { get; set; }
+    private AlbumTrack[] data { get; set; }
 
     protected override void OnInitialized()
     {
@@ -79,13 +82,39 @@
             UserId = int.Parse(claims.First(x => x.Type.Contains("nameidentifier")).Value);
 
             var likedTraskId = SelectionService.GetUserLikedTracks(UserId).Select(x => x.TrackId);
-            data = SelectionService.Recommendation(likedTraskId);
+            data = SelectionService.Recommendation(likedTraskId).ToArray();
         }
         else
         {
             NavigationManager.NavigateTo("/Identity/Account/Login", true);
         }
     }
+    protected void PlayTrack(int i) {
+        js.InvokeVoidAsync("player.play", new {
+            title = data[i].Track.Title,
+            cover = data[i].Album.Cover,
+            album = "/debug/album/" + data[i].Album.AlbumId,
+            url = "/data/track/" + data[i].Track.TrackId,
+            artist = data[i].Album.Authors[0].Author.Name,
+            artistUrl = "/debug/artist/" + data[i].Album.Authors[0].AuthorId
+        });
+    }
 
+    protected void SetQueue(int i) {
+        js.InvokeVoidAsync("player.clearQueue", i);
 
+        for (int j = 0; j < data.Length; j++) {
+
+            js.InvokeVoidAsync("player.addQueue", new {
+                title = data[j].Track.Title,
+                cover = data[j].Album.Cover,
+                album = "/debug/album/" + data[j].Album.AlbumId,
+                url = "/data/track/" + data[j].Track.TrackId,
+                artist = data[j].Album.Authors[0].Author.Name,
+                artistUrl = "/debug/artist/" + data[j].Album.Authors[0].AuthorId
+            });
+        }
+
+        js.InvokeVoidAsync("player.setQueue", i);
+    }
 } 

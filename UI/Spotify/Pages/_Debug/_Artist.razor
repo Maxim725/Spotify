@@ -2,6 +2,7 @@
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @page "/debug/artist/{ArtistId:int}"
+@inject IJSRuntime js
 
 <AuthorizeView>
     <Authorized>
@@ -22,7 +23,7 @@
                                     @Author.Name
                                 </h1>
                                 <div class="artist__buttons">
-                                    <button>
+                                    <button @onclick="Play">
                                         <img src="/images/icons/play_button.svg" alt="">
                                     </button>
                                     <button>
@@ -81,4 +82,36 @@
         return SelectionService.GetPopularAuthorAlbumsById(ArtistId);
     }
 
+	public Track[] Tracks { get; set; }
+
+	protected void Play() {
+		Tracks = SelectionService.GetPopularTracksByArtist(ArtistId).ToArray();
+		Album album = SelectionService.GetAlbumByTrackId(Tracks[0].TrackId);
+		
+        js.InvokeVoidAsync("player.play", new {
+            title = Tracks[0].Title,
+            cover = album.Cover,
+            album = "/debug/album/" + album.AlbumId,
+            url = "/data/track/" + Tracks[0].TrackId,
+            artist = album.Authors[0].Author.Name,
+            artistUrl = "/debug/artist/" + album.Authors[0].AuthorId
+        });
+
+		js.InvokeVoidAsync("player.clearQueue");
+
+        for (int j = 0; j < Tracks.Length; j++) {
+			album = SelectionService.GetAlbumByTrackId(Tracks[j].TrackId);
+
+            js.InvokeVoidAsync("player.addQueue", new {
+                title = Tracks[j].Title,
+                cover = album.Cover,
+                album = "/debug/album/" + album.AlbumId,
+                url = "/data/track/" + Tracks[j].TrackId,
+                artist = album.Authors[0].Author.Name,
+                artistUrl = "/debug/artist/" + album.Authors[0].AuthorId
+            });
+        }
+
+        js.InvokeVoidAsync("player.setQueue", 0);
+    }
 } 
