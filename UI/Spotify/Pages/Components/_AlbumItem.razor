@@ -14,17 +14,13 @@
                 </a>
             </span>
             <span class="album__artist">
-                <a href="/debug/Artist/@Album.Authors[0].AuthorId">
-                    <!-- КОСТЫЛЬ, когда данные будут, убрать!!!! -->
-                    @try
-                    {
-                        @Album.Authors[0].Author.Name
-                    }
-                    catch(Exception e)
-                    {
-                    <span>TellyGrave</span>
-                    }
-                </a>
+                @for (int i = 0; i < Album.Authors.Count; i++)
+                {
+                    <a href="/debug/Artist/@Album.Authors[i].AuthorId">@try
+                    {@Album.Authors[i].Author.Name }
+                catch (Exception e)
+                { <span>[Deleted]</span>}</a>
+                }
             </span>
             <span class="album__info">
                 Последний релиз · @TypeAlbums

@@ -2,7 +2,7 @@
 	width: 940px;
 	height: 30px;
 	background: $color--jumbo-dark;
-	border: 1px solid  $color--jumbo-dark;
+	border: 1px solid $color--jumbo-dark;
 	border-radius: 10px;
 	font-family: 'SF Pro Text';
 	font-size: 16px;
@@ -13,9 +13,9 @@
 	background-repeat: no-repeat;
 	background-position: left 11px center;
 	flex: 0.8;
-	background-image: url('../svg/search.svg');
+	background-image: url('/images/icons/search.svg');
 
-	&__layout h2{
+	&__layout h2 {
 		margin: 0;
 		font-family: SF Pro Rounded;
 		font-style: normal;
@@ -36,7 +36,7 @@
 		align-items: center;
 		margin-right: 15px;
 	}
-	
+
 	&__artist {
 		width: 200px;
 		height: 200px;

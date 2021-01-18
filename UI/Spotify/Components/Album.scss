@@ -141,6 +141,7 @@
 		border-radius: 20px;
 		margin-right: 32px;
 	}
+
 	&__right {
 		display: flex;
 		flex-direction: column;
@@ -153,20 +154,39 @@
 			margin: 0;
 			margin-bottom: 10px;
 		}
-		
+
+		.artist-container {
+			display: flex;
+		}
+
+		.artist-image {
+			display: block;
+			width: 57px;
+			height: 57px;
+			background-image: url(../example/example-artist.png);
+			background-size: cover;
+			border-radius: 50%;
+			margin-right: 18px;
+		}
+
 		h2 {
 			margin: 0;
-			padding-left: 57px;
 			font-family: SF Pro Rounded;
 			font-weight: bold;
 			font-size: 48px;
 			color: #B1AEB4;
-			background-image: url(../example/example-artist.png);
-			background-size: contain;
 			background-repeat: no-repeat;
 			background-size: auto;
 			background-position: left center;
 			margin-bottom: 70px;
+
+			a {
+				color: inherit;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 
@@ -178,7 +198,7 @@
 			margin-right: 27px;
 			border: 0;
 
-			img:hover{
+			img:hover {
 				filter: brightness(0.7);
 			}
 		}
@@ -216,7 +236,7 @@
 					opacity: 1;
 				}
 
-				button:hover{
+				button:hover {
 					filter: brightness(0.7);
 				}
 			}
@@ -226,7 +246,7 @@
 					opacity: 1;
 				}
 
-				button:hover{
+				button:hover {
 					filter: brightness(0.7);
 				}
 			}
@@ -239,7 +259,7 @@
 			button {
 				width: 30px;
 				height: 30px;
-				background-image: url(../svg/track-play_button.svg);
+				background-image: url(/images/icons/track-play_button.svg);
 				opacity: 0;
 				background-repeat: no-repeat;
 				background-size: contain;
@@ -248,7 +268,7 @@
 			}
 
 			button:focus {
-				background-image: url(../svg/track-stop_button.svg);
+				background-image: url(/images/icons/track-stop_button.svg);
 			}
 		}
 
@@ -282,7 +302,7 @@
 			align-items: center;
 
 			button {
-				background-image: url(../svg/star.svg);
+				background-image: url(/images/icons/star.svg);
 				width: 21px;
 				height: 21px;
 				opacity: 0;
@@ -291,10 +311,10 @@
 			}
 
 			button:focus {
-				background-image: url(../svg/filled_star.svg);
+				background-image: url(/images/icons/filled_star.svg);
 				opacity: 1;
 			}
-			
+
 			span {
 				margin-right: 15px;
 				margin-left: 35px;

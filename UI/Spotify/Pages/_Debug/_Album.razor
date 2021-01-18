@@ -24,18 +24,21 @@
                                 <h1>
                                     @Album.Title
                                 </h1>
-                                <h2>
-                                    Travis Scott&nbsp;·&nbsp;2018
-                                </h2>
+								<div class="artist-container">
+									<img class="artist-image" src="@Album.Authors[0].Author.Avatar">
+									<h2>
+										<a href="/debug/Artist/@Album.Authors[0].AuthorId">@Album.Authors[0].Author.Name</a>&nbsp;·&nbsp;2021
+									</h2>
+								</div>
                                 <div class="album-view__buttons">
                                     <button>
-                                        <img src="svg/play_button.svg" alt="">
+                                        <img src="/images/icons/play_button.svg" alt="">
                                     </button>
                                     <button>
-                                        <img src="svg/star.svg" alt="">
+                                        <img src="/images/icons/star.svg" alt="">
                                     </button>
                                     <button>
-                                        <img src="svg/more.svg" alt="">
+                                        <img src="/images/icons/more.svg" alt="">
                                     </button>
                                 </div>
                             </div>

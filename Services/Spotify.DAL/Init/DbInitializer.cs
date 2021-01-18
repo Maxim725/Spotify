@@ -139,7 +139,7 @@ namespace Spotify.DAL.Init
 						  Name = "Gorillaz",
 						  Description = "Gorillaz это вам не обезьянки. Экспериментальный фанк рок с мультяшками!",
 						  Plays = 43432,
-						  Avatar = "/data/author-album/10"
+						  Avatar = "/data/author-avatar/10"
 					 },
 					 new Author {
 						  CreatedOn = new DateTime(2020, 3, 19),
@@ -147,7 +147,7 @@ namespace Spotify.DAL.Init
 						  Name = "Drake",
 						  Description = "Drake - главный живой хитмейкер всго мира.",
 						  Plays = 656,
-						  Avatar = "/data/author-album/2"
+						  Avatar = "/data/author-avatar/2"
 					 },
 					 new Author {
 						  CreatedOn = new DateTime(2017, 5, 24),
@@ -992,7 +992,7 @@ namespace Spotify.DAL.Init
 		{
 			{ // Контекст
 			  ////! ОБЛОЖКИ АЛЬБОМОВ
-			  // Мизантропия
+				// Мизантропия
 				string pathNorth = Path.Combine(Environment.CurrentDirectory, "Author\\11\\Albums\\Мизантропия\\Cover.jpg");
 				fb.StoreFile(FileStorageFileType.AlbumCover, 1, File.ReadAllBytes(pathNorth), "img/jpeg");
 
@@ -1118,6 +1118,67 @@ namespace Spotify.DAL.Init
 				string schoolboyAva = Path.Combine(Environment.CurrentDirectory, "Author\\Schoolboy_Q\\Schoolboy_Q.jpg");
 				fb.StoreFile(FileStorageFileType.AuthorAvatar, 16, File.ReadAllBytes(schoolboyAva), "img/jpeg");
 
+			}
+
+			{
+				////! ТРЕКИ АВТОРОВ
+				// Мизантропия
+				string pathNorth = Path.Combine(Environment.CurrentDirectory, "Author\\11\\Albums\\Мизантропия\\СЕВЕРНЫЙ ФЛОТ - Поднимая знамя.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 13, File.ReadAllBytes(pathNorth), "audio/mpeg");
+
+				// Babies
+				string pathBabies = Path.Combine(Environment.CurrentDirectory, "Author\\Justin_Bieber\\Albums\\Babies\\Justin Bieber feat. Ludacris - Baby.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 4, File.ReadAllBytes(pathBabies), "audio/mpeg");
+
+				// Beibs_In_The_Trap
+				string pathBeibs1 = Path.Combine(Environment.CurrentDirectory, "Author\\Travis_Scott\\Albums\\Beibs_In_The_Trap\\Travis Scott - sdp interlude.mp3");
+				string pathBeibs2 = Path.Combine(Environment.CurrentDirectory, "Author\\Travis_Scott\\Albums\\Beibs_In_The_Trap\\Travis Scott - goosebumps (ft. kendrick lamar).mp3");
+				fb.StoreFile(FileStorageFileType.Track, 1, File.ReadAllBytes(pathBeibs1), "audio/mpeg");
+				fb.StoreFile(FileStorageFileType.Track, 9, File.ReadAllBytes(pathBeibs2), "audio/mpeg");
+
+				// Daft_Punk
+				string pathPunk = Path.Combine(Environment.CurrentDirectory, "Author\\Daft_Punk\\Albums\\Homework\\Daft Punk - Around the World.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 10, File.ReadAllBytes(pathPunk), "audio/mpeg");
+
+				// nectar
+				string nectar = Path.Combine(Environment.CurrentDirectory, "Author\\Joji\\Albums\\Joji - NITROUS.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 2, File.ReadAllBytes(nectar), "audio/mpeg");
+
+				// gorillaz
+				string gorillaz = Path.Combine(Environment.CurrentDirectory, "Author\\Gorillaz\\Albums\\Demon_Days\\Gorillaz - Feel Good Inc..mp3");
+				fb.StoreFile(FileStorageFileType.Track, 8, File.ReadAllBytes(gorillaz), "audio/mpeg");
+
+				// Kanye_West
+				string Kanye_West = Path.Combine(Environment.CurrentDirectory, "Author\\Kanye_West\\Albums\\Yeezus\\Kanye West - Hold My Liqour.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 7, File.ReadAllBytes(Kanye_West), "audio/mpeg");
+
+				// Phara [НЕТ ТРЕКА]
+				// string phara = Path.Combine(Environment.CurrentDirectory, "Author\\Pharaoh\\Albums\\PHLORA\\track.mp3");
+				// fb.StoreFile(FileStorageFileType.Track, 8, File.ReadAllBytes(phara), "audio/mpeg");
+
+				// Morgenshtern
+				string morgenshtern = Path.Combine(Environment.CurrentDirectory, "Author\\Morgenstern\\Albums\\Легендарная_пыль\\MORGENSHTERN Элджей - Cadillac.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 12, File.ReadAllBytes(morgenshtern), "audio/mpeg");
+
+				// haski
+				string haski = Path.Combine(Environment.CurrentDirectory, "Author\\Хаски\\Albums\\Любимые_песни_(воображаемых)_людей\\Хаски - Панелька [Рифмы и Панчи].mp3");
+				fb.StoreFile(FileStorageFileType.Track, 3, File.ReadAllBytes(haski), "audio/mpeg");
+
+				// kizaru
+				string kizaru = Path.Combine(Environment.CurrentDirectory, "Author\\Kizaru\\Albums\\Mas_Fuerte\\KIZARU - Оу Щит.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 6, File.ReadAllBytes(kizaru), "audio/mpeg");
+
+				// obladaet
+				string obladaet = Path.Combine(Environment.CurrentDirectory, "Author\\Obladaet\\Albums\\DOUBLE_TAP\\OBLADAET - DOUBLE TAP.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 5, File.ReadAllBytes(obladaet), "audio/mpeg");
+
+				// Asap_Rocky [НЕТ ТРЕКА]
+				// string Asap_Rocky = Path.Combine(Environment.CurrentDirectory, "Author\\Asap_Rocky\\Albums\\Cozy_Tapes\\Cover.mp3");
+				// fb.StoreFile(FileStorageFileType.Track, 3, File.ReadAllBytes(Asap_Rocky), "audio/mpeg");
+
+				// Drake
+				string drake = Path.Combine(Environment.CurrentDirectory, "Author\\Drake\\Albums\\Scorpion\\Drake - Nonstop.mp3");
+				fb.StoreFile(FileStorageFileType.Track, 11, File.ReadAllBytes(drake), "audio/mpeg");
 			}
 
 			////! АВАТАРКИ ПОЛЬЗОВАТЕЛЕЙ
