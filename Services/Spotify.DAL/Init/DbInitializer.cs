@@ -832,7 +832,7 @@ namespace Spotify.DAL.Init
 						  Track = tracks[10]
 					 },
 					 new TrackAuthor {
-						  Author = authors[10],
+						  Author = authors[9],
 						  Track = tracks[11]
 					 },
 					 new TrackAuthor {
