@@ -8,7 +8,7 @@
     <Authorized>
         @if (context.User.Identity.IsAuthenticated)
         {
-            <_Sidebar UserId="@UserId"></_Sidebar>
+            <_Sidebar UserId="@UserId" SelectedItem=-1></_Sidebar>
             <div class="container">
                 <header class="header">
                     <input type="text" class="search" placeholder="Поиск">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 						<hr>
-                        <_AlbumTracks AlbumId="@AlbumId"></_AlbumTracks>
+                        <_AlbumTracks AlbumId="@AlbumId" Album="@Album"></_AlbumTracks>
                     </div>
                 </main>
             </div>

@@ -71,6 +71,18 @@ namespace Spotify.Services
             return _db.PlaylistTrack.Include(x => x.Track).ThenInclude(x => x.Authors).ThenInclude(x => x.Author).Where(x => x.PlaylistId.Equals(playlistId)).Select(x => x.Track);
         }
 
+        public IEnumerable<AlbumTrack> GetAlbumTrack(IEnumerable<int> ids)
+        {
+            return _db.AlbumTrack.Include(x => x.Album)
+                                    .ThenInclude(x => x.Authors)
+                                    .ThenInclude(x => x.Author)
+                                    .ThenInclude(x => x.Tracks)
+                                .Include(x => x.Track)
+                                    .ThenInclude(x => x.Authors)
+                                    .ThenInclude(x => x.Author)
+                                .Where(x => ids.Contains(x.TrackId));
+        }
+
         public IEnumerable<Playlist> GetPlaylistsIdByUserId(int userId)
         {
             IEnumerable<Playlist> playlists = _db.UserPlaylist.Include(x => x.Playlist).Where(x => x.UserId.Equals(userId)).Select(x => x.Playlist);
@@ -170,7 +182,7 @@ namespace Spotify.Services
         }
         public Album GetAlbumByTrackId(int trackId)
         {
-            return _db.Tracks.Include(x =>x.Album).FirstOrDefault(x => x.TrackId.Equals(trackId)).Album;
+            return _db.AlbumTrack.Include(x => x.Album).ThenInclude(x => x.Authors).ThenInclude(x => x.Author).FirstOrDefault(x => x.TrackId == trackId).Album;
         }
 
 
